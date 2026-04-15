@@ -95,14 +95,7 @@
       box-shadow: 0 8px 30px rgba(0,0,0,0.1);
       transform: translateY(-3px);
     }
-    .card::before {
-      content: '';
-      position: absolute;
-      top: 0; left: 0; right: 0;
-      height: 3px;
-    }
-    .card.cal::before { background: var(--purple); }
-    .card.msg::before { background: var(--blue); }
+    .card::before { display: none; }
 
     .card-icon {
       width: 44px; height: 44px;
