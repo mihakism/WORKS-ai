@@ -96,6 +96,7 @@
       background: var(--white);
       height: calc(100vh - 88px);
       overflow: hidden;
+      position: relative;
     }
 
     /* ── Left: Calendar sidebar ── */
@@ -351,7 +352,7 @@
 
     /* ── New Event Modal ── */
     .modal-overlay {
-      position: fixed;
+      position: absolute;
       inset: 0;
       background: rgba(0,0,0,0.28);
       z-index: 500;

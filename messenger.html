@@ -16,6 +16,8 @@
       --text-secondary: #4A4A4A;
       --text-tertiary: #9B9B9B;
       --text-placeholder: #C2C2C2;
+      --icon-default: #6B6B6B;
+      --icon-active: #1A1A1A;
       --green: #03C75A;
       --blue: #1A6AFF;
       --red: #FF3B30;
@@ -361,12 +363,12 @@
       align-items: center;
       justify-content: center;
       cursor: pointer;
-      color: var(--text-tertiary);
+      color: var(--icon-default);
       transition: background 0.1s, color 0.1s;
       border: none;
       background: transparent;
     }
-    .header-icon-btn:hover { background: var(--surface-1); color: var(--text-primary); }
+    .header-icon-btn:hover { background: var(--surface-1); color: var(--icon-active); }
 
     /* Translation toggle */
     .translate-toggle {
@@ -772,7 +774,8 @@
       width: 60px;
       height: 60px;
       border-radius: 6px;
-      background: linear-gradient(135deg, #4A9CF5, #1A6AFF);
+      background: var(--ai-blue-bg);
+      border: 1px solid var(--ai-blue-border);
       flex-shrink: 0;
       display: flex;
       align-items: center;
@@ -847,22 +850,22 @@
     .input-toolbar-icons {
       display: flex;
       align-items: center;
-      gap: 2px;
+      gap: 8px;
       padding-bottom: 8px;
     }
     .toolbar-icon {
-      width: 32px;
-      height: 32px;
+      width: 28px;
+      height: 28px;
       display: flex;
       align-items: center;
       justify-content: center;
-      color: var(--text-tertiary);
+      color: var(--icon-default);
       cursor: pointer;
       border-radius: 6px;
       transition: background 0.1s, color 0.1s;
-      font-size: 16px;
+      font-size: 14px;
     }
-    .toolbar-icon:hover { background: var(--surface-1); color: var(--text-primary); }
+    .toolbar-icon:hover { background: var(--surface-1); color: var(--icon-active); }
     .input-field-wrapper {
       flex: 1;
       background: var(--surface-1);
