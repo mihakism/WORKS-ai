@@ -8,728 +8,297 @@
   <style>
     :root {
       --white: #FFFFFF;
-      --surface-1: #F7F8FA;
-      --surface-2: #EAECEF;
+      --surface: #F7F8FA;
       --border: #E4E4E8;
-      --text-primary: #111111;
-      --text-secondary: #666666;
-      --text-tertiary: #999999;
+      --text-1: #111111;
+      --text-2: #666666;
+      --text-3: #999999;
       --green: #03C75A;
       --blue: #1A6AFF;
-      --red: #FF3B30;
-      --ai-blue-bg: #E8F0FE;
-      --ai-blue-border: #A8C4F4;
-      --ai-green-bg: #E8F8EF;
-      --accent-light: #E8F0FF;
+      --purple: #7048E8;
     }
     * { box-sizing: border-box; margin: 0; padding: 0; }
     body {
-      font-family: 'Noto Sans KR', -apple-system, BlinkMacSystemFont, 'Apple SD Gothic Neo', sans-serif;
+      font-family: 'Noto Sans KR', -apple-system, BlinkMacSystemFont, sans-serif;
       background: #F5F5F7;
-      color: var(--text-primary);
-      height: 100vh;
-      overflow: hidden;
+      color: var(--text-1);
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 32px 24px;
     }
 
-    /* ── Overlay frame ── */
-    .overlay-frame {
-      position: fixed; inset: 0;
-      display: flex; align-items: center; justify-content: center;
-      padding: 24px;
-    }
-    .modal-card {
-      background: var(--white);
-      border-radius: 16px;
-      box-shadow: 0 8px 40px rgba(0,0,0,0.12);
-      width: 100%; max-width: 1100px;
-      height: calc(100vh - 48px);
-      display: flex; flex-direction: column;
-      overflow: hidden;
+    .page {
+      width: 100%;
+      max-width: 820px;
     }
 
-    /* ── Top header ── */
-    .modal-top {
-      height: 52px; flex-shrink: 0;
-      display: flex; align-items: center;
-      padding: 0 24px;
-      border-bottom: 1px solid var(--border);
+    /* Header */
+    .hdr {
+      text-align: center;
+      margin-bottom: 40px;
     }
-    .modal-top-title {
-      font-size: 15px; font-weight: 700; color: var(--text-primary);
+    .hdr-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      background: rgba(3,199,90,0.1);
+      border: 1px solid rgba(3,199,90,0.25);
+      border-radius: 20px;
+      padding: 5px 14px;
+      font-size: 11px;
+      font-weight: 600;
+      color: var(--green);
+      margin-bottom: 16px;
     }
-    .modal-close {
-      margin-left: auto;
-      width: 28px; height: 28px; border-radius: 6px;
-      border: none; background: none; cursor: pointer;
-      color: var(--text-tertiary); font-size: 18px;
-      display: flex; align-items: center; justify-content: center;
+    .hdr-badge .dot {
+      width: 5px; height: 5px; border-radius: 50%; background: var(--green);
     }
-    .modal-close:hover { background: var(--surface-1); color: var(--text-primary); }
-
-    /* ── Body layout ── */
-    .modal-body { flex: 1; display: flex; overflow: hidden; }
-
-    /* ── Sidebar ── */
-    .sidebar {
-      width: 200px; min-width: 200px; flex-shrink: 0;
-      border-right: 1px solid var(--border);
-      padding: 16px 0;
-      overflow-y: auto;
-      background: var(--white);
-    }
-    .sb-group { margin-bottom: 8px; }
-    .sb-group-title {
-      font-size: 12px; font-weight: 700; color: var(--text-tertiary);
-      padding: 6px 20px 4px; cursor: default;
-    }
-    .sb-item {
-      display: flex; align-items: center; justify-content: space-between;
-      width: 100%; padding: 7px 20px;
-      border: none; background: transparent; text-align: left;
-      cursor: pointer; font-size: 13px; font-weight: 500;
-      color: var(--text-secondary); font-family: inherit;
-      transition: all 0.1s; border-radius: 0;
-    }
-    .sb-item:hover { background: var(--surface-1); color: var(--text-primary); }
-    .sb-item.active { background: var(--accent-light); color: var(--blue); font-weight: 600; }
-    .sb-count {
-      font-size: 11px; font-weight: 500;
-      background: var(--surface-1); padding: 1px 6px;
-      border-radius: 10px; color: var(--text-tertiary);
-    }
-    .sb-item.active .sb-count { background: rgba(26,106,255,0.1); color: var(--blue); }
-
-    /* ── Main content ── */
-    .main {
-      flex: 1; overflow-y: auto; padding: 0;
-      display: flex; flex-direction: column;
-    }
-
-    /* Content header */
-    .content-hdr {
-      padding: 28px 32px 20px; flex-shrink: 0;
-    }
-    .content-hdr-top {
-      display: flex; align-items: flex-start; justify-content: space-between;
-      gap: 16px; margin-bottom: 10px;
-    }
-    .content-title { font-size: 22px; font-weight: 700; color: var(--text-primary); }
-    .content-hdr-btns { display: flex; gap: 8px; flex-shrink: 0; }
-    .btn-outline {
-      display: inline-flex; align-items: center; gap: 4px;
-      background: var(--white); border: 1px solid var(--border);
-      border-radius: 8px; padding: 8px 16px;
-      font-size: 13px; font-weight: 500; color: var(--text-secondary);
-      cursor: pointer; font-family: inherit; transition: all 0.15s;
-    }
-    .btn-outline:hover { border-color: #CCCCCC; background: var(--surface-1); }
-    .btn-blue {
-      display: inline-flex; align-items: center; gap: 4px;
-      background: var(--blue); border: none;
-      border-radius: 8px; padding: 8px 18px;
-      font-size: 13px; font-weight: 600; color: white;
-      cursor: pointer; font-family: inherit; text-decoration: none;
-      transition: opacity 0.15s;
-    }
-    .btn-blue:hover { opacity: 0.88; }
-    .content-desc {
-      font-size: 13px; color: var(--text-secondary);
-      line-height: 1.7; max-width: 680px;
-    }
-
-    /* Tab bar */
-    .tab-bar {
-      display: flex; align-items: center; gap: 0;
-      border-bottom: 1px solid var(--border);
-      padding: 0 32px; flex-shrink: 0;
-    }
-    .tab-item {
-      padding: 10px 16px; font-size: 13px; font-weight: 500;
-      color: var(--text-tertiary); cursor: pointer;
-      position: relative; border: none; background: none;
-      font-family: inherit; transition: color 0.15s;
-      display: flex; align-items: center; gap: 5px;
-    }
-    .tab-item:hover { color: var(--text-primary); }
-    .tab-item.active { color: var(--blue); font-weight: 600; }
-    .tab-item.active::after {
-      content: ''; position: absolute; bottom: 0; left: 0; right: 0;
-      height: 2px; background: var(--blue); border-radius: 1px 1px 0 0;
-    }
-    .tab-icon { font-size: 14px; opacity: 0.7; }
-
-    /* Filter bar */
-    .filter-bar {
-      display: flex; align-items: center; gap: 8px;
-      padding: 12px 32px; border-bottom: 1px solid var(--border);
-      flex-shrink: 0; flex-wrap: wrap;
-    }
-    .filter-chip {
-      display: inline-flex; align-items: center; gap: 4px;
-      border: 1px solid var(--border); border-radius: 6px;
-      padding: 5px 10px; font-size: 12px; font-weight: 500;
-      color: var(--text-secondary); background: var(--white);
-      cursor: pointer; font-family: inherit; transition: all 0.15s;
-    }
-    .filter-chip:hover { border-color: #CCC; background: var(--surface-1); }
-    .filter-chip.accent {
-      background: var(--accent-light); border-color: var(--blue);
-      color: var(--blue); font-weight: 600;
-    }
-    .filter-chip .dot { width: 6px; height: 6px; border-radius: 50%; }
-    .filter-search {
-      margin-left: auto; display: flex; align-items: center; gap: 5px;
-      border: 1px solid var(--border); border-radius: 6px;
-      padding: 5px 10px; font-size: 12px; color: var(--text-tertiary);
-      background: var(--white); min-width: 140px;
-    }
-    .filter-search input {
-      border: none; outline: none; background: none; font-family: inherit;
-      font-size: 12px; color: var(--text-primary); flex: 1;
-    }
-    .filter-search input::placeholder { color: var(--text-tertiary); }
-
-    /* Content body - cards grid */
-    .content-body {
-      flex: 1; padding: 20px 32px 32px;
-      overflow-y: auto;
-    }
-
-    /* Feature cards grouped by type */
-    .card-columns {
-      display: flex; gap: 16px; align-items: flex-start;
-    }
-    .card-col {
-      flex: 1; min-width: 0;
-    }
-    .col-header {
-      display: flex; align-items: center; gap: 6px;
-      padding: 8px 0 10px; margin-bottom: 2px;
-    }
-    .col-title {
-      font-size: 13px; font-weight: 600; color: var(--text-primary);
-    }
-    .col-count {
-      font-size: 11px; font-weight: 500; color: var(--text-tertiary);
-    }
-
-    /* Individual card */
-    .fcard {
-      background: var(--white); border: 1px solid var(--border);
-      border-radius: 10px; padding: 14px 16px; margin-bottom: 10px;
-      cursor: pointer; text-decoration: none; color: inherit;
-      display: block; transition: border-color 0.15s, box-shadow 0.15s;
-    }
-    .fcard:hover {
-      border-color: var(--ai-blue-border);
-      box-shadow: 0 2px 8px rgba(26,106,255,0.08);
-    }
-    .fcard-num {
-      font-size: 10px; font-weight: 700; color: var(--text-tertiary);
-      margin-bottom: 5px; text-transform: uppercase; letter-spacing: 0.03em;
-    }
-    .fcard-title {
-      font-size: 13px; font-weight: 600; color: var(--text-primary);
-      margin-bottom: 6px;
-    }
-    .fcard-desc {
-      font-size: 12px; color: var(--text-secondary); line-height: 1.6;
+    .hdr h1 {
+      font-size: 28px;
+      font-weight: 700;
+      color: var(--text-1);
+      line-height: 1.35;
       margin-bottom: 10px;
     }
-    .fcard-tags {
-      display: flex; flex-wrap: wrap; gap: 5px; margin-bottom: 8px;
-    }
-    .ftag {
-      font-size: 10px; font-weight: 600; padding: 2px 7px;
-      border-radius: 3px; display: inline-flex; align-items: center; gap: 3px;
-    }
-    .ftag-p0 { background: #FFF0EE; color: #FF3B30; }
-    .ftag-p1 { background: var(--ai-blue-bg); color: var(--blue); }
-    .ftag-p2 { background: var(--surface-1); color: var(--text-tertiary); }
-    .ftag-phase { background: var(--surface-1); color: var(--text-tertiary); }
-    .fcard-meta {
-      display: flex; align-items: center; gap: 8px;
-      padding-top: 8px; border-top: 1px solid #F2F2F4;
-    }
-    .fcard-trigger {
-      font-size: 11px; color: var(--text-tertiary);
-      display: flex; align-items: center; gap: 4px;
-    }
-    .fcard-trigger strong { color: var(--text-secondary); font-weight: 500; }
-
-    /* Persona / Principle section (for sidebar tab views) */
-    .info-section { display: none; }
-    .info-section.active { display: block; }
-
-    .principle-grid {
-      display: grid; grid-template-columns: repeat(2, 1fr);
-      gap: 12px; margin-bottom: 24px;
-    }
-    .pcard {
-      background: var(--white); border: 1px solid var(--border);
-      border-radius: 10px; padding: 18px;
-    }
-    .pcard-icon {
-      width: 32px; height: 32px; border-radius: 8px;
-      background: var(--ai-blue-bg); display: flex;
-      align-items: center; justify-content: center;
-      margin-bottom: 10px; color: var(--blue);
-    }
-    .pcard-title {
-      font-size: 13px; font-weight: 600; color: var(--text-primary);
-      margin-bottom: 5px;
-    }
-    .pcard-desc {
-      font-size: 12px; color: var(--text-secondary); line-height: 1.6;
+    .hdr h1 span { color: var(--green); }
+    .hdr p {
+      font-size: 14px;
+      color: var(--text-2);
+      line-height: 1.65;
     }
 
-    .persona-grid {
-      display: grid; grid-template-columns: repeat(2, 1fr);
-      gap: 12px;
+    /* Cards */
+    .cards {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 16px;
     }
-    .pscard {
-      background: var(--white); border: 1px solid var(--border);
-      border-radius: 10px; padding: 16px; display: flex; gap: 12px;
+
+    .card {
+      background: var(--white);
+      border: 1px solid var(--border);
+      border-radius: 16px;
+      padding: 28px 24px 24px;
+      text-decoration: none;
+      color: inherit;
+      display: flex;
+      flex-direction: column;
+      transition: border-color 0.2s, box-shadow 0.2s, transform 0.2s;
+      cursor: pointer;
+      position: relative;
+      overflow: hidden;
     }
-    .ps-av {
-      width: 36px; height: 36px; border-radius: 50%;
+    .card:hover {
+      border-color: transparent;
+      box-shadow: 0 8px 30px rgba(0,0,0,0.1);
+      transform: translateY(-3px);
+    }
+    .card::before {
+      content: '';
+      position: absolute;
+      top: 0; left: 0; right: 0;
+      height: 3px;
+    }
+    .card.cal::before { background: var(--purple); }
+    .card.msg::before { background: var(--blue); }
+
+    .card-icon {
+      width: 44px; height: 44px;
+      border-radius: 12px;
       display: flex; align-items: center; justify-content: center;
-      font-size: 12px; font-weight: 700; color: white; flex-shrink: 0;
+      margin-bottom: 18px;
+      color: white;
     }
-    .ps-body { flex: 1; }
-    .ps-role { font-size: 13px; font-weight: 600; color: var(--text-primary); margin-bottom: 3px; }
-    .ps-pain { font-size: 11px; color: var(--text-tertiary); margin-bottom: 6px; }
-    .ps-sol { font-size: 12px; color: var(--text-secondary); line-height: 1.55; }
-    .ps-sol strong { color: var(--green); font-weight: 600; }
+    .card.cal .card-icon { background: var(--purple); }
+    .card.msg .card-icon { background: var(--blue); }
 
-    /* Bottom detail section */
-    .detail-section {
-      padding: 24px 32px; border-top: 1px solid var(--border);
-      background: var(--surface-1);
+    .card-title {
+      font-size: 18px;
+      font-weight: 700;
+      color: var(--text-1);
+      margin-bottom: 6px;
     }
-    .detail-title {
-      font-size: 14px; font-weight: 700; color: var(--text-primary);
-      margin-bottom: 14px;
+    .card-sub {
+      font-size: 13px;
+      color: var(--text-2);
+      line-height: 1.6;
+      margin-bottom: 20px;
     }
-    .detail-table {
-      width: 100%; border-collapse: collapse;
-      background: var(--white); border: 1px solid var(--border);
-      border-radius: 8px; overflow: hidden;
-    }
-    .detail-table th {
-      text-align: left; padding: 10px 14px;
-      font-size: 11px; font-weight: 600; color: var(--text-tertiary);
-      background: var(--surface-1); border-bottom: 1px solid var(--border);
-      text-transform: uppercase; letter-spacing: 0.04em;
-    }
-    .detail-table td {
-      padding: 10px 14px; font-size: 12px; color: var(--text-secondary);
-      border-bottom: 1px solid #F2F2F4;
-    }
-    .detail-table tr:last-child td { border-bottom: none; }
 
-    ::-webkit-scrollbar { width: 4px; }
-    ::-webkit-scrollbar-thumb { background: var(--border); border-radius: 2px; }
+    /* Feature list */
+    .feat-list {
+      list-style: none;
+      margin-bottom: 20px;
+      flex: 1;
+    }
+    .feat-list li {
+      display: flex;
+      align-items: flex-start;
+      gap: 8px;
+      padding: 7px 0;
+      border-bottom: 1px solid #F2F3F5;
+      font-size: 12.5px;
+      color: var(--text-2);
+      line-height: 1.5;
+    }
+    .feat-list li:last-child { border-bottom: none; }
+    .feat-num {
+      font-size: 10px;
+      font-weight: 700;
+      color: var(--text-3);
+      background: var(--surface);
+      border-radius: 3px;
+      padding: 1px 5px;
+      flex-shrink: 0;
+      margin-top: 1px;
+    }
+    .feat-name {
+      font-weight: 600;
+      color: var(--text-1);
+    }
+    .feat-pri {
+      margin-left: auto;
+      font-size: 10px;
+      font-weight: 700;
+      padding: 1px 6px;
+      border-radius: 3px;
+      flex-shrink: 0;
+    }
+    .pri-p0 { background: #FFF0EE; color: #FF3B30; }
+    .pri-p1 { background: #E8F0FE; color: var(--blue); }
+    .pri-p2 { background: var(--surface); color: var(--text-3); }
+
+    /* CTA */
+    .card-cta {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 6px;
+      padding: 11px 0;
+      border-radius: 10px;
+      font-size: 13px;
+      font-weight: 600;
+      color: white;
+      transition: opacity 0.15s;
+    }
+    .card.cal .card-cta { background: var(--purple); }
+    .card.msg .card-cta { background: var(--blue); }
+    .card:hover .card-cta { opacity: 0.9; }
+    .card-cta svg { flex-shrink: 0; }
+
+    /* Footer */
+    .ftr {
+      text-align: center;
+      margin-top: 28px;
+      font-size: 11px;
+      color: var(--text-3);
+      line-height: 1.6;
+    }
   </style>
 </head>
 <body>
 
-<div class="overlay-frame">
-  <div class="modal-card">
-
-    <!-- Top header -->
-    <div class="modal-top">
-      <span class="modal-top-title">NAVER WORKS AI 기능 제안</span>
-      <button class="modal-close" title="닫기">✕</button>
+<div class="page">
+  <div class="hdr">
+    <div class="hdr-badge">
+      <span class="dot"></span>
+      HYPER AI Design Team · NAVER WORKS
     </div>
+    <h1>NAVER WORKS <span>AI</span> 기능 제안</h1>
+    <p>메신저·캘린더 흐름에 AI를 자연스럽게 녹여, 반복 작업을 줄이고 핵심 업무에 집중할 수 있는 9가지 기능을 제안합니다.</p>
+  </div>
 
-    <!-- Body -->
-    <div class="modal-body">
+  <div class="cards">
 
-      <!-- Sidebar -->
-      <nav class="sidebar">
-        <div class="sb-group">
-          <div class="sb-group-title">▾ 1. 캘린더 AI</div>
-          <button class="sb-item active" onclick="showSection('cal-all')">전체 보기<span class="sb-count">4</span></button>
-          <button class="sb-item" onclick="showSection('f1')">최적 일정 제안</button>
-          <button class="sb-item" onclick="showSection('f2')">아젠다 초안 생성</button>
-          <button class="sb-item" onclick="showSection('f3')">회의록 자동 생성</button>
-          <button class="sb-item" onclick="showSection('f4')">후속 태스크 연동</button>
-        </div>
-        <div class="sb-group">
-          <div class="sb-group-title">▾ 2. 메신저 AI</div>
-          <button class="sb-item" onclick="showSection('msg-all')">전체 보기<span class="sb-count">5</span></button>
-          <button class="sb-item" onclick="showSection('f5')">채널 요약 버블</button>
-          <button class="sb-item" onclick="showSection('f6')">일정 감지 트리거</button>
-          <button class="sb-item" onclick="showSection('f7')">톤 조절</button>
-          <button class="sb-item" onclick="showSection('f8')">실시간 번역</button>
-          <button class="sb-item" onclick="showSection('f9')">대화 기반 일괄 처리</button>
-        </div>
-        <div class="sb-group">
-          <div class="sb-group-title">▾ 3. 설계</div>
-          <button class="sb-item" onclick="showSection('principles')">설계 원칙<span class="sb-count">4</span></button>
-          <button class="sb-item" onclick="showSection('personas')">대상 사용자<span class="sb-count">4</span></button>
-        </div>
-      </nav>
+    <!-- 캘린더 AI -->
+    <a href="calendar.html" class="card cal">
+      <div class="card-icon">
+        <svg width="22" height="22" viewBox="0 0 22 22" fill="none">
+          <rect x="3" y="4" width="16" height="15" rx="2.5" stroke="white" stroke-width="1.8"/>
+          <path d="M7 2.5v3M15 2.5v3M3 9h16" stroke="white" stroke-width="1.8" stroke-linecap="round"/>
+        </svg>
+      </div>
+      <div class="card-title">캘린더 AI</div>
+      <div class="card-sub">일정·회의 흐름에 AI를 녹여 반복 조율을 줄이고 회의 생산성을 높이는 4가지 기능</div>
+      <ul class="feat-list">
+        <li>
+          <span class="feat-num">F1</span>
+          <span><span class="feat-name">최적 일정 제안</span> — 참석자 캘린더 분석, 가용 슬롯 3개 제시</span>
+          <span class="feat-pri pri-p1">P1</span>
+        </li>
+        <li>
+          <span class="feat-num">F2</span>
+          <span><span class="feat-name">아젠다 초안 생성</span> — 이전 회의록 참고, 시간 배분 포함 자동 작성</span>
+          <span class="feat-pri pri-p1">P1</span>
+        </li>
+        <li>
+          <span class="feat-num">F3</span>
+          <span><span class="feat-name">회의록 자동 생성</span> — 트랜스크립트 기반, 결정사항·발화자별 구조화</span>
+          <span class="feat-pri pri-p0">P0</span>
+        </li>
+        <li>
+          <span class="feat-num">F4</span>
+          <span><span class="feat-name">후속 태스크 연동</span> — 액션 아이템 파싱, WORKS 게시판 일괄 등록</span>
+          <span class="feat-pri pri-p2">P2</span>
+        </li>
+      </ul>
+      <div class="card-cta">
+        데모 체험하기
+        <svg width="14" height="14" viewBox="0 0 14 14" fill="none"><path d="M5.5 3l4 4-4 4" stroke="white" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+      </div>
+    </a>
 
-      <!-- Main -->
-      <div class="main">
+    <!-- 메신저 AI -->
+    <a href="messenger.html" class="card msg">
+      <div class="card-icon">
+        <svg width="22" height="22" viewBox="0 0 22 22" fill="none">
+          <path d="M4 5.5A2.5 2.5 0 016.5 3h9A2.5 2.5 0 0118 5.5v7a2.5 2.5 0 01-2.5 2.5H8l-4 3v-3" stroke="white" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/>
+          <path d="M8 8h6M8 11h4" stroke="white" stroke-width="1.5" stroke-linecap="round"/>
+        </svg>
+      </div>
+      <div class="card-title">메신저 AI</div>
+      <div class="card-sub">대화 흐름 안에서 AI가 자연스럽게 작동하는 5가지 기능 — 챗봇 없이 인라인 통합</div>
+      <ul class="feat-list">
+        <li>
+          <span class="feat-num">F5</span>
+          <span><span class="feat-name">채널 요약 버블</span> — 미읽 메시지 요약, 결정사항·일정 팝업</span>
+          <span class="feat-pri pri-p0">P0</span>
+        </li>
+        <li>
+          <span class="feat-num">F6</span>
+          <span><span class="feat-name">일정 감지 트리거</span> — 날짜 하이라이트, 플로팅 예약 배너</span>
+          <span class="feat-pri pri-p1">P1</span>
+        </li>
+        <li>
+          <span class="feat-num">F7</span>
+          <span><span class="feat-name">톤 조절</span> — 격식체·캐주얼·영문·간결하게 즉시 변환</span>
+          <span class="feat-pri pri-p1">P1</span>
+        </li>
+        <li>
+          <span class="feat-num">F8</span>
+          <span><span class="feat-name">실시간 번역</span> — 원문 아래 인라인 번역문 표시</span>
+          <span class="feat-pri pri-p2">P2</span>
+        </li>
+        <li>
+          <span class="feat-num">F9</span>
+          <span><span class="feat-name">대화 기반 일괄 처리</span> — 예약·회의록·메일 한 번에</span>
+          <span class="feat-pri pri-p2">P2</span>
+        </li>
+      </ul>
+      <div class="card-cta">
+        데모 체험하기
+        <svg width="14" height="14" viewBox="0 0 14 14" fill="none"><path d="M5.5 3l4 4-4 4" stroke="white" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+      </div>
+    </a>
 
-        <!-- === Section: 캘린더 AI 전체 === -->
-        <div class="info-section active" id="sec-cal-all">
-          <div class="content-hdr">
-            <div class="content-hdr-top">
-              <h1 class="content-title">캘린더 AI</h1>
-              <div class="content-hdr-btns">
-                <button class="btn-outline">기능 명세 보기</button>
-                <a href="calendar.html" class="btn-blue">데모 체험하기</a>
-              </div>
-            </div>
-            <p class="content-desc">일정·회의 흐름에 AI를 녹여 반복 조율을 줄이고 회의 생산성을 높이는 4가지 기능을 제안합니다. 참석자 캘린더 분석, 아젠다 자동 생성, 회의록 자동화, 후속 태스크 연동까지 하나의 워크플로로 연결됩니다.</p>
-          </div>
-          <div class="tab-bar">
-            <button class="tab-item active">기능별 목록</button>
-            <button class="tab-item">우선순위별</button>
-          </div>
-          <div class="filter-bar">
-            <div class="filter-chip accent"><div class="dot" style="background:var(--blue);"></div> 전체 기능</div>
-            <div class="filter-chip">그룹 : Phase ▾</div>
-            <div class="filter-chip">정렬 ▾</div>
-            <div class="filter-chip">필터</div>
-            <div class="filter-search">
-              <svg width="12" height="12" viewBox="0 0 12 12" fill="none"><circle cx="5.5" cy="5.5" r="4" stroke="#999" stroke-width="1.2"/><path d="M9 9L7.8 7.8" stroke="#999" stroke-width="1.2" stroke-linecap="round"/></svg>
-              <input placeholder="기능 검색">
-            </div>
-          </div>
-          <div class="content-body">
-            <div class="card-columns">
-              <div class="card-col">
-                <div class="col-header">
-                  <span class="col-title">Phase 1 · 즉시 체감</span>
-                  <span class="col-count">2</span>
-                </div>
-                <a href="calendar.html" class="fcard">
-                  <div class="fcard-num">Feature 1</div>
-                  <div class="fcard-title">최적 일정 제안</div>
-                  <div class="fcard-desc">참석자 전원의 캘린더를 분석해 공통 가용 슬롯 3개를 카드 형태로 제시</div>
-                  <div class="fcard-tags">
-                    <span class="ftag ftag-p1">P1</span>
-                    <span class="ftag ftag-phase">Phase 1</span>
-                  </div>
-                  <div class="fcard-meta">
-                    <span class="fcard-trigger">
-                      <svg width="10" height="10" viewBox="0 0 12 12" fill="none"><circle cx="6" cy="6" r="5.5" stroke="#C2C2C2"/><path d="M6 3v3l2 1" stroke="#C2C2C2" stroke-linecap="round"/></svg>
-                      <strong>참석자 2명 이상 추가 시</strong>
-                    </span>
-                  </div>
-                </a>
-                <a href="calendar.html" class="fcard">
-                  <div class="fcard-num">Feature 3</div>
-                  <div class="fcard-title">회의록 자동 생성</div>
-                  <div class="fcard-desc">미팅 종료 후 트랜스크립트 기반 회의록 자동 생성. 결정사항·발화자별 요약·액션 아이템 구조화</div>
-                  <div class="fcard-tags">
-                    <span class="ftag ftag-p0">P0</span>
-                    <span class="ftag ftag-phase">Phase 1</span>
-                  </div>
-                  <div class="fcard-meta">
-                    <span class="fcard-trigger">
-                      <svg width="10" height="10" viewBox="0 0 12 12" fill="none"><circle cx="6" cy="6" r="5.5" stroke="#C2C2C2"/><path d="M6 3v3l2 1" stroke="#C2C2C2" stroke-linecap="round"/></svg>
-                      <strong>화상회의 종료 후 5분</strong>
-                    </span>
-                  </div>
-                </a>
-              </div>
-              <div class="card-col">
-                <div class="col-header">
-                  <span class="col-title">Phase 2 · 맥락 감지</span>
-                  <span class="col-count">2</span>
-                </div>
-                <a href="calendar.html" class="fcard">
-                  <div class="fcard-num">Feature 2</div>
-                  <div class="fcard-title">아젠다 초안 자동 생성</div>
-                  <div class="fcard-desc">미팅 제목, 참석자 역할, 이전 회의록 참고해 예상 아젠다를 자동 작성. 시간 배분 포함</div>
-                  <div class="fcard-tags">
-                    <span class="ftag ftag-p1">P1</span>
-                    <span class="ftag ftag-phase">Phase 2</span>
-                  </div>
-                  <div class="fcard-meta">
-                    <span class="fcard-trigger">
-                      <svg width="10" height="10" viewBox="0 0 12 12" fill="none"><circle cx="6" cy="6" r="5.5" stroke="#C2C2C2"/><path d="M6 3v3l2 1" stroke="#C2C2C2" stroke-linecap="round"/></svg>
-                      <strong>아젠다 추가 섹션 진입 시</strong>
-                    </span>
-                  </div>
-                </a>
-                <a href="calendar.html" class="fcard">
-                  <div class="fcard-num">Feature 4</div>
-                  <div class="fcard-title">후속 태스크 생성 및 게시판 연동</div>
-                  <div class="fcard-desc">회의록에서 담당자·기한 포함된 액션 아이템 파싱 후 WORKS 게시판 태스크로 일괄 등록</div>
-                  <div class="fcard-tags">
-                    <span class="ftag ftag-p2">P2</span>
-                    <span class="ftag ftag-phase">Phase 2</span>
-                  </div>
-                  <div class="fcard-meta">
-                    <span class="fcard-trigger">
-                      <svg width="10" height="10" viewBox="0 0 12 12" fill="none"><circle cx="6" cy="6" r="5.5" stroke="#C2C2C2"/><path d="M6 3v3l2 1" stroke="#C2C2C2" stroke-linecap="round"/></svg>
-                      <strong>회의록 생성 완료 후</strong>
-                    </span>
-                  </div>
-                </a>
-              </div>
-            </div>
-          </div>
+  </div>
 
-          <div class="detail-section">
-            <div class="detail-title">기능 명세</div>
-            <table class="detail-table">
-              <thead>
-                <tr><th>기능명</th><th>우선순위</th><th>Phase</th><th>트리거</th></tr>
-              </thead>
-              <tbody>
-                <tr><td>최적 일정 제안</td><td>P1</td><td>Phase 1</td><td>참석자 2명 이상 추가 시</td></tr>
-                <tr><td>아젠다 초안 자동 생성</td><td>P1</td><td>Phase 2</td><td>아젠다 추가 섹션 진입 시</td></tr>
-                <tr><td>회의록 자동 생성</td><td>P0</td><td>Phase 1</td><td>화상회의 종료 후 5분</td></tr>
-                <tr><td>후속 태스크 연동</td><td>P2</td><td>Phase 2</td><td>회의록 생성 완료 후</td></tr>
-              </tbody>
-            </table>
-          </div>
-        </div>
-
-        <!-- === Section: 메신저 AI 전체 === -->
-        <div class="info-section" id="sec-msg-all">
-          <div class="content-hdr">
-            <div class="content-hdr-top">
-              <h1 class="content-title">메신저 AI</h1>
-              <div class="content-hdr-btns">
-                <button class="btn-outline">기능 명세 보기</button>
-                <a href="messenger.html" class="btn-blue">데모 체험하기</a>
-              </div>
-            </div>
-            <p class="content-desc">대화 흐름 안에서 AI가 자연스럽게 작동하는 5가지 기능을 제안합니다. 채널 요약, 일정 감지, 톤 조절, 실시간 번역, 일괄 처리까지 — 별도 챗봇 없이 기존 메신저 UI에 인라인으로 통합됩니다.</p>
-          </div>
-          <div class="tab-bar">
-            <button class="tab-item active">기능별 목록</button>
-            <button class="tab-item">우선순위별</button>
-          </div>
-          <div class="filter-bar">
-            <div class="filter-chip accent"><div class="dot" style="background:var(--blue);"></div> 전체 기능</div>
-            <div class="filter-chip">그룹 : Phase ▾</div>
-            <div class="filter-chip">정렬 ▾</div>
-            <div class="filter-chip">필터</div>
-            <div class="filter-search">
-              <svg width="12" height="12" viewBox="0 0 12 12" fill="none"><circle cx="5.5" cy="5.5" r="4" stroke="#999" stroke-width="1.2"/><path d="M9 9L7.8 7.8" stroke="#999" stroke-width="1.2" stroke-linecap="round"/></svg>
-              <input placeholder="기능 검색">
-            </div>
-          </div>
-          <div class="content-body">
-            <div class="card-columns">
-              <div class="card-col">
-                <div class="col-header">
-                  <span class="col-title">Phase 1 · 즉시 체감</span>
-                  <span class="col-count">2</span>
-                </div>
-                <a href="messenger.html" class="fcard">
-                  <div class="fcard-num">Feature 5</div>
-                  <div class="fcard-title">채널 요약 버블</div>
-                  <div class="fcard-desc">읽지 않은 메시지 아래 AI 요약 버블 인라인 표시. 클릭 시 주요 흐름/결정사항/감지된 일정 팝업</div>
-                  <div class="fcard-tags">
-                    <span class="ftag ftag-p0">P0</span>
-                    <span class="ftag ftag-phase">Phase 1</span>
-                  </div>
-                  <div class="fcard-meta"><span class="fcard-trigger"><svg width="10" height="10" viewBox="0 0 12 12" fill="none"><circle cx="6" cy="6" r="5.5" stroke="#C2C2C2"/><path d="M6 3v3l2 1" stroke="#C2C2C2" stroke-linecap="round"/></svg><strong>미읽 3건 이상 또는 2시간+ 이탈 후</strong></span></div>
-                </a>
-                <a href="messenger.html" class="fcard">
-                  <div class="fcard-num">Feature 7</div>
-                  <div class="fcard-title">톤 조절</div>
-                  <div class="fcard-desc">텍스트 입력 시 입력창 상단에 톤 칩 슬라이드업. 격식체·캐주얼·영문·간결하게 선택 즉시 변환</div>
-                  <div class="fcard-tags">
-                    <span class="ftag ftag-p1">P1</span>
-                    <span class="ftag ftag-phase">Phase 1</span>
-                  </div>
-                  <div class="fcard-meta"><span class="fcard-trigger"><svg width="10" height="10" viewBox="0 0 12 12" fill="none"><circle cx="6" cy="6" r="5.5" stroke="#C2C2C2"/><path d="M6 3v3l2 1" stroke="#C2C2C2" stroke-linecap="round"/></svg><strong>메시지 입력창에 텍스트 입력 시</strong></span></div>
-                </a>
-              </div>
-              <div class="card-col">
-                <div class="col-header">
-                  <span class="col-title">Phase 2 · 맥락 감지</span>
-                  <span class="col-count">2</span>
-                </div>
-                <a href="messenger.html" class="fcard">
-                  <div class="fcard-num">Feature 6</div>
-                  <div class="fcard-title">일정 감지 및 회의 예약 트리거</div>
-                  <div class="fcard-desc">날짜/시간 표현 초록 하이라이트 + 호버 툴팁. 플로팅 배너로 예약/무시 액션 제공</div>
-                  <div class="fcard-tags">
-                    <span class="ftag ftag-p1">P1</span>
-                    <span class="ftag ftag-phase">Phase 2</span>
-                  </div>
-                  <div class="fcard-meta"><span class="fcard-trigger"><svg width="10" height="10" viewBox="0 0 12 12" fill="none"><circle cx="6" cy="6" r="5.5" stroke="#C2C2C2"/><path d="M6 3v3l2 1" stroke="#C2C2C2" stroke-linecap="round"/></svg><strong>NER 날짜/시간 표현 감지 시</strong></span></div>
-                </a>
-                <a href="messenger.html" class="fcard">
-                  <div class="fcard-num">Feature 8</div>
-                  <div class="fcard-title">실시간 번역</div>
-                  <div class="fcard-desc">채팅방 헤더 번역 토글 ON 시 모든 메시지 원문 아래 파란 왼쪽 보더 블록으로 번역문 인라인 표시</div>
-                  <div class="fcard-tags">
-                    <span class="ftag ftag-p2">P2</span>
-                    <span class="ftag ftag-phase">Phase 2</span>
-                  </div>
-                  <div class="fcard-meta"><span class="fcard-trigger"><svg width="10" height="10" viewBox="0 0 12 12" fill="none"><circle cx="6" cy="6" r="5.5" stroke="#C2C2C2"/><path d="M6 3v3l2 1" stroke="#C2C2C2" stroke-linecap="round"/></svg><strong>헤더 번역 토글 활성화</strong></span></div>
-                </a>
-              </div>
-              <div class="card-col">
-                <div class="col-header">
-                  <span class="col-title">Phase 3 · 복합 기능</span>
-                  <span class="col-count">1</span>
-                </div>
-                <a href="messenger.html" class="fcard">
-                  <div class="fcard-num">Feature 9</div>
-                  <div class="fcard-title">대화 기반 일괄 처리</div>
-                  <div class="fcard-desc">회의 맥락 감지 시 입력창 옆 'AI 처리' 버튼 활성화. 회의 예약 / 회의록 초안 / 메일 발송 한 번에 처리</div>
-                  <div class="fcard-tags">
-                    <span class="ftag ftag-p2">P2</span>
-                    <span class="ftag ftag-phase">Phase 3</span>
-                  </div>
-                  <div class="fcard-meta"><span class="fcard-trigger"><svg width="10" height="10" viewBox="0 0 12 12" fill="none"><circle cx="6" cy="6" r="5.5" stroke="#C2C2C2"/><path d="M6 3v3l2 1" stroke="#C2C2C2" stroke-linecap="round"/></svg><strong>회의 관련 맥락 감지 시</strong></span></div>
-                </a>
-              </div>
-            </div>
-          </div>
-
-          <div class="detail-section">
-            <div class="detail-title">기능 명세</div>
-            <table class="detail-table">
-              <thead>
-                <tr><th>기능명</th><th>우선순위</th><th>Phase</th><th>트리거</th></tr>
-              </thead>
-              <tbody>
-                <tr><td>채널 요약 버블</td><td>P0</td><td>Phase 1</td><td>미읽 3건 이상 또는 2시간+ 이탈 후</td></tr>
-                <tr><td>일정 감지 트리거</td><td>P1</td><td>Phase 2</td><td>NER 날짜/시간 표현 감지 시</td></tr>
-                <tr><td>톤 조절</td><td>P1</td><td>Phase 1</td><td>메시지 입력창에 텍스트 입력 시</td></tr>
-                <tr><td>실시간 번역</td><td>P2</td><td>Phase 2</td><td>헤더 번역 토글 활성화</td></tr>
-                <tr><td>대화 기반 일괄 처리</td><td>P2</td><td>Phase 3</td><td>회의 관련 맥락 감지 시</td></tr>
-              </tbody>
-            </table>
-          </div>
-        </div>
-
-        <!-- === Section: 설계 원칙 === -->
-        <div class="info-section" id="sec-principles">
-          <div class="content-hdr">
-            <div class="content-hdr-top">
-              <h1 class="content-title">설계 원칙</h1>
-            </div>
-            <p class="content-desc">AI는 별도의 채팅창이나 사이드패널 없이 기존 WORKS UI 컴포넌트 안에 인라인으로 삽입됩니다. 챗봇 없이 기존 UI 안에서 자연스럽게 작동합니다.</p>
-          </div>
-          <div class="tab-bar">
-            <button class="tab-item active">원칙 4가지</button>
-          </div>
-          <div class="content-body">
-            <div class="principle-grid">
-              <div class="pcard">
-                <div class="pcard-icon">
-                  <svg width="18" height="18" viewBox="0 0 18 18" fill="none"><circle cx="9" cy="9" r="7.5" stroke="currentColor" stroke-width="1.5"/><path d="M6.5 6.5l5 5M11.5 6.5l-5 5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg>
-                </div>
-                <div class="pcard-title">챗봇 없이</div>
-                <div class="pcard-desc">별도 AI 채팅창 없이 기존 메신저·캘린더 UI 안에 자연스럽게 통합</div>
-              </div>
-              <div class="pcard">
-                <div class="pcard-icon">
-                  <svg width="18" height="18" viewBox="0 0 18 18" fill="none"><circle cx="7.5" cy="7.5" r="5.5" stroke="currentColor" stroke-width="1.5"/><path d="M12 12l3.5 3.5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg>
-                </div>
-                <div class="pcard-title">발견형 UX</div>
-                <div class="pcard-desc">유저가 먼저 찾는 것이 아니라 AI가 맥락을 감지해 먼저 제안</div>
-              </div>
-              <div class="pcard">
-                <div class="pcard-icon">
-                  <svg width="18" height="18" viewBox="0 0 18 18" fill="none"><circle cx="9" cy="9" r="7.5" stroke="currentColor" stroke-width="1.5"/><path d="M9 5v4M9 13h.01" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg>
-                </div>
-                <div class="pcard-title">낮은 진입 마찰</div>
-                <div class="pcard-desc">기존 워크플로를 바꾸지 않고 도입 가능한 기능 우선 설계</div>
-              </div>
-              <div class="pcard">
-                <div class="pcard-icon">
-                  <svg width="18" height="18" viewBox="0 0 18 18" fill="none"><rect x="4.5" y="8" width="9" height="7" rx="1.5" stroke="currentColor" stroke-width="1.5"/><path d="M6.5 8V5.5a2.5 2.5 0 015 0V8" stroke="currentColor" stroke-width="1.5"/></svg>
-                </div>
-                <div class="pcard-title">개인정보 보안</div>
-                <div class="pcard-desc">온프레미스 처리 옵션 포함, 기업 보안 정책 준수</div>
-              </div>
-            </div>
-          </div>
-        </div>
-
-        <!-- === Section: 대상 사용자 === -->
-        <div class="info-section" id="sec-personas">
-          <div class="content-hdr">
-            <div class="content-hdr-top">
-              <h1 class="content-title">대상 사용자</h1>
-            </div>
-            <p class="content-desc">NAVER WORKS AI 기능의 주요 타겟 사용자 4가지 페르소나입니다.</p>
-          </div>
-          <div class="tab-bar">
-            <button class="tab-item active">페르소나 4명</button>
-          </div>
-          <div class="content-body">
-            <div class="persona-grid">
-              <div class="pscard">
-                <div class="ps-av" style="background:#0D9E57;">PM</div>
-                <div class="ps-body">
-                  <div class="ps-role">팀 리더 / PM</div>
-                  <div class="ps-pain">Pain · 회의 후 후속 정리에 시간 소비</div>
-                  <div class="ps-sol"><strong>회의록 자동화</strong> + <strong>태스크 파싱</strong>으로 후속 작업 시간 단축</div>
-                </div>
-              </div>
-              <div class="pscard">
-                <div class="ps-av" style="background:#4285F4;">DE</div>
-                <div class="ps-body">
-                  <div class="ps-role">디자이너 / 개발자</div>
-                  <div class="ps-pain">Pain · 일정 조율 핑퐁, 반복 메시지 작성</div>
-                  <div class="ps-sol"><strong>최적 슬롯 제안</strong>으로 조율 단축, <strong>톤 조절</strong>로 메시지 효율화</div>
-                </div>
-              </div>
-              <div class="pscard">
-                <div class="ps-av" style="background:#F5A623;">GL</div>
-                <div class="ps-body">
-                  <div class="ps-role">글로벌 팀원</div>
-                  <div class="ps-pain">Pain · 언어 장벽으로 인한 맥락 파악 어려움</div>
-                  <div class="ps-sol"><strong>실시간 번역</strong>으로 원문 아래 인라인 번역 제공</div>
-                </div>
-              </div>
-              <div class="pscard">
-                <div class="ps-av" style="background:#7048E8;">NW</div>
-                <div class="ps-body">
-                  <div class="ps-role">신규 입사자</div>
-                  <div class="ps-pain">Pain · 채널 흐름 파악에 시간 소요</div>
-                  <div class="ps-sol"><strong>채널 요약</strong>으로 복귀 시 빠른 컨텍스트 캐치업</div>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-
-      </div><!-- /main -->
-    </div><!-- /modal-body -->
-  </div><!-- /modal-card -->
+  <div class="ftr">
+    HYPER AI Design Team 내부 검토용 · NAVER WORKS 디자인 시스템(WDS) 기반 인터랙티브 프로토타입 · v0.1
+  </div>
 </div>
-
-<script>
-  const sectionMap = {
-    'cal-all': 'sec-cal-all',
-    'msg-all': 'sec-msg-all',
-    'f1': 'sec-cal-all', 'f2': 'sec-cal-all', 'f3': 'sec-cal-all', 'f4': 'sec-cal-all',
-    'f5': 'sec-msg-all', 'f6': 'sec-msg-all', 'f7': 'sec-msg-all', 'f8': 'sec-msg-all', 'f9': 'sec-msg-all',
-    'principles': 'sec-principles',
-    'personas': 'sec-personas',
-  };
-
-  function showSection(key) {
-    document.querySelectorAll('.sb-item').forEach(b => b.classList.remove('active'));
-    event.currentTarget.classList.add('active');
-
-    document.querySelectorAll('.info-section').forEach(s => s.classList.remove('active'));
-    const targetId = sectionMap[key];
-    if (targetId) {
-      document.getElementById(targetId).classList.add('active');
-    }
-  }
-</script>
 
 </body>
 </html>
