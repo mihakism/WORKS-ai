@@ -1,6 +1,12 @@
 <!DOCTYPE html>
 <html lang="ko">
-<head> <meta charset="UTF-8"> <meta name="viewport" content="width=device-width, initial-scale=1.0"> <title>WORKS AI — 메신저 데모</title> <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@400;500;600;700&display=swap" rel="stylesheet"> <style> :root {
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>WORKS AI — 메신저 데모</title>
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <style>
+    :root {
       --white: #FFFFFF;
       --surface-1: #F7F8FA;
       --surface-2: #EAECEF;
@@ -35,7 +41,7 @@
 
     /* ── Prototype nav ── */
     .proto-nav {
-      background: #111;
+      background: white;
       height: 44px;
       display: flex;
       align-items: center;
@@ -45,6 +51,7 @@
       position: sticky;
       top: 0;
       z-index: 2000;
+      border-bottom: 1px solid #E5E8EB;
     }
     .proto-nav .brand {
       font-size: 13px;
@@ -53,18 +60,18 @@
       margin-right: 12px;
     }
     .proto-nav a {
-      color: rgba(255,255,255,0.55);
+      color: #7A7F85;
       text-decoration: none;
       font-size: 12px;
       padding: 5px 12px;
       border-radius: 6px;
       transition: all 0.15s;
     }
-    .proto-nav a:hover { background: rgba(255,255,255,0.08); color: white; }
-    .proto-nav a.active { background: rgba(255,255,255,0.14); color: white; }
+    .proto-nav a:hover { background: #F5F6F8; color: #1A1A1A; }
+    .proto-nav a.active { background: #EEFAF3; color: var(--green); font-weight: 600; }
     .proto-nav .spacer { flex: 1; }
     .proto-nav .back-btn {
-      color: rgba(255,255,255,0.55);
+      color: #7A7F85;
       text-decoration: none;
       font-size: 12px;
       padding: 5px 12px;
@@ -73,8 +80,8 @@
 
     /* ── Demo controls panel ── */
     .demo-controls {
-      background: #1A1A1A;
-      border-bottom: 1px solid #333;
+      background: #F8F9FA;
+      border-bottom: 1px solid #E5E8EB;
       padding: 10px 20px;
       display: flex;
       align-items: center;
@@ -84,7 +91,7 @@
     .demo-label {
       font-size: 11px;
       font-weight: 700;
-      color: rgba(255,255,255,0.4);
+      color: #9CA3AF;
       text-transform: uppercase;
       letter-spacing: 0.06em;
       margin-right: 4px;
@@ -93,9 +100,9 @@
       display: inline-flex;
       align-items: center;
       gap: 5px;
-      background: rgba(255,255,255,0.08);
-      border: 1px solid rgba(255,255,255,0.15);
-      color: rgba(255,255,255,0.7);
+      background: white;
+      border: 1px solid #D1D5DB;
+      color: #374151;
       border-radius: 6px;
       padding: 5px 12px;
       font-size: 12px;
@@ -104,9 +111,9 @@
       transition: all 0.15s;
       white-space: nowrap;
     }
-    .demo-btn:hover { background: rgba(255,255,255,0.14); color: white; border-color: rgba(255,255,255,0.3); }
-    .demo-btn.active { background: rgba(3,199,90,0.2); border-color: rgba(3,199,90,0.4); color: #03C75A; }
-    .demo-btn.active-blue { background: rgba(26,106,255,0.2); border-color: rgba(26,106,255,0.4); color: #6699FF; }
+    .demo-btn:hover { background: #F3F4F6; border-color: #9CA3AF; }
+    .demo-btn.active { background: #EEFAF3; border-color: rgba(3,199,90,0.5); color: #03C75A; }
+    .demo-btn.active-blue { background: #EEF2FF; border-color: rgba(26,106,255,0.4); color: #1A6AFF; }
 
     /* ── App wrapper ── */
     .app-wrapper {
@@ -1111,145 +1118,502 @@
     ::-webkit-scrollbar-thumb { background: var(--surface-2); border-radius: 2px; }
   </style>
 </head>
-<body> <!-- Prototype nav -->
-<nav class="proto-nav"> <span class="brand">WORKS AI</span> <a href="index.html">개요</a> <a href="messenger.html" class="active"> 메신저 AI</a> <a href="calendar.html"> 캘린더 AI</a> <span class="spacer"></span> <span style="font-size:11px;color:rgba(255,255,255,0.3);">v0.1 프로토타입 · 내부 검토용</span>
-</nav> <!-- Demo controls -->
-<div class="demo-controls"> <span class="demo-label">데모 트리거</span> <button class="demo-btn" id="btn-summary" onclick="toggleSummary()"><svg style="vertical-align:middle;flex-shrink:0;" xmlns="http://www.w3.org/2000/svg" width="13" height="13" viewBox="0 0 120 120" fill="none">
-  <g transform="translate(-730, -2110)">
-    <path d="M798 2174C798 2178.42 794.418 2182 790 2182C787.73 2182 782.552 2182 782.041 2182C782.016 2182 782 2181.98 782 2181.96C782 2181.43 782 2175.93 782 2174C782 2169.58 785.582 2166 790 2166C794.418 2166 798 2169.58 798 2174Z" stroke="currentColor" stroke-width="13" stroke-linecap="round" stroke-linejoin="round" />
-    <circle cx="785.75" cy="2174" r="1.25" fill="currentColor" />
-    <circle cx="790" cy="2174" r="1.25" fill="currentColor" />
-    <circle cx="794.25" cy="2174" r="1.25" fill="currentColor" />
-  </g>
-</svg>  F5 채널 요약</button> <button class="demo-btn" id="btn-banner" onclick="showBanner()"><svg style="vertical-align:middle;flex-shrink:0;" xmlns="http://www.w3.org/2000/svg" width="13" height="13" viewBox="0 0 120 120" fill="none">
-  <g transform="translate(-470, -320)">
-    <path d="M536.25 372.75C537.907 372.75 539.25 374.093 539.25 375.75V388.25C539.25 389.907 537.907 391.25 536.25 391.25H523.75C522.093 391.25 520.75 389.907 520.75 388.25V375.75C520.75 374.093 522.093 372.75 523.75 372.75H536.25ZM522.75 378.419V388.25C522.75 388.802 523.198 389.25 523.75 389.25H536.25C536.802 389.25 537.25 388.802 537.25 388.25V378.419H522.75ZM523.75 374.75C523.198 374.75 522.75 375.198 522.75 375.75V376.419H537.25V375.75C537.25 375.198 536.802 374.75 536.25 374.75H523.75Z" fill="currentColor" />
-    <path d="M525.824 385.858C525.913 385.711 526.025 385.619 526.158 385.586C526.29 385.554 526.432 385.582 526.579 385.672C526.783 385.807 526.974 385.9 527.149 385.953C527.324 386.004 527.52 386.032 527.733 386.032C527.966 386.032 528.163 386.009 528.319 385.965C528.472 385.924 528.597 385.864 528.69 385.788C528.781 385.714 528.849 385.624 528.889 385.523C528.932 385.418 528.953 385.305 528.953 385.187V385.116C528.953 384.826 528.86 384.619 528.67 384.481C528.476 384.342 528.152 384.271 527.707 384.271H527.233C527.073 384.271 526.954 384.216 526.879 384.106C526.808 384.004 526.773 383.877 526.773 383.73C526.773 383.585 526.808 383.457 526.879 383.353C526.954 383.245 527.073 383.189 527.233 383.189H527.608C527.994 383.189 528.28 383.115 528.457 382.972C528.632 382.831 528.72 382.611 528.72 382.318V382.292C528.72 382.079 528.647 381.915 528.497 381.789C528.346 381.663 528.095 381.599 527.751 381.599C527.545 381.599 527.367 381.634 527.223 381.702C527.078 381.769 526.927 381.873 526.775 382.007C526.652 382.118 526.516 382.165 526.37 382.149C526.226 382.132 526.106 382.065 526.014 381.947C525.918 381.831 525.873 381.702 525.884 381.565C525.893 381.428 525.943 381.305 526.033 381.196C526.229 380.982 526.473 380.811 526.758 380.686C527.044 380.563 527.381 380.5 527.761 380.5C528.127 380.5 528.45 380.545 528.723 380.636C528.996 380.727 529.226 380.85 529.406 381.003C529.586 381.155 529.722 381.336 529.808 381.539C529.894 381.742 529.937 381.955 529.937 382.175V382.219C529.937 382.386 529.912 382.551 529.863 382.713C529.814 382.875 529.742 383.028 529.647 383.164C529.552 383.302 529.435 383.424 529.301 383.524C529.21 383.591 529.112 383.649 529.006 383.697C529.117 383.722 529.227 383.757 529.334 383.8C529.5 383.868 529.649 383.964 529.779 384.082C529.908 384.203 530.012 384.353 530.089 384.529C530.166 384.704 530.205 384.914 530.205 385.151V385.24C530.205 385.497 530.153 385.743 530.048 385.972C529.944 386.202 529.79 386.405 529.589 386.579C529.388 386.753 529.136 386.892 528.84 386.994C528.544 387.098 528.198 387.15 527.814 387.15C527.461 387.15 527.132 387.112 526.836 387.036C526.541 386.96 526.257 386.836 525.991 386.668C525.842 386.571 525.754 386.443 525.732 386.288C525.709 386.137 525.74 385.993 525.824 385.858Z" fill="currentColor" />
-    <path d="M531.093 381.935C531.12 381.784 531.209 381.664 531.36 381.578L532.871 380.738C533.028 380.655 533.165 380.593 533.281 380.556C533.398 380.519 533.515 380.5 533.627 380.5C533.809 380.5 533.962 380.542 534.084 380.624C534.211 380.712 534.276 380.852 534.276 381.042V386.519C534.276 386.71 534.211 386.85 534.084 386.936C533.963 387.02 533.818 387.062 533.655 387.062C533.489 387.062 533.345 387.02 533.224 386.936C533.097 386.85 533.032 386.71 533.032 386.519V381.976L531.954 382.595C531.792 382.686 531.635 382.703 531.491 382.647C531.35 382.593 531.239 382.493 531.162 382.353C531.091 382.224 531.068 382.084 531.093 381.935Z" fill="currentColor" />
-  </g>
-</svg>  F6 일정 감지 배너</button> <button class="demo-btn" id="btn-translate" onclick="toggleTranslate()"><svg style="vertical-align:middle;flex-shrink:0;" xmlns="http://www.w3.org/2000/svg" width="13" height="13" viewBox="0 0 120 120" fill="none">
-  <g transform="translate(-340, -1830)">
-    <path d="M403.526 1878.65C404.231 1877.95 405.374 1877.95 406.078 1878.65L407.354 1879.93C408.059 1880.63 408.059 1881.77 407.354 1882.48L395.642 1894.19C395.633 1894.2 395.622 1894.2 395.61 1894.2L391.833 1894.22C391.808 1894.22 391.787 1894.2 391.787 1894.17L391.8 1890.4C391.8 1890.38 391.805 1890.37 391.813 1890.36L403.526 1878.65Z" stroke="currentColor" stroke-width="13" />
-    <line x1="401.457" y1="1880.54" x2="405.457" y2="1884.54" stroke="currentColor" stroke-width="13" />
-    <path fill-rule="evenodd" clip-rule="evenodd" d="M409.802 1892.58C410.333 1892.37 410.333 1891.62 409.802 1891.42L408.84 1891.06C408.246 1890.83 407.778 1890.35 407.544 1889.76L407.176 1888.8C406.969 1888.27 406.222 1888.27 406.024 1888.8L405.656 1889.76C405.431 1890.35 404.954 1890.82 404.36 1891.06L403.398 1891.42C402.867 1891.63 402.867 1892.38 403.398 1892.58L404.36 1892.94C404.954 1893.17 405.422 1893.65 405.656 1894.24L406.024 1895.2C406.231 1895.73 406.978 1895.73 407.176 1895.2L407.544 1894.24C407.769 1893.65 408.246 1893.18 408.84 1892.94L409.802 1892.58Z" fill="currentColor" />
-    <path fill-rule="evenodd" clip-rule="evenodd" d="M396.702 1880.73C397.1 1880.58 397.1 1880.02 396.702 1879.87L395.98 1879.59C395.535 1879.42 395.184 1879.07 395.008 1878.62L394.732 1877.9C394.577 1877.5 394.017 1877.5 393.868 1877.9L393.592 1878.62C393.423 1879.07 393.066 1879.42 392.62 1879.59L391.899 1879.87C391.501 1880.02 391.501 1880.58 391.899 1880.73L392.62 1881.01C393.066 1881.18 393.416 1881.53 393.592 1881.98L393.868 1882.7C394.024 1883.1 394.583 1883.1 394.732 1882.7L395.008 1881.98C395.177 1881.53 395.535 1881.18 395.98 1881.01L396.702 1880.73Z" fill="currentColor" />
-  </g>
-</svg>  F8 번역 토글</button> <button class="demo-btn" id="btn-batch" onclick="toggleBatch()"><svg style="vertical-align:middle;flex-shrink:0;" xmlns="http://www.w3.org/2000/svg" width="13" height="13" viewBox="0 0 120 120" fill="none">
-  <g transform="translate(-860, -1830)">
-    <path fill-rule="evenodd" clip-rule="evenodd" d="M929.802 1892.58C930.333 1892.37 930.333 1891.62 929.802 1891.42L928.84 1891.06C928.246 1890.83 927.778 1890.35 927.544 1889.76L927.176 1888.8C926.969 1888.27 926.222 1888.27 926.024 1888.8L925.656 1889.76C925.431 1890.35 924.954 1890.82 924.36 1891.06L923.398 1891.42C922.867 1891.63 922.867 1892.38 923.398 1892.58L924.36 1892.94C924.954 1893.17 925.422 1893.65 925.656 1894.24L926.024 1895.2C926.231 1895.73 926.978 1895.73 927.176 1895.2L927.544 1894.24C927.769 1893.65 928.246 1893.18 928.84 1892.94L929.802 1892.58Z" fill="currentColor" />
-    <path fill-rule="evenodd" clip-rule="evenodd" d="M916.702 1880.73C917.1 1880.58 917.1 1880.02 916.702 1879.87L915.98 1879.59C915.535 1879.42 915.184 1879.07 915.008 1878.62L914.732 1877.9C914.577 1877.5 914.017 1877.5 913.868 1877.9L913.592 1878.62C913.423 1879.07 913.066 1879.42 912.62 1879.59L911.899 1879.87C911.501 1880.02 911.501 1880.58 911.899 1880.73L912.62 1881.01C913.066 1881.18 913.416 1881.53 913.592 1881.98L913.868 1882.7C914.024 1883.1 914.583 1883.1 914.732 1882.7L915.008 1881.98C915.177 1881.53 915.535 1881.18 915.98 1881.01L916.702 1880.73Z" fill="currentColor" />
-    <path d="M919.7 1890.23C919.7 1892.06 918.223 1893.53 916.4 1893.53C915.813 1893.53 913.515 1893.53 911.795 1893.53C911.051 1893.53 910.676 1892.64 911.197 1892.11C911.384 1891.92 911.559 1891.74 911.702 1891.6C912.876 1890.41 913.179 1888.8 914.034 1887.93C914.633 1887.32 915.472 1886.93 916.4 1886.93C918.223 1886.93 919.7 1888.41 919.7 1890.23Z" stroke="currentColor" stroke-width="13" />
-    <path d="M917.498 1886.97L926.268 1878.2C926.539 1877.93 926.979 1877.93 927.251 1878.2L928.796 1879.75C929.068 1880.02 929.068 1880.46 928.796 1880.73L919.967 1889.56" stroke="currentColor" stroke-width="13" />
-  </g>
-</svg>  F9 AI 일괄 처리</button> <span style="font-size:11px;color:rgba(255,255,255,0.25);margin-left:8px;"> 인풋창 클릭 시 톤 조절(F7) 자동 표시 · 날짜 텍스트 호버 시 일정 툴팁(F6)</span>
-</div> <!-- App frame -->
-<div class="app-wrapper"> <div class="app-frame"> <!-- Left: Chat list --> <div class="chat-list-panel"> <div class="search-bar"> <div class="search-bar-inner"> <svg width="14" height="14" viewBox="0 0 14 14" fill="none"><circle cx="6" cy="6" r="5" stroke="#9B9B9B" stroke-width="1.5"/><path d="M10.5 10.5L9 9" stroke="#9B9B9B" stroke-width="1.5" stroke-linecap="round"/></svg> <input type="text" placeholder="메시지 검색"> </div> </div> <div class="tab-bar"> <div class="tab-item active">전체</div> <div class="tab-item">1:1</div> <div class="tab-item">여러명</div> <div class="tab-item">외부</div> <div class="tab-item">Bot</div> </div> <div class="sort-row"> <span class="sort-btn">시간순 ▾</span> </div> <div class="chat-list"> <!-- Item 1 - selected --> <div class="chat-item selected"> <div class="avatar" style="background:#4A85E8; width:40px;height:40px;font-size:13px;">Q4</div> <div class="chat-item-content"> <div class="chat-item-row1"> <span class="chat-item-name">Q4 마케팅 전략</span> <span class="chat-item-time">오전 10:14</span> </div> <div class="chat-item-row2"> <span class="chat-item-preview">캠페인 일정 잡겠습니다</span> <span class="unread-badge">8</span> </div> </div> </div> <!-- Item 2 --> <div class="chat-item"> <div class="avatar" style="background:#03C75A;width:40px;height:40px;font-size:13px;">디자</div> <div class="chat-item-content"> <div class="chat-item-row1"> <span class="chat-item-name">디자인 팀</span> <span class="chat-item-time">오전 9:47</span> </div> <div class="chat-item-row2"> <span class="chat-item-preview">다음주 QA 일정 확인 부탁드려요</span> <span class="unread-badge">3</span> </div> </div> </div> <!-- Item 3 --> <div class="chat-item"> <div class="avatar" style="background:#FF8C42;width:40px;height:40px;font-size:13px;">박</div> <div class="chat-item-content"> <div class="chat-item-row1"> <span class="chat-item-name">박민수</span> <span class="chat-item-time">어제</span> </div> <div class="chat-item-row2"> <span class="chat-item-preview">보내주신 파일 잘 받았습니다!</span> </div> </div> </div> <!-- Item 4 --> <div class="chat-item"> <div class="avatar" style="background:#9B59B6;width:40px;height:40px;font-size:13px;">전체</div> <div class="chat-item-content"> <div class="chat-item-row1"> <span class="chat-item-name">전사 공지</span> <span class="chat-item-time">어제</span> </div> <div class="chat-item-row2"> <span class="chat-item-preview">[공지] 2025 하반기 일정 안내</span> <span class="unread-badge red">2</span> </div> </div> </div> <!-- Item 5 --> <div class="chat-item"> <div class="avatar" style="background:#E74C3C;width:40px;height:40px;font-size:13px;">개발</div> <div class="chat-item-content"> <div class="chat-item-row1"> <span class="chat-item-name">개발팀 ∙ 프론트</span> <span class="chat-item-time">월</span> </div> <div class="chat-item-row2"> <span class="chat-item-preview">스프린트 회의 내일 오전 10시 맞죠?</span> </div> </div> </div> <!-- Item 6 --> <div class="chat-item"> <div class="avatar" style="background:#1ABC9C;width:40px;height:40px;font-size:13px;">이</div> <div class="chat-item-content"> <div class="chat-item-row1"> <span class="chat-item-name">이수진</span> <span class="chat-item-time">월</span> </div> <div class="chat-item-row2"> <span class="chat-item-preview">네, 감사합니다 :-)</span> </div> </div> </div> </div> </div> <!-- Right: Chat content --> <div class="chat-content" id="chatContent"> <!-- Header bar --> <div class="chat-header"> <div class="chat-header-info"> <div class="chat-header-name"> Q4 마케팅 전략
-            <span style="font-size:12px;color:var(--text-tertiary);font-weight:400;">·</span> <span class="chat-header-meta">멤버 5</span> </div> </div> <div class="header-actions"> <button class="header-icon-btn" title="검색"> <svg width="16" height="16" viewBox="0 0 16 16" fill="none"><circle cx="7" cy="7" r="5.5" stroke="currentColor" stroke-width="1.5"/><path d="M12 12L10.5 10.5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg> </button> <button class="header-icon-btn" title="캘린더"> <svg width="16" height="16" viewBox="0 0 16 16" fill="none"><rect x="2" y="3" width="12" height="11" rx="2" stroke="currentColor" stroke-width="1.5"/><path d="M5 2v2M11 2v2M2 7h12" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg> </button> <button class="header-icon-btn" title="체크리스트"> <svg width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M3 8l3 3 7-7" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg> </button> <div class="translate-toggle" id="translateToggle" onclick="toggleTranslate()" title="번역 토글"> <div class="toggle-dot"></div> <span id="translateLabel">번역</span> </div> <button class="header-icon-btn" title="더보기"> <svg width="16" height="16" viewBox="0 0 16 16" fill="none"><circle cx="4" cy="8" r="1.5" fill="currentColor"/><circle cx="8" cy="8" r="1.5" fill="currentColor"/><circle cx="12" cy="8" r="1.5" fill="currentColor"/></svg> </button> </div> </div> <!-- Chat feed --> <div class="chat-feed" id="chatFeed"> <!-- Date divider --> <div class="date-divider"> <span class="date-divider-text">2025년 11월 3일 월요일</span> </div> <!-- Message group 1: 김지현 --> <div class="msg-group"> <div class="msg-row-rx"> <div class="msg-avatar" style="background:#4A85E8;font-size:10px;font-weight:700;color:white;width:28px;height:28px;border-radius:50%;align-self:flex-start;display:flex;align-items:center;justify-content:center;flex-shrink:0;">김</div> <div> <div style="font-size:12px;font-weight:600;color:var(--text-secondary);margin-bottom:4px;">김지현</div> <div class="bubble-rx"> 다음 주 화요일 오전에 Q4 전략 회의 잡을 수 있을까요?
-                <div class="translation-block" data-en="Can we schedule a Q4 strategy meeting next Tuesday morning?">Can we schedule a Q4 strategy meeting next Tuesday morning?</div> </div> </div> <div class="bubble-meta"><span class="bubble-time">오전 10:02</span></div> </div> </div> <!-- Message group 2: 박민수 --> <div class="msg-group"> <div class="msg-row-rx"> <div class="msg-avatar" style="background:#FF8C42;font-size:10px;font-weight:700;color:white;width:28px;height:28px;border-radius:50%;align-self:flex-start;display:flex;align-items:center;justify-content:center;flex-shrink:0;">박</div> <div> <div style="font-size:12px;font-weight:600;color:var(--text-secondary);margin-bottom:4px;">박민수</div> <div class="bubble-rx"> 저는 괜찮아요. 화요일 10시 어때요?
-                <div class="translation-block" data-en="I'm available. How about Tuesday at 10?">I'm available. How about Tuesday at 10?</div> </div> </div> <div class="bubble-meta"><span class="bubble-time">오전 10:05</span></div> </div> </div> <!-- Message group 3: 이수진 --> <div class="msg-group"> <div class="msg-row-rx"> <div class="msg-avatar" style="background:#1ABC9C;font-size:10px;font-weight:700;color:white;width:28px;height:28px;border-radius:50%;align-self:flex-start;display:flex;align-items:center;justify-content:center;flex-shrink:0;">이</div> <div> <div style="font-size:12px;font-weight:600;color:var(--text-secondary);margin-bottom:4px;">이수진</div> <div class="bubble-rx"> 저는 10시에 다른 미팅이 있어요. 11시 가능하신가요?
-                <div class="translation-block" data-en="I have another meeting at 10. Is 11 o'clock possible?">I have another meeting at 10. Is 11 o'clock possible?</div> </div> </div> <div class="bubble-meta"><span class="bubble-time">오전 10:07</span></div> </div> </div> <!-- Message group 4: 김지현 --> <div class="msg-group"> <div class="msg-row-rx"> <div class="msg-avatar" style="background:#4A85E8;font-size:10px;font-weight:700;color:white;width:28px;height:28px;border-radius:50%;align-self:flex-start;display:flex;align-items:center;justify-content:center;flex-shrink:0;">김</div> <div> <div style="font-size:12px;font-weight:600;color:var(--text-secondary);margin-bottom:4px;">김지현</div> <div class="bubble-rx"> 11시 좋아요. 그럼 <span class="date-highlight">11월 5일 화요일 오전 11시<div class="date-tooltip"> <div class="tooltip-title"><svg style="vertical-align:middle;flex-shrink:0;" xmlns="http://www.w3.org/2000/svg" width="12" height="12" viewBox="0 0 120 120" fill="none">
-  <g transform="translate(-470, -320)">
-    <path d="M536.25 372.75C537.907 372.75 539.25 374.093 539.25 375.75V388.25C539.25 389.907 537.907 391.25 536.25 391.25H523.75C522.093 391.25 520.75 389.907 520.75 388.25V375.75C520.75 374.093 522.093 372.75 523.75 372.75H536.25ZM522.75 378.419V388.25C522.75 388.802 523.198 389.25 523.75 389.25H536.25C536.802 389.25 537.25 388.802 537.25 388.25V378.419H522.75ZM523.75 374.75C523.198 374.75 522.75 375.198 522.75 375.75V376.419H537.25V375.75C537.25 375.198 536.802 374.75 536.25 374.75H523.75Z" fill="currentColor" />
-    <path d="M525.824 385.858C525.913 385.711 526.025 385.619 526.158 385.586C526.29 385.554 526.432 385.582 526.579 385.672C526.783 385.807 526.974 385.9 527.149 385.953C527.324 386.004 527.52 386.032 527.733 386.032C527.966 386.032 528.163 386.009 528.319 385.965C528.472 385.924 528.597 385.864 528.69 385.788C528.781 385.714 528.849 385.624 528.889 385.523C528.932 385.418 528.953 385.305 528.953 385.187V385.116C528.953 384.826 528.86 384.619 528.67 384.481C528.476 384.342 528.152 384.271 527.707 384.271H527.233C527.073 384.271 526.954 384.216 526.879 384.106C526.808 384.004 526.773 383.877 526.773 383.73C526.773 383.585 526.808 383.457 526.879 383.353C526.954 383.245 527.073 383.189 527.233 383.189H527.608C527.994 383.189 528.28 383.115 528.457 382.972C528.632 382.831 528.72 382.611 528.72 382.318V382.292C528.72 382.079 528.647 381.915 528.497 381.789C528.346 381.663 528.095 381.599 527.751 381.599C527.545 381.599 527.367 381.634 527.223 381.702C527.078 381.769 526.927 381.873 526.775 382.007C526.652 382.118 526.516 382.165 526.37 382.149C526.226 382.132 526.106 382.065 526.014 381.947C525.918 381.831 525.873 381.702 525.884 381.565C525.893 381.428 525.943 381.305 526.033 381.196C526.229 380.982 526.473 380.811 526.758 380.686C527.044 380.563 527.381 380.5 527.761 380.5C528.127 380.5 528.45 380.545 528.723 380.636C528.996 380.727 529.226 380.85 529.406 381.003C529.586 381.155 529.722 381.336 529.808 381.539C529.894 381.742 529.937 381.955 529.937 382.175V382.219C529.937 382.386 529.912 382.551 529.863 382.713C529.814 382.875 529.742 383.028 529.647 383.164C529.552 383.302 529.435 383.424 529.301 383.524C529.21 383.591 529.112 383.649 529.006 383.697C529.117 383.722 529.227 383.757 529.334 383.8C529.5 383.868 529.649 383.964 529.779 384.082C529.908 384.203 530.012 384.353 530.089 384.529C530.166 384.704 530.205 384.914 530.205 385.151V385.24C530.205 385.497 530.153 385.743 530.048 385.972C529.944 386.202 529.79 386.405 529.589 386.579C529.388 386.753 529.136 386.892 528.84 386.994C528.544 387.098 528.198 387.15 527.814 387.15C527.461 387.15 527.132 387.112 526.836 387.036C526.541 386.96 526.257 386.836 525.991 386.668C525.842 386.571 525.754 386.443 525.732 386.288C525.709 386.137 525.74 385.993 525.824 385.858Z" fill="currentColor" />
-    <path d="M531.093 381.935C531.12 381.784 531.209 381.664 531.36 381.578L532.871 380.738C533.028 380.655 533.165 380.593 533.281 380.556C533.398 380.519 533.515 380.5 533.627 380.5C533.809 380.5 533.962 380.542 534.084 380.624C534.211 380.712 534.276 380.852 534.276 381.042V386.519C534.276 386.71 534.211 386.85 534.084 386.936C533.963 387.02 533.818 387.062 533.655 387.062C533.489 387.062 533.345 387.02 533.224 386.936C533.097 386.85 533.032 386.71 533.032 386.519V381.976L531.954 382.595C531.792 382.686 531.635 382.703 531.491 382.647C531.35 382.593 531.239 382.493 531.162 382.353C531.091 382.224 531.068 382.084 531.093 381.935Z" fill="currentColor" />
-  </g>
-</svg> 일정 감지됨</div> <div class="tooltip-subtitle">11월 5일 (화) · 오전 11:00</div> <button class="tooltip-action-btn" onclick="openCalendar()">회의 예약하기</button> </div></span>로 잡을까요?
-                <div class="translation-block" data-en="11 is good. Shall we set it for Tuesday, Nov 5 at 11 AM?">11 is good. Shall we set it for Tuesday, Nov 5 at 11 AM?</div> </div> </div> <div class="bubble-meta"><span class="bubble-time">오전 10:09</span></div> </div> </div> <!-- Message group 5: 박민수 --> <div class="msg-group"> <div class="msg-row-rx"> <div class="msg-avatar" style="background:#FF8C42;font-size:10px;font-weight:700;color:white;width:28px;height:28px;border-radius:50%;align-self:flex-start;display:flex;align-items:center;justify-content:center;flex-shrink:0;">박</div> <div> <div style="font-size:12px;font-weight:600;color:var(--text-secondary);margin-bottom:4px;">박민수</div> <div class="bubble-rx">좋습니다!</div> </div> <div class="bubble-meta"><span class="bubble-time">오전 10:10</span></div> </div> </div> <!-- Message group 6: 이수진 --> <div class="msg-group"> <div class="msg-row-rx"> <div class="msg-avatar" style="background:#1ABC9C;font-size:10px;font-weight:700;color:white;width:28px;height:28px;border-radius:50%;align-self:flex-start;display:flex;align-items:center;justify-content:center;flex-shrink:0;">이</div> <div> <div style="font-size:12px;font-weight:600;color:var(--text-secondary);margin-bottom:4px;">이수진</div> <div class="bubble-rx">저도요. 아젠다는 어떻게 할까요?</div> </div> <div class="bubble-meta"><span class="bubble-time">오전 10:11</span></div> </div> </div> <!-- Message group 7: 김지현 (sent) --> <div class="msg-group"> <div class="msg-row-tx"> <div class="bubble-tx">Q4 목표 리뷰, 채널별 예산 배분, 캠페인 일정으로 잡겠습니다.</div> <span class="bubble-read">읽음 4</span> </div> <div style="display:flex;justify-content:flex-end;margin-top:1px;"> <span class="bubble-time" style="margin-right:4px;">오전 10:14</span> </div> </div> <!-- AI Summary bubble (Feature 5) --> <div class="ai-summary-pill" id="summaryPill" style="display:none;"> <button class="ai-summary-btn" onclick="toggleSummaryPopup()"> <span class="ai-icon">✦</span> 읽지 않은 대화 요약 · 8건
-          </button> </div> <!-- AI Summary popup (Feature 5) --> <div class="ai-summary-popup" id="summaryPopup"> <div class="ai-summary-popup-header"> <div class="ai-summary-popup-title"> <span class="ai-badge">AI</span> 대화 요약
-            </div> <button class="ai-summary-popup-close" onclick="closeSummaryPopup()">✕</button> </div> <div class="ai-summary-section"> <div class="ai-summary-section-title">주요 흐름</div> <div class="ai-summary-section-content"> 김지현이 Q4 전략 회의 일정을 제안했고, 11월 5일 화요일 오전 11시로 합의됨. 아젠다는 Q4 목표 리뷰, 채널별 예산 배분, 캠페인 일정으로 확정.
-            </div> </div> <div class="ai-summary-section"> <div class="ai-summary-section-title">결정사항</div> <div class="ai-summary-section-content"> <svg style="vertical-align:middle;flex-shrink:0;" xmlns="http://www.w3.org/2000/svg" width="12" height="12" viewBox="0 0 120 120" fill="none">
-  <g transform="translate(-470, -320)">
-    <path d="M536.25 372.75C537.907 372.75 539.25 374.093 539.25 375.75V388.25C539.25 389.907 537.907 391.25 536.25 391.25H523.75C522.093 391.25 520.75 389.907 520.75 388.25V375.75C520.75 374.093 522.093 372.75 523.75 372.75H536.25ZM522.75 378.419V388.25C522.75 388.802 523.198 389.25 523.75 389.25H536.25C536.802 389.25 537.25 388.802 537.25 388.25V378.419H522.75ZM523.75 374.75C523.198 374.75 522.75 375.198 522.75 375.75V376.419H537.25V375.75C537.25 375.198 536.802 374.75 536.25 374.75H523.75Z" fill="currentColor" />
-    <path d="M525.824 385.858C525.913 385.711 526.025 385.619 526.158 385.586C526.29 385.554 526.432 385.582 526.579 385.672C526.783 385.807 526.974 385.9 527.149 385.953C527.324 386.004 527.52 386.032 527.733 386.032C527.966 386.032 528.163 386.009 528.319 385.965C528.472 385.924 528.597 385.864 528.69 385.788C528.781 385.714 528.849 385.624 528.889 385.523C528.932 385.418 528.953 385.305 528.953 385.187V385.116C528.953 384.826 528.86 384.619 528.67 384.481C528.476 384.342 528.152 384.271 527.707 384.271H527.233C527.073 384.271 526.954 384.216 526.879 384.106C526.808 384.004 526.773 383.877 526.773 383.73C526.773 383.585 526.808 383.457 526.879 383.353C526.954 383.245 527.073 383.189 527.233 383.189H527.608C527.994 383.189 528.28 383.115 528.457 382.972C528.632 382.831 528.72 382.611 528.72 382.318V382.292C528.72 382.079 528.647 381.915 528.497 381.789C528.346 381.663 528.095 381.599 527.751 381.599C527.545 381.599 527.367 381.634 527.223 381.702C527.078 381.769 526.927 381.873 526.775 382.007C526.652 382.118 526.516 382.165 526.37 382.149C526.226 382.132 526.106 382.065 526.014 381.947C525.918 381.831 525.873 381.702 525.884 381.565C525.893 381.428 525.943 381.305 526.033 381.196C526.229 380.982 526.473 380.811 526.758 380.686C527.044 380.563 527.381 380.5 527.761 380.5C528.127 380.5 528.45 380.545 528.723 380.636C528.996 380.727 529.226 380.85 529.406 381.003C529.586 381.155 529.722 381.336 529.808 381.539C529.894 381.742 529.937 381.955 529.937 382.175V382.219C529.937 382.386 529.912 382.551 529.863 382.713C529.814 382.875 529.742 383.028 529.647 383.164C529.552 383.302 529.435 383.424 529.301 383.524C529.21 383.591 529.112 383.649 529.006 383.697C529.117 383.722 529.227 383.757 529.334 383.8C529.5 383.868 529.649 383.964 529.779 384.082C529.908 384.203 530.012 384.353 530.089 384.529C530.166 384.704 530.205 384.914 530.205 385.151V385.24C530.205 385.497 530.153 385.743 530.048 385.972C529.944 386.202 529.79 386.405 529.589 386.579C529.388 386.753 529.136 386.892 528.84 386.994C528.544 387.098 528.198 387.15 527.814 387.15C527.461 387.15 527.132 387.112 526.836 387.036C526.541 386.96 526.257 386.836 525.991 386.668C525.842 386.571 525.754 386.443 525.732 386.288C525.709 386.137 525.74 385.993 525.824 385.858Z" fill="currentColor" />
-    <path d="M531.093 381.935C531.12 381.784 531.209 381.664 531.36 381.578L532.871 380.738C533.028 380.655 533.165 380.593 533.281 380.556C533.398 380.519 533.515 380.5 533.627 380.5C533.809 380.5 533.962 380.542 534.084 380.624C534.211 380.712 534.276 380.852 534.276 381.042V386.519C534.276 386.71 534.211 386.85 534.084 386.936C533.963 387.02 533.818 387.062 533.655 387.062C533.489 387.062 533.345 387.02 533.224 386.936C533.097 386.85 533.032 386.71 533.032 386.519V381.976L531.954 382.595C531.792 382.686 531.635 382.703 531.491 382.647C531.35 382.593 531.239 382.493 531.162 382.353C531.091 382.224 531.068 382.084 531.093 381.935Z" fill="currentColor" />
-  </g>
-</svg> 회의 일시: <strong>11월 5일 (화) 오전 11:00</strong><br> <svg style="vertical-align:middle;flex-shrink:0;" xmlns="http://www.w3.org/2000/svg" width="12" height="12" viewBox="0 0 120 120" fill="none">
-  <g transform="translate(-210, -740)">
-    <path d="M274.062 806.811C274.062 807.192 273.754 807.5 273.374 807.5H262.256H261.439C261.058 807.5 260.75 807.192 260.75 806.811V806.395C260.75 805.406 261.241 804.49 262.061 803.946L264.439 802.375C265.098 801.942 265.491 801.209 265.491 800.42C265.491 799.999 265.377 799.588 265.165 799.228C264.595 798.262 264.316 797.366 264.316 796.497V795.589C264.316 793.885 265.7 792.5 267.403 792.5C268.454 792.5 269.383 793.027 269.941 793.831" stroke="currentColor" stroke-width="12" />
-    <path d="M265.94 806.395V806.811C265.94 807.192 266.248 807.5 266.629 807.5H278.564C278.944 807.5 279.252 807.192 279.252 806.811V806.395C279.252 805.406 278.761 804.49 277.936 803.946L275.558 802.375C274.901 801.942 274.506 801.209 274.506 800.42C274.506 800.001 274.619 799.588 274.831 799.231C275.404 798.262 275.68 797.369 275.68 796.499V795.589C275.68 793.885 274.297 792.5 272.593 792.5C270.89 792.5 269.506 793.885 269.506 795.589V796.497C269.506 797.366 269.785 798.262 270.355 799.228C270.567 799.588 270.681 799.999 270.681 800.42C270.681 801.209 270.288 801.942 269.628 802.375L267.251 803.946C266.431 804.49 265.94 805.406 265.94 806.395Z" stroke="currentColor" stroke-width="12" />
-  </g>
-</svg> 참석자: 김지현, 박민수, 이수진 + 2명
-            </div> </div> <div class="ai-summary-section"> <div class="ai-summary-section-title">감지된 일정</div> <div class="ai-summary-section-content" style="color:var(--ai-green-text);"> 11월 5일 화요일 오전 11시 — Q4 마케팅 전략 회의
-            </div> </div> <div class="ai-summary-cta"> <button class="cta-btn-blue" onclick="openCalendar()">회의 바로 예약</button> <button class="cta-btn-gray" onclick="closeSummaryPopup()">닫기</button> </div> </div> <!-- Unread divider --> <div class="unread-divider" id="unreadDivider" style="display:none;"> <span class="unread-divider-text">읽지 않은 메시지 8건</span> </div> <!-- Unread messages --> <div id="unreadMessages" style="display:none;"> <!-- Message group: 박민수 --> <div class="msg-group"> <div class="msg-row-rx"> <div class="msg-avatar" style="background:#FF8C42;font-size:10px;font-weight:700;color:white;width:28px;height:28px;border-radius:50%;align-self:flex-start;display:flex;align-items:center;justify-content:center;flex-shrink:0;">박</div> <div> <div style="font-size:12px;font-weight:600;color:var(--text-secondary);margin-bottom:4px;">박민수</div> <div class="bubble-rx"> 참고로 지난 Q3 리포트 공유드렸어요.
-                  <div class="translation-block" data-en="FYI, I've shared the Q3 report.">FYI, I've shared the Q3 report.</div> <div class="link-preview"> <div class="link-preview-img"></div> <div> <div class="link-preview-title">Q3_Marketing_Report_Final.pdf</div> <div class="link-preview-url">drive.worksmobile.com</div> </div> </div> </div> </div> <div class="bubble-meta"><span class="bubble-time">오후 2:32</span></div> </div> </div> <!-- Message group: 이수진 --> <div class="msg-group"> <div class="msg-row-rx"> <div class="msg-avatar" style="background:#1ABC9C;font-size:10px;font-weight:700;color:white;width:28px;height:28px;border-radius:50%;align-self:flex-start;display:flex;align-items:center;justify-content:center;flex-shrink:0;">이</div> <div> <div style="font-size:12px;font-weight:600;color:var(--text-secondary);margin-bottom:4px;">이수진</div> <div class="bubble-rx"> 감사합니다. 준비해서 <span class="date-highlight">11월 5일 회의<div class="date-tooltip"> <div class="tooltip-title"><svg style="vertical-align:middle;flex-shrink:0;" xmlns="http://www.w3.org/2000/svg" width="12" height="12" viewBox="0 0 120 120" fill="none">
-  <g transform="translate(-470, -320)">
-    <path d="M536.25 372.75C537.907 372.75 539.25 374.093 539.25 375.75V388.25C539.25 389.907 537.907 391.25 536.25 391.25H523.75C522.093 391.25 520.75 389.907 520.75 388.25V375.75C520.75 374.093 522.093 372.75 523.75 372.75H536.25ZM522.75 378.419V388.25C522.75 388.802 523.198 389.25 523.75 389.25H536.25C536.802 389.25 537.25 388.802 537.25 388.25V378.419H522.75ZM523.75 374.75C523.198 374.75 522.75 375.198 522.75 375.75V376.419H537.25V375.75C537.25 375.198 536.802 374.75 536.25 374.75H523.75Z" fill="currentColor" />
-    <path d="M525.824 385.858C525.913 385.711 526.025 385.619 526.158 385.586C526.29 385.554 526.432 385.582 526.579 385.672C526.783 385.807 526.974 385.9 527.149 385.953C527.324 386.004 527.52 386.032 527.733 386.032C527.966 386.032 528.163 386.009 528.319 385.965C528.472 385.924 528.597 385.864 528.69 385.788C528.781 385.714 528.849 385.624 528.889 385.523C528.932 385.418 528.953 385.305 528.953 385.187V385.116C528.953 384.826 528.86 384.619 528.67 384.481C528.476 384.342 528.152 384.271 527.707 384.271H527.233C527.073 384.271 526.954 384.216 526.879 384.106C526.808 384.004 526.773 383.877 526.773 383.73C526.773 383.585 526.808 383.457 526.879 383.353C526.954 383.245 527.073 383.189 527.233 383.189H527.608C527.994 383.189 528.28 383.115 528.457 382.972C528.632 382.831 528.72 382.611 528.72 382.318V382.292C528.72 382.079 528.647 381.915 528.497 381.789C528.346 381.663 528.095 381.599 527.751 381.599C527.545 381.599 527.367 381.634 527.223 381.702C527.078 381.769 526.927 381.873 526.775 382.007C526.652 382.118 526.516 382.165 526.37 382.149C526.226 382.132 526.106 382.065 526.014 381.947C525.918 381.831 525.873 381.702 525.884 381.565C525.893 381.428 525.943 381.305 526.033 381.196C526.229 380.982 526.473 380.811 526.758 380.686C527.044 380.563 527.381 380.5 527.761 380.5C528.127 380.5 528.45 380.545 528.723 380.636C528.996 380.727 529.226 380.85 529.406 381.003C529.586 381.155 529.722 381.336 529.808 381.539C529.894 381.742 529.937 381.955 529.937 382.175V382.219C529.937 382.386 529.912 382.551 529.863 382.713C529.814 382.875 529.742 383.028 529.647 383.164C529.552 383.302 529.435 383.424 529.301 383.524C529.21 383.591 529.112 383.649 529.006 383.697C529.117 383.722 529.227 383.757 529.334 383.8C529.5 383.868 529.649 383.964 529.779 384.082C529.908 384.203 530.012 384.353 530.089 384.529C530.166 384.704 530.205 384.914 530.205 385.151V385.24C530.205 385.497 530.153 385.743 530.048 385.972C529.944 386.202 529.79 386.405 529.589 386.579C529.388 386.753 529.136 386.892 528.84 386.994C528.544 387.098 528.198 387.15 527.814 387.15C527.461 387.15 527.132 387.112 526.836 387.036C526.541 386.96 526.257 386.836 525.991 386.668C525.842 386.571 525.754 386.443 525.732 386.288C525.709 386.137 525.74 385.993 525.824 385.858Z" fill="currentColor" />
-    <path d="M531.093 381.935C531.12 381.784 531.209 381.664 531.36 381.578L532.871 380.738C533.028 380.655 533.165 380.593 533.281 380.556C533.398 380.519 533.515 380.5 533.627 380.5C533.809 380.5 533.962 380.542 534.084 380.624C534.211 380.712 534.276 380.852 534.276 381.042V386.519C534.276 386.71 534.211 386.85 534.084 386.936C533.963 387.02 533.818 387.062 533.655 387.062C533.489 387.062 533.345 387.02 533.224 386.936C533.097 386.85 533.032 386.71 533.032 386.519V381.976L531.954 382.595C531.792 382.686 531.635 382.703 531.491 382.647C531.35 382.593 531.239 382.493 531.162 382.353C531.091 382.224 531.068 382.084 531.093 381.935Z" fill="currentColor" />
-  </g>
-</svg> 일정 감지됨</div> <div class="tooltip-subtitle">11월 5일 (화) · Q4 전략 회의</div> <button class="tooltip-action-btn" onclick="openCalendar()">회의 예약하기</button> </div></span> 때 논의해봐요!
-                  <div class="translation-block" data-en="Thank you. Let's prepare and discuss at the Nov 5 meeting!">Thank you. Let's prepare and discuss at the Nov 5 meeting!</div> </div> </div> <div class="bubble-meta"><span class="bubble-time">오후 2:45</span></div> </div> </div> </div><!-- /unreadMessages --> </div><!-- /chat-feed --> <!-- Input area --> <div class="input-area"> <!-- Tone chips (Feature 7) --> <div class="tone-chips" id="toneChips"> <span class="tone-label">톤 조절</span> <button class="tone-chip" onclick="applyTone(this, '격식체')"> 격식체</button> <button class="tone-chip" onclick="applyTone(this, '캐주얼')"> 캐주얼</button> <button class="tone-chip" onclick="applyTone(this, '영문')"> 영문</button> <button class="tone-chip" onclick="applyTone(this, '간결하게')"> 간결하게</button> </div> <!-- Input row --> <div class="input-row"> <div class="input-toolbar-icons"> <div class="toolbar-icon" title="첨부">＋</div> <div class="toolbar-icon" title="이미지"><svg style="vertical-align:middle;flex-shrink:0;" xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 120 120" fill="none">
-  <g transform="translate(-340, -2400)">
-    <ellipse cx="403.622" cy="2459.19" rx="1.35833" ry="1.35938" fill="currentColor" />
-    <path d="M396.946 2460L405.49 2469H394C392.895 2469 392 2468.1 392 2467V2464.19L396.946 2460Z" stroke="currentColor" stroke-width="16" stroke-linecap="round" stroke-linejoin="round" />
-    <rect x="392" y="2455" width="16" height="16" rx="2" stroke="currentColor" stroke-width="16" stroke-linecap="round" stroke-linejoin="round" />
-  </g>
-</svg></div> <div class="toolbar-icon" title="이모지"><svg style="vertical-align:middle;flex-shrink:0;" xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 120 120" fill="none">
-  <g transform="translate(-1120, -870)">
-    <circle cx="1180" cy="933" r="8" stroke="currentColor" stroke-width="16" stroke-linecap="round" stroke-linejoin="round" />
-    <circle cx="1177.01" cy="931.444" r="1.125" fill="currentColor" />
-    <path d="M1176.89 935.222C1178.34 937.499 1181.66 937.499 1183.11 935.222" stroke="currentColor" stroke-width="16" stroke-linecap="round" stroke-linejoin="round" />
-    <circle cx="1182.99" cy="931.444" r="1.125" fill="currentColor" />
-  </g>
-</svg></div> </div> <div class="input-field-wrapper"> <textarea class="input-field" id="inputField" rows="1" placeholder="메시지를 입력해주세요." oninput="onInputChange(this)" onfocus="onInputFocus()" onblur="onInputBlur()" ></textarea> </div> <div class="input-right-actions"> <button class="ai-process-btn" id="aiProcessBtn" onclick="toggleBatch()"> ✦ AI 처리
-            </button> <div class="toolbar-icon" title="전화"><svg style="vertical-align:middle;flex-shrink:0;" xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 120 120" fill="none">
-  <g transform="translate(-600, -2110)">
-    <path d="M652.444 2168.15C652.444 2168.25 652.455 2168.32 652.461 2168.44C652.574 2171.1 653.862 2174.23 656.26 2177.13C658.658 2180.03 661.477 2181.86 664.044 2182.44C664.134 2182.46 664.231 2182.48 664.32 2182.5C664.62 2182.52 664.927 2182.43 665.179 2182.22L667.017 2180.66C667.52 2180.23 667.593 2179.46 667.163 2178.95L664.595 2175.85C664.174 2175.34 663.421 2175.27 662.91 2175.7L661.631 2176.79C660.861 2176.19 660.075 2175.45 659.322 2174.53C658.569 2173.62 657.977 2172.7 657.532 2171.83L658.812 2170.74C659.314 2170.31 659.387 2169.55 658.957 2169.03L656.389 2165.93C655.968 2165.42 655.215 2165.35 654.705 2165.79L652.866 2167.35C652.615 2167.56 652.477 2167.85 652.444 2168.15Z" stroke="currentColor" stroke-width="16" stroke-linejoin="round" />
-  </g>
-</svg></div> <div class="toolbar-icon" title="화상"><svg style="vertical-align:middle;flex-shrink:0;" xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 120 120" fill="none">
-  <g transform="translate(-470, -2400)">
-    <path d="M521 2459C521 2457.9 521.895 2457 523 2457H525.5L526.724 2454.55C526.893 2454.21 527.239 2454 527.618 2454H532.382C532.761 2454 533.107 2454.21 533.276 2454.55L534.5 2457H537C538.105 2457 539 2457.9 539 2459V2468C539 2469.1 538.105 2470 537 2470H523C521.895 2470 521 2469.1 521 2468V2459Z" stroke="currentColor" stroke-width="16" stroke-linecap="round" stroke-linejoin="round" />
-    <circle cx="530" cy="2463" r="3" stroke="currentColor" stroke-width="16" stroke-linecap="round" stroke-linejoin="round" />
-  </g>
-</svg></div> </div> </div> </div> <!-- Floating banner (Feature 6) --> <div class="floating-banner" id="floatingBanner"> <div class="floating-banner-icon"><svg style="vertical-align:middle;flex-shrink:0;" xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 120 120" fill="none">
-  <g transform="translate(-470, -320)">
-    <path d="M536.25 372.75C537.907 372.75 539.25 374.093 539.25 375.75V388.25C539.25 389.907 537.907 391.25 536.25 391.25H523.75C522.093 391.25 520.75 389.907 520.75 388.25V375.75C520.75 374.093 522.093 372.75 523.75 372.75H536.25ZM522.75 378.419V388.25C522.75 388.802 523.198 389.25 523.75 389.25H536.25C536.802 389.25 537.25 388.802 537.25 388.25V378.419H522.75ZM523.75 374.75C523.198 374.75 522.75 375.198 522.75 375.75V376.419H537.25V375.75C537.25 375.198 536.802 374.75 536.25 374.75H523.75Z" fill="currentColor" />
-    <path d="M525.824 385.858C525.913 385.711 526.025 385.619 526.158 385.586C526.29 385.554 526.432 385.582 526.579 385.672C526.783 385.807 526.974 385.9 527.149 385.953C527.324 386.004 527.52 386.032 527.733 386.032C527.966 386.032 528.163 386.009 528.319 385.965C528.472 385.924 528.597 385.864 528.69 385.788C528.781 385.714 528.849 385.624 528.889 385.523C528.932 385.418 528.953 385.305 528.953 385.187V385.116C528.953 384.826 528.86 384.619 528.67 384.481C528.476 384.342 528.152 384.271 527.707 384.271H527.233C527.073 384.271 526.954 384.216 526.879 384.106C526.808 384.004 526.773 383.877 526.773 383.73C526.773 383.585 526.808 383.457 526.879 383.353C526.954 383.245 527.073 383.189 527.233 383.189H527.608C527.994 383.189 528.28 383.115 528.457 382.972C528.632 382.831 528.72 382.611 528.72 382.318V382.292C528.72 382.079 528.647 381.915 528.497 381.789C528.346 381.663 528.095 381.599 527.751 381.599C527.545 381.599 527.367 381.634 527.223 381.702C527.078 381.769 526.927 381.873 526.775 382.007C526.652 382.118 526.516 382.165 526.37 382.149C526.226 382.132 526.106 382.065 526.014 381.947C525.918 381.831 525.873 381.702 525.884 381.565C525.893 381.428 525.943 381.305 526.033 381.196C526.229 380.982 526.473 380.811 526.758 380.686C527.044 380.563 527.381 380.5 527.761 380.5C528.127 380.5 528.45 380.545 528.723 380.636C528.996 380.727 529.226 380.85 529.406 381.003C529.586 381.155 529.722 381.336 529.808 381.539C529.894 381.742 529.937 381.955 529.937 382.175V382.219C529.937 382.386 529.912 382.551 529.863 382.713C529.814 382.875 529.742 383.028 529.647 383.164C529.552 383.302 529.435 383.424 529.301 383.524C529.21 383.591 529.112 383.649 529.006 383.697C529.117 383.722 529.227 383.757 529.334 383.8C529.5 383.868 529.649 383.964 529.779 384.082C529.908 384.203 530.012 384.353 530.089 384.529C530.166 384.704 530.205 384.914 530.205 385.151V385.24C530.205 385.497 530.153 385.743 530.048 385.972C529.944 386.202 529.79 386.405 529.589 386.579C529.388 386.753 529.136 386.892 528.84 386.994C528.544 387.098 528.198 387.15 527.814 387.15C527.461 387.15 527.132 387.112 526.836 387.036C526.541 386.96 526.257 386.836 525.991 386.668C525.842 386.571 525.754 386.443 525.732 386.288C525.709 386.137 525.74 385.993 525.824 385.858Z" fill="currentColor" />
-    <path d="M531.093 381.935C531.12 381.784 531.209 381.664 531.36 381.578L532.871 380.738C533.028 380.655 533.165 380.593 533.281 380.556C533.398 380.519 533.515 380.5 533.627 380.5C533.809 380.5 533.962 380.542 534.084 380.624C534.211 380.712 534.276 380.852 534.276 381.042V386.519C534.276 386.71 534.211 386.85 534.084 386.936C533.963 387.02 533.818 387.062 533.655 387.062C533.489 387.062 533.345 387.02 533.224 386.936C533.097 386.85 533.032 386.71 533.032 386.519V381.976L531.954 382.595C531.792 382.686 531.635 382.703 531.491 382.647C531.35 382.593 531.239 382.493 531.162 382.353C531.091 382.224 531.068 382.084 531.093 381.935Z" fill="currentColor" />
-  </g>
-</svg></div> <div class="floating-banner-content"> <div class="floating-banner-title">11월 5일 화요일 오전 11시 — 회의 예약</div> <div class="floating-banner-sub">Q4 마케팅 전략 · 참석자 5명</div> </div> <div class="floating-banner-actions"> <button class="fb-book" onclick="openCalendar()">예약</button> <button class="fb-dismiss" onclick="dismissBanner()">무시</button> </div> <span class="fb-timer" id="bannerTimer">6</span> </div> <!-- AI Batch Panel (Feature 9) --> <div class="ai-batch-panel" id="batchPanel"> <div class="ai-batch-header"> <div class="ai-batch-title"> <span class="ai-badge">AI</span> 대화 기반 일괄 처리
-          </div> <button class="ai-batch-close" onclick="toggleBatch()">✕</button> </div> <div class="ai-batch-tabs"> <div class="ai-batch-tab active" onclick="switchBatchTab(this, 'tab-meeting')"><svg style="vertical-align:middle;flex-shrink:0;" xmlns="http://www.w3.org/2000/svg" width="13" height="13" viewBox="0 0 120 120" fill="none">
-  <g transform="translate(-470, -320)">
-    <path d="M536.25 372.75C537.907 372.75 539.25 374.093 539.25 375.75V388.25C539.25 389.907 537.907 391.25 536.25 391.25H523.75C522.093 391.25 520.75 389.907 520.75 388.25V375.75C520.75 374.093 522.093 372.75 523.75 372.75H536.25ZM522.75 378.419V388.25C522.75 388.802 523.198 389.25 523.75 389.25H536.25C536.802 389.25 537.25 388.802 537.25 388.25V378.419H522.75ZM523.75 374.75C523.198 374.75 522.75 375.198 522.75 375.75V376.419H537.25V375.75C537.25 375.198 536.802 374.75 536.25 374.75H523.75Z" fill="currentColor" />
-    <path d="M525.824 385.858C525.913 385.711 526.025 385.619 526.158 385.586C526.29 385.554 526.432 385.582 526.579 385.672C526.783 385.807 526.974 385.9 527.149 385.953C527.324 386.004 527.52 386.032 527.733 386.032C527.966 386.032 528.163 386.009 528.319 385.965C528.472 385.924 528.597 385.864 528.69 385.788C528.781 385.714 528.849 385.624 528.889 385.523C528.932 385.418 528.953 385.305 528.953 385.187V385.116C528.953 384.826 528.86 384.619 528.67 384.481C528.476 384.342 528.152 384.271 527.707 384.271H527.233C527.073 384.271 526.954 384.216 526.879 384.106C526.808 384.004 526.773 383.877 526.773 383.73C526.773 383.585 526.808 383.457 526.879 383.353C526.954 383.245 527.073 383.189 527.233 383.189H527.608C527.994 383.189 528.28 383.115 528.457 382.972C528.632 382.831 528.72 382.611 528.72 382.318V382.292C528.72 382.079 528.647 381.915 528.497 381.789C528.346 381.663 528.095 381.599 527.751 381.599C527.545 381.599 527.367 381.634 527.223 381.702C527.078 381.769 526.927 381.873 526.775 382.007C526.652 382.118 526.516 382.165 526.37 382.149C526.226 382.132 526.106 382.065 526.014 381.947C525.918 381.831 525.873 381.702 525.884 381.565C525.893 381.428 525.943 381.305 526.033 381.196C526.229 380.982 526.473 380.811 526.758 380.686C527.044 380.563 527.381 380.5 527.761 380.5C528.127 380.5 528.45 380.545 528.723 380.636C528.996 380.727 529.226 380.85 529.406 381.003C529.586 381.155 529.722 381.336 529.808 381.539C529.894 381.742 529.937 381.955 529.937 382.175V382.219C529.937 382.386 529.912 382.551 529.863 382.713C529.814 382.875 529.742 383.028 529.647 383.164C529.552 383.302 529.435 383.424 529.301 383.524C529.21 383.591 529.112 383.649 529.006 383.697C529.117 383.722 529.227 383.757 529.334 383.8C529.5 383.868 529.649 383.964 529.779 384.082C529.908 384.203 530.012 384.353 530.089 384.529C530.166 384.704 530.205 384.914 530.205 385.151V385.24C530.205 385.497 530.153 385.743 530.048 385.972C529.944 386.202 529.79 386.405 529.589 386.579C529.388 386.753 529.136 386.892 528.84 386.994C528.544 387.098 528.198 387.15 527.814 387.15C527.461 387.15 527.132 387.112 526.836 387.036C526.541 386.96 526.257 386.836 525.991 386.668C525.842 386.571 525.754 386.443 525.732 386.288C525.709 386.137 525.74 385.993 525.824 385.858Z" fill="currentColor" />
-    <path d="M531.093 381.935C531.12 381.784 531.209 381.664 531.36 381.578L532.871 380.738C533.028 380.655 533.165 380.593 533.281 380.556C533.398 380.519 533.515 380.5 533.627 380.5C533.809 380.5 533.962 380.542 534.084 380.624C534.211 380.712 534.276 380.852 534.276 381.042V386.519C534.276 386.71 534.211 386.85 534.084 386.936C533.963 387.02 533.818 387.062 533.655 387.062C533.489 387.062 533.345 387.02 533.224 386.936C533.097 386.85 533.032 386.71 533.032 386.519V381.976L531.954 382.595C531.792 382.686 531.635 382.703 531.491 382.647C531.35 382.593 531.239 382.493 531.162 382.353C531.091 382.224 531.068 382.084 531.093 381.935Z" fill="currentColor" />
-  </g>
-</svg> 회의 예약</div> <div class="ai-batch-tab" onclick="switchBatchTab(this, 'tab-notes')"><svg style="vertical-align:middle;flex-shrink:0;" xmlns="http://www.w3.org/2000/svg" width="13" height="13" viewBox="0 0 120 120" fill="none">
-  <g transform="translate(-600, -870)">
-    <rect x="653" y="924.5" width="13" height="13" rx="2" stroke="currentColor" stroke-width="13" stroke-linecap="round" stroke-linejoin="round" />
-    <path d="M656.375 928.375H663.625" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" />
-    <path d="M656.375 931.875H663.625" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" />
-    <path d="M656.375 935.375H660.925" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" />
-  </g>
-</svg> 회의록 초안</div> <div class="ai-batch-tab" onclick="switchBatchTab(this, 'tab-mail')"><svg style="vertical-align:middle;flex-shrink:0;" xmlns="http://www.w3.org/2000/svg" width="13" height="13" viewBox="0 0 120 120" fill="none">
-  <g transform="translate(-80, -2110)">
-    <path d="M146.52 2166.75H133.48C132.58 2166.75 131.85 2167.56 131.85 2168.56V2179.44C131.85 2180.44 132.58 2181.25 133.48 2181.25H146.52C147.42 2181.25 148.15 2180.44 148.15 2179.44V2168.56C148.15 2167.56 147.42 2166.75 146.52 2166.75Z" stroke="currentColor" stroke-width="13" stroke-linecap="round" stroke-linejoin="round" />
-    <path d="M148.15 2170.19L140.839 2175.36C140.588 2175.54 140.297 2175.63 140 2175.63C139.703 2175.63 139.412 2175.54 139.161 2175.36L131.85 2170.19" stroke="currentColor" stroke-width="13" stroke-linecap="round" stroke-linejoin="round" />
-  </g>
-</svg> 메일 발송</div> <div class="ai-batch-tab" onclick="switchBatchTab(this, 'tab-tone')"><svg style="vertical-align:middle;flex-shrink:0;" xmlns="http://www.w3.org/2000/svg" width="13" height="13" viewBox="0 0 120 120" fill="none">
-  <g transform="translate(-860, -1830)">
-    <path fill-rule="evenodd" clip-rule="evenodd" d="M929.802 1892.58C930.333 1892.37 930.333 1891.62 929.802 1891.42L928.84 1891.06C928.246 1890.83 927.778 1890.35 927.544 1889.76L927.176 1888.8C926.969 1888.27 926.222 1888.27 926.024 1888.8L925.656 1889.76C925.431 1890.35 924.954 1890.82 924.36 1891.06L923.398 1891.42C922.867 1891.63 922.867 1892.38 923.398 1892.58L924.36 1892.94C924.954 1893.17 925.422 1893.65 925.656 1894.24L926.024 1895.2C926.231 1895.73 926.978 1895.73 927.176 1895.2L927.544 1894.24C927.769 1893.65 928.246 1893.18 928.84 1892.94L929.802 1892.58Z" fill="currentColor" />
-    <path fill-rule="evenodd" clip-rule="evenodd" d="M916.702 1880.73C917.1 1880.58 917.1 1880.02 916.702 1879.87L915.98 1879.59C915.535 1879.42 915.184 1879.07 915.008 1878.62L914.732 1877.9C914.577 1877.5 914.017 1877.5 913.868 1877.9L913.592 1878.62C913.423 1879.07 913.066 1879.42 912.62 1879.59L911.899 1879.87C911.501 1880.02 911.501 1880.58 911.899 1880.73L912.62 1881.01C913.066 1881.18 913.416 1881.53 913.592 1881.98L913.868 1882.7C914.024 1883.1 914.583 1883.1 914.732 1882.7L915.008 1881.98C915.177 1881.53 915.535 1881.18 915.98 1881.01L916.702 1880.73Z" fill="currentColor" />
-    <path d="M919.7 1890.23C919.7 1892.06 918.223 1893.53 916.4 1893.53C915.813 1893.53 913.515 1893.53 911.795 1893.53C911.051 1893.53 910.676 1892.64 911.197 1892.11C911.384 1891.92 911.559 1891.74 911.702 1891.6C912.876 1890.41 913.179 1888.8 914.034 1887.93C914.633 1887.32 915.472 1886.93 916.4 1886.93C918.223 1886.93 919.7 1888.41 919.7 1890.23Z" stroke="currentColor" stroke-width="13" />
-    <path d="M917.498 1886.97L926.268 1878.2C926.539 1877.93 926.979 1877.93 927.251 1878.2L928.796 1879.75C929.068 1880.02 929.068 1880.46 928.796 1880.73L919.967 1889.56" stroke="currentColor" stroke-width="13" />
-  </g>
-</svg> 톤 조절</div> </div> <div class="ai-batch-content"> <div class="ai-batch-tab-panel active" id="tab-meeting"> <div class="ai-extracted-row"> <span class="ai-extracted-label">참석자</span> <span class="ai-extracted-tag">김지현</span> <span class="ai-extracted-tag">박민수</span> <span class="ai-extracted-tag">이수진</span> <span style="font-size:11px;color:var(--text-tertiary);">+2명</span> </div> <div class="ai-extracted-row"> <span class="ai-extracted-label">일시</span> <span class="ai-extracted-value">11월 5일 (화) 오전 11:00 — 12:00</span> </div> <div class="ai-extracted-row"> <span class="ai-extracted-label">제목</span> <span class="ai-extracted-value">Q4 마케팅 전략 회의</span> </div> <div class="ai-extracted-row"> <span class="ai-extracted-label">장소</span> <span class="ai-extracted-value" style="color:var(--text-tertiary);">미설정 (WORKS 화상회의 링크 자동 생성)</span> </div> </div> <div class="ai-batch-tab-panel" id="tab-notes"> <div style="background:var(--ai-blue-bg);border-left:3px solid var(--blue);border-radius:0 6px 6px 0;padding:10px 12px;font-size:12px;color:var(--text-secondary);line-height:1.65;"> <strong style="color:var(--text-primary);">Q4 마케팅 전략 회의 초안</strong><br><br> 회의 종료 후 트랜스크립트 기반으로 자동 생성됩니다.<br><br> <strong>아젠다 (예상)</strong><br> 1. Q4 목표 리뷰 (20분)<br> 2. 채널별 예산 배분 (20분)<br> 3. 캠페인 일정 확정 (15분)
-            </div> </div> <div class="ai-batch-tab-panel" id="tab-mail"> <div style="font-size:12px;color:var(--text-secondary);line-height:1.65;"> <div style="margin-bottom:8px;"><strong>수신:</strong> 김지현, 박민수, 이수진 +2</div> <div style="margin-bottom:8px;"><strong>제목:</strong> [Q4 전략] 11월 5일 회의 일정 안내</div> <div style="background:var(--surface-1);border-radius:6px;padding:10px;font-size:11px;color:var(--text-secondary);line-height:1.7;"> 안녕하세요,<br><br> Q4 마케팅 전략 회의 일정을 안내드립니다.<br><br> <svg style="vertical-align:middle;flex-shrink:0;" xmlns="http://www.w3.org/2000/svg" width="11" height="11" viewBox="0 0 120 120" fill="none">
-  <g transform="translate(-470, -320)">
-    <path d="M536.25 372.75C537.907 372.75 539.25 374.093 539.25 375.75V388.25C539.25 389.907 537.907 391.25 536.25 391.25H523.75C522.093 391.25 520.75 389.907 520.75 388.25V375.75C520.75 374.093 522.093 372.75 523.75 372.75H536.25ZM522.75 378.419V388.25C522.75 388.802 523.198 389.25 523.75 389.25H536.25C536.802 389.25 537.25 388.802 537.25 388.25V378.419H522.75ZM523.75 374.75C523.198 374.75 522.75 375.198 522.75 375.75V376.419H537.25V375.75C537.25 375.198 536.802 374.75 536.25 374.75H523.75Z" fill="currentColor" />
-    <path d="M525.824 385.858C525.913 385.711 526.025 385.619 526.158 385.586C526.29 385.554 526.432 385.582 526.579 385.672C526.783 385.807 526.974 385.9 527.149 385.953C527.324 386.004 527.52 386.032 527.733 386.032C527.966 386.032 528.163 386.009 528.319 385.965C528.472 385.924 528.597 385.864 528.69 385.788C528.781 385.714 528.849 385.624 528.889 385.523C528.932 385.418 528.953 385.305 528.953 385.187V385.116C528.953 384.826 528.86 384.619 528.67 384.481C528.476 384.342 528.152 384.271 527.707 384.271H527.233C527.073 384.271 526.954 384.216 526.879 384.106C526.808 384.004 526.773 383.877 526.773 383.73C526.773 383.585 526.808 383.457 526.879 383.353C526.954 383.245 527.073 383.189 527.233 383.189H527.608C527.994 383.189 528.28 383.115 528.457 382.972C528.632 382.831 528.72 382.611 528.72 382.318V382.292C528.72 382.079 528.647 381.915 528.497 381.789C528.346 381.663 528.095 381.599 527.751 381.599C527.545 381.599 527.367 381.634 527.223 381.702C527.078 381.769 526.927 381.873 526.775 382.007C526.652 382.118 526.516 382.165 526.37 382.149C526.226 382.132 526.106 382.065 526.014 381.947C525.918 381.831 525.873 381.702 525.884 381.565C525.893 381.428 525.943 381.305 526.033 381.196C526.229 380.982 526.473 380.811 526.758 380.686C527.044 380.563 527.381 380.5 527.761 380.5C528.127 380.5 528.45 380.545 528.723 380.636C528.996 380.727 529.226 380.85 529.406 381.003C529.586 381.155 529.722 381.336 529.808 381.539C529.894 381.742 529.937 381.955 529.937 382.175V382.219C529.937 382.386 529.912 382.551 529.863 382.713C529.814 382.875 529.742 383.028 529.647 383.164C529.552 383.302 529.435 383.424 529.301 383.524C529.21 383.591 529.112 383.649 529.006 383.697C529.117 383.722 529.227 383.757 529.334 383.8C529.5 383.868 529.649 383.964 529.779 384.082C529.908 384.203 530.012 384.353 530.089 384.529C530.166 384.704 530.205 384.914 530.205 385.151V385.24C530.205 385.497 530.153 385.743 530.048 385.972C529.944 386.202 529.79 386.405 529.589 386.579C529.388 386.753 529.136 386.892 528.84 386.994C528.544 387.098 528.198 387.15 527.814 387.15C527.461 387.15 527.132 387.112 526.836 387.036C526.541 386.96 526.257 386.836 525.991 386.668C525.842 386.571 525.754 386.443 525.732 386.288C525.709 386.137 525.74 385.993 525.824 385.858Z" fill="currentColor" />
-    <path d="M531.093 381.935C531.12 381.784 531.209 381.664 531.36 381.578L532.871 380.738C533.028 380.655 533.165 380.593 533.281 380.556C533.398 380.519 533.515 380.5 533.627 380.5C533.809 380.5 533.962 380.542 534.084 380.624C534.211 380.712 534.276 380.852 534.276 381.042V386.519C534.276 386.71 534.211 386.85 534.084 386.936C533.963 387.02 533.818 387.062 533.655 387.062C533.489 387.062 533.345 387.02 533.224 386.936C533.097 386.85 533.032 386.71 533.032 386.519V381.976L531.954 382.595C531.792 382.686 531.635 382.703 531.491 382.647C531.35 382.593 531.239 382.493 531.162 382.353C531.091 382.224 531.068 382.084 531.093 381.935Z" fill="currentColor" />
-  </g>
-</svg> 일시: 2025년 11월 5일 (화) 오전 11:00 ~ 12:00<br> <svg style="vertical-align:middle;flex-shrink:0;" xmlns="http://www.w3.org/2000/svg" width="11" height="11" viewBox="0 0 120 120" fill="none">
-  <g transform="translate(-600, -870)">
-    <rect x="653" y="924.5" width="11" height="11" rx="2" stroke="currentColor" stroke-width="11" stroke-linecap="round" stroke-linejoin="round" />
-    <path d="M656.375 928.375H663.625" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" />
-    <path d="M656.375 931.875H663.625" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" />
-    <path d="M656.375 935.375H660.925" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" />
-  </g>
-</svg> 아젠다: Q4 목표 리뷰 / 예산 배분 / 캠페인 일정<br><br> 참석 부탁드립니다.
-              </div> </div> </div> <div class="ai-batch-tab-panel" id="tab-tone"> <div style="font-size:12px;color:var(--text-secondary);margin-bottom:10px;">메일 및 메시지 톤을 선택하세요</div> <div style="display:flex;gap:6px;flex-wrap:wrap;"> <button class="tone-chip selected" onclick="toggleToneSelect(this)"> 격식체</button> <button class="tone-chip" onclick="toggleToneSelect(this)"> 캐주얼</button> <button class="tone-chip" onclick="toggleToneSelect(this)"> 영문</button> <button class="tone-chip" onclick="toggleToneSelect(this)"> 간결하게</button> </div> </div> </div> <div class="ai-batch-action-row"> <button class="ai-batch-primary" onclick="closeBatch()">✓ 회의 예약하기</button> <button class="ai-batch-cancel" onclick="toggleBatch()">취소</button> </div> </div> </div><!-- /chat-content --> </div><!-- /app-frame -->
-</div><!-- /app-wrapper --> <script> let summaryVisible = false;
+<body>
+
+<!-- Prototype nav -->
+<nav class="proto-nav">
+  <span class="brand">WORKS AI</span>
+  <a href="index.html">개요</a>
+  <a href="messenger.html" class="active">메신저 AI</a>
+  <a href="calendar.html">캘린더 AI</a>
+  <span class="spacer"></span>
+  <span style="font-size:11px;color:rgba(255,255,255,0.3);">v0.1 프로토타입 · 내부 검토용</span>
+</nav>
+
+<!-- Demo controls -->
+<div class="demo-controls">
+  <span class="demo-label">데모 트리거</span>
+  <button class="demo-btn" id="btn-summary" onclick="toggleSummary()">채널 요약</button>
+  <button class="demo-btn" id="btn-banner" onclick="showBanner()">일정 감지 배너</button>
+  <button class="demo-btn" id="btn-translate" onclick="toggleTranslate()">번역 토글</button>
+  <button class="demo-btn" id="btn-batch" onclick="toggleBatch()">AI 일괄 처리</button>
+  <span style="font-size:11px;color:#9CA3AF;margin-left:8px;">인풋창 클릭 시 톤 조절 자동 표시 · 날짜 텍스트 호버 시 일정 툴팁</span>
+</div>
+
+<!-- App frame -->
+<div class="app-wrapper">
+  <div class="app-frame">
+
+    <!-- Left: Chat list -->
+    <div class="chat-list-panel">
+      <div class="search-bar">
+        <div class="search-bar-inner">
+          <svg width="14" height="14" viewBox="0 0 14 14" fill="none"><circle cx="6" cy="6" r="5" stroke="#9B9B9B" stroke-width="1.5"/><path d="M10.5 10.5L9 9" stroke="#9B9B9B" stroke-width="1.5" stroke-linecap="round"/></svg>
+          <input type="text" placeholder="메시지 검색">
+        </div>
+      </div>
+      <div class="tab-bar">
+        <div class="tab-item active">전체</div>
+        <div class="tab-item">1:1</div>
+        <div class="tab-item">여러명</div>
+        <div class="tab-item">외부</div>
+        <div class="tab-item">Bot</div>
+      </div>
+      <div class="sort-row">
+        <span class="sort-btn">시간순 ▾</span>
+      </div>
+      <div class="chat-list">
+        <!-- Item 1 - selected -->
+        <div class="chat-item selected">
+          <div class="avatar" style="background:#4A85E8; width:40px;height:40px;font-size:13px;">Q4</div>
+          <div class="chat-item-content">
+            <div class="chat-item-row1">
+              <span class="chat-item-name">Q4 마케팅 전략</span>
+              <span class="chat-item-time">오전 10:14</span>
+            </div>
+            <div class="chat-item-row2">
+              <span class="chat-item-preview">캠페인 일정 잡겠습니다</span>
+              <span class="unread-badge">8</span>
+            </div>
+          </div>
+        </div>
+        <!-- Item 2 -->
+        <div class="chat-item">
+          <div class="avatar" style="background:#03C75A;width:40px;height:40px;font-size:13px;">디자</div>
+          <div class="chat-item-content">
+            <div class="chat-item-row1">
+              <span class="chat-item-name">디자인 팀</span>
+              <span class="chat-item-time">오전 9:47</span>
+            </div>
+            <div class="chat-item-row2">
+              <span class="chat-item-preview">다음주 QA 일정 확인 부탁드려요</span>
+              <span class="unread-badge">3</span>
+            </div>
+          </div>
+        </div>
+        <!-- Item 3 -->
+        <div class="chat-item">
+          <div class="avatar" style="background:#FF8C42;width:40px;height:40px;font-size:13px;">박</div>
+          <div class="chat-item-content">
+            <div class="chat-item-row1">
+              <span class="chat-item-name">박민수</span>
+              <span class="chat-item-time">어제</span>
+            </div>
+            <div class="chat-item-row2">
+              <span class="chat-item-preview">보내주신 파일 잘 받았습니다!</span>
+            </div>
+          </div>
+        </div>
+        <!-- Item 4 -->
+        <div class="chat-item">
+          <div class="avatar" style="background:#9B59B6;width:40px;height:40px;font-size:13px;">전체</div>
+          <div class="chat-item-content">
+            <div class="chat-item-row1">
+              <span class="chat-item-name">전사 공지</span>
+              <span class="chat-item-time">어제</span>
+            </div>
+            <div class="chat-item-row2">
+              <span class="chat-item-preview">[공지] 2025 하반기 일정 안내</span>
+              <span class="unread-badge red">2</span>
+            </div>
+          </div>
+        </div>
+        <!-- Item 5 -->
+        <div class="chat-item">
+          <div class="avatar" style="background:#E74C3C;width:40px;height:40px;font-size:13px;">개발</div>
+          <div class="chat-item-content">
+            <div class="chat-item-row1">
+              <span class="chat-item-name">개발팀 ∙ 프론트</span>
+              <span class="chat-item-time">월</span>
+            </div>
+            <div class="chat-item-row2">
+              <span class="chat-item-preview">스프린트 회의 내일 오전 10시 맞죠?</span>
+            </div>
+          </div>
+        </div>
+        <!-- Item 6 -->
+        <div class="chat-item">
+          <div class="avatar" style="background:#1ABC9C;width:40px;height:40px;font-size:13px;">이</div>
+          <div class="chat-item-content">
+            <div class="chat-item-row1">
+              <span class="chat-item-name">이수진</span>
+              <span class="chat-item-time">월</span>
+            </div>
+            <div class="chat-item-row2">
+              <span class="chat-item-preview">네, 감사합니다 :-)</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Right: Chat content -->
+    <div class="chat-content" id="chatContent">
+
+      <!-- Header bar -->
+      <div class="chat-header">
+        <div class="chat-header-info">
+          <div class="chat-header-name">
+            Q4 마케팅 전략
+            <span style="font-size:12px;color:var(--text-tertiary);font-weight:400;">·</span>
+            <span class="chat-header-meta">멤버 5</span>
+          </div>
+        </div>
+        <div class="header-actions">
+          <button class="header-icon-btn" title="검색">
+            <svg width="16" height="16" viewBox="0 0 16 16" fill="none"><circle cx="7" cy="7" r="5.5" stroke="currentColor" stroke-width="1.5"/><path d="M12 12L10.5 10.5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg>
+          </button>
+          <button class="header-icon-btn" title="캘린더">
+            <svg width="16" height="16" viewBox="0 0 16 16" fill="none"><rect x="2" y="3" width="12" height="11" rx="2" stroke="currentColor" stroke-width="1.5"/><path d="M5 2v2M11 2v2M2 7h12" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg>
+          </button>
+          <button class="header-icon-btn" title="체크리스트">
+            <svg width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M3 8l3 3 7-7" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          </button>
+          <div class="translate-toggle" id="translateToggle" onclick="toggleTranslate()" title="번역 토글">
+            <div class="toggle-dot"></div>
+            <span id="translateLabel">번역</span>
+          </div>
+          <button class="header-icon-btn" title="더보기">
+            <svg width="16" height="16" viewBox="0 0 16 16" fill="none"><circle cx="4" cy="8" r="1.5" fill="currentColor"/><circle cx="8" cy="8" r="1.5" fill="currentColor"/><circle cx="12" cy="8" r="1.5" fill="currentColor"/></svg>
+          </button>
+        </div>
+      </div>
+
+      <!-- Chat feed -->
+      <div class="chat-feed" id="chatFeed">
+
+        <!-- Date divider -->
+        <div class="date-divider">
+          <span class="date-divider-text">2025년 11월 3일 월요일</span>
+        </div>
+
+        <!-- Message group 1: 김지현 -->
+        <div class="msg-group">
+          <div class="msg-row-rx">
+            <div class="msg-avatar" style="background:#4A85E8;font-size:10px;font-weight:700;color:white;width:28px;height:28px;border-radius:50%;align-self:flex-start;display:flex;align-items:center;justify-content:center;flex-shrink:0;">김</div>
+            <div>
+              <div style="font-size:12px;font-weight:600;color:var(--text-secondary);margin-bottom:4px;">김지현</div>
+              <div class="bubble-rx">
+                다음 주 화요일 오전에 Q4 전략 회의 잡을 수 있을까요?
+                <div class="translation-block" data-en="Can we schedule a Q4 strategy meeting next Tuesday morning?">Can we schedule a Q4 strategy meeting next Tuesday morning?</div>
+              </div>
+            </div>
+            <div class="bubble-meta"><span class="bubble-time">오전 10:02</span></div>
+          </div>
+        </div>
+
+        <!-- Message group 2: 박민수 -->
+        <div class="msg-group">
+          <div class="msg-row-rx">
+            <div class="msg-avatar" style="background:#FF8C42;font-size:10px;font-weight:700;color:white;width:28px;height:28px;border-radius:50%;align-self:flex-start;display:flex;align-items:center;justify-content:center;flex-shrink:0;">박</div>
+            <div>
+              <div style="font-size:12px;font-weight:600;color:var(--text-secondary);margin-bottom:4px;">박민수</div>
+              <div class="bubble-rx">
+                저는 괜찮아요. 화요일 10시 어때요?
+                <div class="translation-block" data-en="I'm available. How about Tuesday at 10?">I'm available. How about Tuesday at 10?</div>
+              </div>
+            </div>
+            <div class="bubble-meta"><span class="bubble-time">오전 10:05</span></div>
+          </div>
+        </div>
+
+        <!-- Message group 3: 이수진 -->
+        <div class="msg-group">
+          <div class="msg-row-rx">
+            <div class="msg-avatar" style="background:#1ABC9C;font-size:10px;font-weight:700;color:white;width:28px;height:28px;border-radius:50%;align-self:flex-start;display:flex;align-items:center;justify-content:center;flex-shrink:0;">이</div>
+            <div>
+              <div style="font-size:12px;font-weight:600;color:var(--text-secondary);margin-bottom:4px;">이수진</div>
+              <div class="bubble-rx">
+                저는 10시에 다른 미팅이 있어요. 11시 가능하신가요?
+                <div class="translation-block" data-en="I have another meeting at 10. Is 11 o'clock possible?">I have another meeting at 10. Is 11 o'clock possible?</div>
+              </div>
+            </div>
+            <div class="bubble-meta"><span class="bubble-time">오전 10:07</span></div>
+          </div>
+        </div>
+
+        <!-- Message group 4: 김지현 -->
+        <div class="msg-group">
+          <div class="msg-row-rx">
+            <div class="msg-avatar" style="background:#4A85E8;font-size:10px;font-weight:700;color:white;width:28px;height:28px;border-radius:50%;align-self:flex-start;display:flex;align-items:center;justify-content:center;flex-shrink:0;">김</div>
+            <div>
+              <div style="font-size:12px;font-weight:600;color:var(--text-secondary);margin-bottom:4px;">김지현</div>
+              <div class="bubble-rx">
+                11시 좋아요. 그럼 <span class="date-highlight">11월 5일 화요일 오전 11시<div class="date-tooltip">
+                    <div class="tooltip-title">📅 일정 감지됨</div>
+                    <div class="tooltip-subtitle">11월 5일 (화) · 오전 11:00</div>
+                    <button class="tooltip-action-btn" onclick="openCalendar()">회의 예약하기</button>
+                  </div></span>로 잡을까요?
+                <div class="translation-block" data-en="11 is good. Shall we set it for Tuesday, Nov 5 at 11 AM?">11 is good. Shall we set it for Tuesday, Nov 5 at 11 AM?</div>
+              </div>
+            </div>
+            <div class="bubble-meta"><span class="bubble-time">오전 10:09</span></div>
+          </div>
+        </div>
+
+        <!-- Message group 5: 박민수 -->
+        <div class="msg-group">
+          <div class="msg-row-rx">
+            <div class="msg-avatar" style="background:#FF8C42;font-size:10px;font-weight:700;color:white;width:28px;height:28px;border-radius:50%;align-self:flex-start;display:flex;align-items:center;justify-content:center;flex-shrink:0;">박</div>
+            <div>
+              <div style="font-size:12px;font-weight:600;color:var(--text-secondary);margin-bottom:4px;">박민수</div>
+              <div class="bubble-rx">좋습니다!</div>
+            </div>
+            <div class="bubble-meta"><span class="bubble-time">오전 10:10</span></div>
+          </div>
+        </div>
+
+        <!-- Message group 6: 이수진 -->
+        <div class="msg-group">
+          <div class="msg-row-rx">
+            <div class="msg-avatar" style="background:#1ABC9C;font-size:10px;font-weight:700;color:white;width:28px;height:28px;border-radius:50%;align-self:flex-start;display:flex;align-items:center;justify-content:center;flex-shrink:0;">이</div>
+            <div>
+              <div style="font-size:12px;font-weight:600;color:var(--text-secondary);margin-bottom:4px;">이수진</div>
+              <div class="bubble-rx">저도요. 아젠다는 어떻게 할까요?</div>
+            </div>
+            <div class="bubble-meta"><span class="bubble-time">오전 10:11</span></div>
+          </div>
+        </div>
+
+        <!-- Message group 7: 김지현 (sent) -->
+        <div class="msg-group">
+          <div class="msg-row-tx">
+            <div class="bubble-tx">Q4 목표 리뷰, 채널별 예산 배분, 캠페인 일정으로 잡겠습니다.</div>
+            <span class="bubble-read">읽음 4</span>
+          </div>
+          <div style="display:flex;justify-content:flex-end;margin-top:1px;">
+            <span class="bubble-time" style="margin-right:4px;">오전 10:14</span>
+          </div>
+        </div>
+
+        <!-- AI Summary bubble (Feature 5) -->
+        <div class="ai-summary-pill" id="summaryPill" style="display:none;">
+          <button class="ai-summary-btn" onclick="toggleSummaryPopup()">
+            <span class="ai-icon">✦</span>
+            읽지 않은 대화 요약 · 8건
+          </button>
+        </div>
+
+        <!-- AI Summary popup (Feature 5) -->
+        <div class="ai-summary-popup" id="summaryPopup">
+          <div class="ai-summary-popup-header">
+            <div class="ai-summary-popup-title">
+              <span class="ai-badge">AI</span>
+              대화 요약
+            </div>
+            <button class="ai-summary-popup-close" onclick="closeSummaryPopup()">✕</button>
+          </div>
+          <div class="ai-summary-section">
+            <div class="ai-summary-section-title">주요 흐름</div>
+            <div class="ai-summary-section-content">
+              김지현이 Q4 전략 회의 일정을 제안했고, 11월 5일 화요일 오전 11시로 합의됨. 아젠다는 Q4 목표 리뷰, 채널별 예산 배분, 캠페인 일정으로 확정.
+            </div>
+          </div>
+          <div class="ai-summary-section">
+            <div class="ai-summary-section-title">결정사항</div>
+            <div class="ai-summary-section-content">
+              📌 회의 일시: <strong>11월 5일 (화) 오전 11:00</strong><br>
+              📌 참석자: 김지현, 박민수, 이수진 + 2명
+            </div>
+          </div>
+          <div class="ai-summary-section">
+            <div class="ai-summary-section-title">감지된 일정</div>
+            <div class="ai-summary-section-content" style="color:var(--ai-green-text);">
+              📅 11월 5일 화요일 오전 11시 — Q4 마케팅 전략 회의
+            </div>
+          </div>
+          <div class="ai-summary-cta">
+            <button class="cta-btn-blue" onclick="openCalendar()">회의 바로 예약</button>
+            <button class="cta-btn-gray" onclick="closeSummaryPopup()">닫기</button>
+          </div>
+        </div>
+
+        <!-- Unread divider -->
+        <div class="unread-divider" id="unreadDivider" style="display:none;">
+          <span class="unread-divider-text">읽지 않은 메시지 8건</span>
+        </div>
+
+        <!-- Unread messages -->
+        <div id="unreadMessages" style="display:none;">
+
+          <!-- Message group: 박민수 -->
+          <div class="msg-group">
+            <div class="msg-row-rx">
+              <div class="msg-avatar" style="background:#FF8C42;font-size:10px;font-weight:700;color:white;width:28px;height:28px;border-radius:50%;align-self:flex-start;display:flex;align-items:center;justify-content:center;flex-shrink:0;">박</div>
+              <div>
+                <div style="font-size:12px;font-weight:600;color:var(--text-secondary);margin-bottom:4px;">박민수</div>
+                <div class="bubble-rx">
+                  참고로 지난 Q3 리포트 공유드렸어요.
+                  <div class="translation-block" data-en="FYI, I've shared the Q3 report.">FYI, I've shared the Q3 report.</div>
+                  <div class="link-preview">
+                    <div class="link-preview-img">📊</div>
+                    <div>
+                      <div class="link-preview-title">Q3_Marketing_Report_Final.pdf</div>
+                      <div class="link-preview-url">drive.worksmobile.com</div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="bubble-meta"><span class="bubble-time">오후 2:32</span></div>
+            </div>
+          </div>
+
+          <!-- Message group: 이수진 -->
+          <div class="msg-group">
+            <div class="msg-row-rx">
+              <div class="msg-avatar" style="background:#1ABC9C;font-size:10px;font-weight:700;color:white;width:28px;height:28px;border-radius:50%;align-self:flex-start;display:flex;align-items:center;justify-content:center;flex-shrink:0;">이</div>
+              <div>
+                <div style="font-size:12px;font-weight:600;color:var(--text-secondary);margin-bottom:4px;">이수진</div>
+                <div class="bubble-rx">
+                  감사합니다. 준비해서 <span class="date-highlight">11월 5일 회의<div class="date-tooltip">
+                      <div class="tooltip-title">📅 일정 감지됨</div>
+                      <div class="tooltip-subtitle">11월 5일 (화) · Q4 전략 회의</div>
+                      <button class="tooltip-action-btn" onclick="openCalendar()">회의 예약하기</button>
+                    </div></span> 때 논의해봐요!
+                  <div class="translation-block" data-en="Thank you. Let's prepare and discuss at the Nov 5 meeting!">Thank you. Let's prepare and discuss at the Nov 5 meeting!</div>
+                </div>
+              </div>
+              <div class="bubble-meta"><span class="bubble-time">오후 2:45</span></div>
+            </div>
+          </div>
+
+        </div><!-- /unreadMessages -->
+
+      </div><!-- /chat-feed -->
+
+      <!-- Input area -->
+      <div class="input-area">
+        <!-- Tone chips (Feature 7) -->
+        <div class="tone-chips" id="toneChips">
+          <span class="tone-label">톤 조절</span>
+          <button class="tone-chip" onclick="applyTone(this, '격식체')">🎩 격식체</button>
+          <button class="tone-chip" onclick="applyTone(this, '캐주얼')">😊 캐주얼</button>
+          <button class="tone-chip" onclick="applyTone(this, '영문')">🌐 영문</button>
+          <button class="tone-chip" onclick="applyTone(this, '간결하게')">✂️ 간결하게</button>
+        </div>
+        <!-- Input row -->
+        <div class="input-row">
+          <div class="input-toolbar-icons">
+            <div class="toolbar-icon" title="첨부">＋</div>
+            <div class="toolbar-icon" title="이미지">🖼</div>
+            <div class="toolbar-icon" title="이모지">😊</div>
+          </div>
+          <div class="input-field-wrapper">
+            <textarea class="input-field"
+              id="inputField"
+              rows="1"
+              placeholder="메시지를 입력해주세요."
+              oninput="onInputChange(this)"
+              onfocus="onInputFocus()"
+              onblur="onInputBlur()"
+            ></textarea>
+          </div>
+          <div class="input-right-actions">
+            <button class="ai-process-btn" id="aiProcessBtn" onclick="toggleBatch()">
+              ✦ AI 처리
+            </button>
+            <div class="toolbar-icon" title="전화">📞</div>
+            <div class="toolbar-icon" title="화상">📷</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Floating banner (Feature 6) -->
+      <div class="floating-banner" id="floatingBanner">
+        <div class="floating-banner-icon">📅</div>
+        <div class="floating-banner-content">
+          <div class="floating-banner-title">11월 5일 화요일 오전 11시 — 회의 예약</div>
+          <div class="floating-banner-sub">Q4 마케팅 전략 · 참석자 5명</div>
+        </div>
+        <div class="floating-banner-actions">
+          <button class="fb-book" onclick="openCalendar()">예약</button>
+          <button class="fb-dismiss" onclick="dismissBanner()">무시</button>
+        </div>
+        <span class="fb-timer" id="bannerTimer">6</span>
+      </div>
+
+      <!-- AI Batch Panel (Feature 9) -->
+      <div class="ai-batch-panel" id="batchPanel">
+        <div class="ai-batch-header">
+          <div class="ai-batch-title">
+            <span class="ai-badge">AI</span>
+            대화 기반 일괄 처리
+          </div>
+          <button class="ai-batch-close" onclick="toggleBatch()">✕</button>
+        </div>
+        <div class="ai-batch-tabs">
+          <div class="ai-batch-tab active" onclick="switchBatchTab(this, 'tab-meeting')">📅 회의 예약</div>
+          <div class="ai-batch-tab" onclick="switchBatchTab(this, 'tab-notes')">📝 회의록 초안</div>
+          <div class="ai-batch-tab" onclick="switchBatchTab(this, 'tab-mail')">📧 메일 발송</div>
+          <div class="ai-batch-tab" onclick="switchBatchTab(this, 'tab-tone')">🎨 톤 조절</div>
+        </div>
+        <div class="ai-batch-content">
+          <div class="ai-batch-tab-panel active" id="tab-meeting">
+            <div class="ai-extracted-row">
+              <span class="ai-extracted-label">참석자</span>
+              <span class="ai-extracted-tag">김지현</span>
+              <span class="ai-extracted-tag">박민수</span>
+              <span class="ai-extracted-tag">이수진</span>
+              <span style="font-size:11px;color:var(--text-tertiary);">+2명</span>
+            </div>
+            <div class="ai-extracted-row">
+              <span class="ai-extracted-label">일시</span>
+              <span class="ai-extracted-value">11월 5일 (화) 오전 11:00 — 12:00</span>
+            </div>
+            <div class="ai-extracted-row">
+              <span class="ai-extracted-label">제목</span>
+              <span class="ai-extracted-value">Q4 마케팅 전략 회의</span>
+            </div>
+            <div class="ai-extracted-row">
+              <span class="ai-extracted-label">장소</span>
+              <span class="ai-extracted-value" style="color:var(--text-tertiary);">미설정 (WORKS 화상회의 링크 자동 생성)</span>
+            </div>
+          </div>
+          <div class="ai-batch-tab-panel" id="tab-notes">
+            <div style="background:var(--ai-blue-bg);border-left:3px solid var(--blue);border-radius:0 6px 6px 0;padding:10px 12px;font-size:12px;color:var(--text-secondary);line-height:1.65;">
+              <strong style="color:var(--text-primary);">Q4 마케팅 전략 회의 초안</strong><br><br>
+              회의 종료 후 트랜스크립트 기반으로 자동 생성됩니다.<br><br>
+              <strong>아젠다 (예상)</strong><br>
+              1. Q4 목표 리뷰 (20분)<br>
+              2. 채널별 예산 배분 (20분)<br>
+              3. 캠페인 일정 확정 (15분)
+            </div>
+          </div>
+          <div class="ai-batch-tab-panel" id="tab-mail">
+            <div style="font-size:12px;color:var(--text-secondary);line-height:1.65;">
+              <div style="margin-bottom:8px;"><strong>수신:</strong> 김지현, 박민수, 이수진 +2</div>
+              <div style="margin-bottom:8px;"><strong>제목:</strong> [Q4 전략] 11월 5일 회의 일정 안내</div>
+              <div style="background:var(--surface-1);border-radius:6px;padding:10px;font-size:11px;color:var(--text-secondary);line-height:1.7;">
+                안녕하세요,<br><br>
+                Q4 마케팅 전략 회의 일정을 안내드립니다.<br><br>
+                📅 일시: 2025년 11월 5일 (화) 오전 11:00 ~ 12:00<br>
+                📋 아젠다: Q4 목표 리뷰 / 예산 배분 / 캠페인 일정<br><br>
+                참석 부탁드립니다.
+              </div>
+            </div>
+          </div>
+          <div class="ai-batch-tab-panel" id="tab-tone">
+            <div style="font-size:12px;color:var(--text-secondary);margin-bottom:10px;">메일 및 메시지 톤을 선택하세요</div>
+            <div style="display:flex;gap:6px;flex-wrap:wrap;">
+              <button class="tone-chip selected" onclick="toggleToneSelect(this)">🎩 격식체</button>
+              <button class="tone-chip" onclick="toggleToneSelect(this)">😊 캐주얼</button>
+              <button class="tone-chip" onclick="toggleToneSelect(this)">🌐 영문</button>
+              <button class="tone-chip" onclick="toggleToneSelect(this)">✂️ 간결하게</button>
+            </div>
+          </div>
+        </div>
+        <div class="ai-batch-action-row">
+          <button class="ai-batch-primary" onclick="closeBatch()">✓ 회의 예약하기</button>
+          <button class="ai-batch-cancel" onclick="toggleBatch()">취소</button>
+        </div>
+      </div>
+
+    </div><!-- /chat-content -->
+  </div><!-- /app-frame -->
+</div><!-- /app-wrapper -->
+
+<script>
+  let summaryVisible = false;
   let summaryPopupVisible = false;
   let translateOn = false;
   let bannerActive = false;
@@ -1439,12 +1803,15 @@
       'tab-meeting': '✓ 회의 예약하기',
       'tab-notes': '✓ 회의록 저장',
       'tab-mail': '✓ 메일 발송하기',
-      'tab-tone': '✓ 톤 적용하기' };
+      'tab-tone': '✓ 톤 적용하기'
+    };
     primaryBtn.textContent = labels[tabId] || '✓ 적용';
   }
 
   function openCalendar() {
     window.location.href = 'calendar.html';
   }
-</script> </body>
+</script>
+
+</body>
 </html>
