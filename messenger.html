@@ -8,31 +8,31 @@
   <style>
     :root {
       --white: #FFFFFF;
-      --surface-1: #F7F8FA;
-      --surface-2: #EAECEF;
-      --border: #EAECEF;
-      --selected: #EBF1FF;
-      --text-primary: #1A1A1A;
-      --text-secondary: #4A4A4A;
-      --text-tertiary: #9B9B9B;
-      --text-placeholder: #C2C2C2;
-      --icon-default: #6B6B6B;
-      --icon-active: #1A1A1A;
+      --surface-1: #F5F5F6;
+      --surface-2: #EEEEEE;
+      --border: #DDDDDD;
+      --selected: #E8F2FF;
+      --text-primary: #222222;
+      --text-secondary: #434343;
+      --text-tertiary: #767676;
+      --text-placeholder: #989898;
+      --icon-default: #767676;
+      --icon-active: #222222;
       --green: #03C75A;
-      --blue: #1A6AFF;
-      --red: #FF3B30;
-      --bubble-rx: #F1F3F5;
-      --bubble-tx-border: #E0E2E5;
-      --ai-blue-bg: #E8F0FE;
+      --blue: #157EFB;
+      --red: #FD472B;
+      --bubble-rx: #F5F5F6;
+      --bubble-tx-border: #DDDDDD;
+      --ai-blue-bg: #E8F2FF;
       --ai-blue-border: #A8C4F4;
-      --ai-blue-text: #1A6AFF;
+      --ai-blue-text: #157EFB;
       --ai-green-bg: #E8F8EF;
       --ai-green-text: #03C75A;
     }
     * { box-sizing: border-box; margin: 0; padding: 0; }
     body {
       font-family: 'Noto Sans KR', -apple-system, BlinkMacSystemFont, 'Apple SD Gothic Neo', sans-serif;
-      background: #E8EAED;
+      background: #FAFAFA;
       color: var(--text-primary);
       min-height: 100vh;
       display: flex;
@@ -67,7 +67,7 @@
       border-radius: 6px;
       transition: all 0.15s;
     }
-    .proto-nav a:hover { background: #F5F6F8; color: #1A1A1A; }
+    .proto-nav a:hover { background: #F5F5F6; color: #222222; }
     .proto-nav a.active { background: #EEFAF3; color: var(--green); font-weight: 600; }
     .proto-nav .spacer { flex: 1; }
     .proto-nav .back-btn {
@@ -92,7 +92,7 @@
     .demo-label {
       font-size: 11px;
       font-weight: 700;
-      color: #9CA3AF;
+      color: #767676;
       text-transform: uppercase;
       letter-spacing: 0.06em;
       margin-right: 4px;
@@ -102,8 +102,8 @@
       align-items: center;
       gap: 5px;
       background: white;
-      border: 1px solid #D1D5DB;
-      color: #374151;
+      border: 1px solid #DDDDDD;
+      color: #434343;
       border-radius: 6px;
       padding: 5px 12px;
       font-size: 12px;
@@ -112,9 +112,9 @@
       transition: all 0.15s;
       white-space: nowrap;
     }
-    .demo-btn:hover { background: #F3F4F6; border-color: #9CA3AF; }
+    .demo-btn:hover { background: #F5F5F6; border-color: #989898; }
     .demo-btn.active { background: #EEFAF3; border-color: rgba(3,199,90,0.5); color: #03C75A; }
-    .demo-btn.active-blue { background: #EEF2FF; border-color: rgba(26,106,255,0.4); color: #1A6AFF; }
+    .demo-btn.active-blue { background: #E8F2FF; border-color: rgba(21,126,251,0.4); color: #157EFB; }
 
     /* ── App wrapper ── */
     .app-wrapper {
@@ -1146,7 +1146,7 @@
     <div class="chat-list-panel">
       <div class="search-bar">
         <div class="search-bar-inner">
-          <svg width="14" height="14" viewBox="0 0 14 14" fill="none"><circle cx="6" cy="6" r="5" stroke="#9B9B9B" stroke-width="1.5"/><path d="M10.5 10.5L9 9" stroke="#9B9B9B" stroke-width="1.5" stroke-linecap="round"/></svg>
+          <svg width="14" height="14" viewBox="0 0 14 14" fill="none"><circle cx="6" cy="6" r="5" stroke="#767676" stroke-width="1.5"/><path d="M10.5 10.5L9 9" stroke="#767676" stroke-width="1.5" stroke-linecap="round"/></svg>
           <input type="text" placeholder="메시지 검색">
         </div>
       </div>
