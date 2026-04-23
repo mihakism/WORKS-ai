@@ -335,6 +335,354 @@
 
     ::-webkit-scrollbar { width: 4px; }
     ::-webkit-scrollbar-thumb { background: var(--border); border-radius: 2px; }
+
+    /* ── New Event Modal — minimal style ── */
+    .new-event-modal {
+      width: 720px; min-height: 72vh; max-height: 92vh;
+      display: flex; flex-direction: column;
+      border-radius: 12px; overflow: hidden;
+    }
+    .nev-top-actions { display: flex; justify-content: flex-end; gap: 2px; padding: 14px 18px 0; }
+    .nev-top-btn {
+      width: 30px; height: 30px; border: none; background: none; cursor: pointer;
+      color: var(--text-tertiary); display: flex; align-items: center; justify-content: center; border-radius: 5px;
+    }
+    .nev-top-btn:hover { background: var(--surface-1); color: var(--text-primary); }
+    .nev-body-simple { padding: 4px 34px 20px; flex: 1; overflow-y: auto; }
+
+    /* Title */
+    .title-input-main {
+      width: 100%; border: 1px solid transparent; border-radius: 6px;
+      padding: 8px 10px; font-size: 26px; font-weight: 500; font-family: inherit;
+      color: var(--text-primary); outline: none; transition: border-color .15s;
+      letter-spacing: -0.01em;
+    }
+    .title-input-main:hover { border: 1px dashed #C0C0C0; }
+    .title-input-main:focus { border: 1px dashed transparent; }
+    .title-input-main::placeholder { color: #B8B8B8; font-weight: 400; }
+
+    /* Keyword chips — shown on focus */
+    @keyframes kwFadeIn {
+      from { opacity: 0; transform: translateY(-6px); }
+      to   { opacity: 1; transform: translateY(0); }
+    }
+    .keyword-row {
+      display: none; flex-wrap: wrap; gap: 6px; align-items: center;
+      margin: 10px 10px 0;
+    }
+    .keyword-row.show {
+      display: flex;
+      animation: kwFadeIn 0.22s ease both;
+    }
+    .kw-label {
+      font-size: 10px; color: var(--text-tertiary); white-space: nowrap;
+      flex-shrink: 0; font-weight: 700; letter-spacing: 0.04em;
+    }
+    .kwchip {
+      background: var(--ai-blue-bg); border: 1px solid var(--ai-blue-border);
+      color: var(--blue); border-radius: 20px; padding: 4px 12px; font-size: 12px;
+      font-family: inherit; cursor: pointer; transition: all .15s;
+    }
+    .kwchip:hover { background: var(--blue); color: white; border-color: var(--blue); }
+
+    /* Attendee section */
+    .nev-att-section { margin: 20px 10px 0; position: relative; }
+    .nev-att-label { font-size: 12px; color: var(--text-tertiary); margin-bottom: 8px; }
+    .nev-att-row { display: flex; align-items: center; gap: 8px; flex-wrap: wrap; }
+    .att-chip {
+      display: flex; align-items: center; gap: 6px; cursor: default;
+    }
+    .att-av {
+      width: 36px; height: 36px; border-radius: 50%; font-size: 13px;
+      font-weight: 700; color: white; display: flex; align-items: center;
+      justify-content: center; flex-shrink: 0; position: relative;
+    }
+    .att-av-name { font-size: 13px; color: var(--text-primary); font-weight: 500; }
+    .att-x {
+      background: none; border: none; cursor: pointer; color: var(--text-tertiary);
+      font-size: 14px; padding: 0 2px; line-height: 1; margin-left: -2px;
+    }
+    .att-x:hover { color: #e53; }
+    .nev-person-btn {
+      width: 36px; height: 36px; border: 1.5px dashed #C0C0C0; border-radius: 50%;
+      background: white; cursor: pointer; display: flex; align-items: center;
+      justify-content: center; color: var(--text-tertiary); transition: all .15s; flex-shrink: 0;
+    }
+    .nev-person-btn:hover { border-color: var(--blue); color: var(--blue); }
+    .nev-cat-chip {
+      border: 1.5px dashed #C0C0C0; border-radius: 20px;
+      padding: 6px 14px; font-size: 12px; color: var(--text-secondary);
+      background: none; cursor: pointer; font-family: inherit;
+    }
+    .nev-cat-chip:hover { border-color: var(--blue); color: var(--blue); }
+
+    /* Section */
+    .nev-section { margin: 26px 10px 0; position: relative; }
+    .nev-section-label { font-size: 13px; color: var(--text-tertiary); margin-bottom: 10px; }
+    .nev-date-line {
+      font-size: 15px; font-weight: 500; color: var(--text-primary);
+      cursor: pointer; display: inline-flex; align-items: center; gap: 8px;
+      padding: 4px 6px; border-radius: 5px; transition: all .15s;
+    }
+    .nev-date-line:hover { color: var(--blue); background: var(--surface-1); }
+    .nev-memo-input {
+      width: 100%; border: none; outline: none; padding: 4px 0;
+      font-size: 14px; color: var(--text-primary); font-family: inherit;
+      background: none; resize: none; min-height: 80px; line-height: 1.6;
+    }
+    .nev-memo-input::placeholder { color: var(--text-tertiary); }
+
+    /* Bottom bar */
+    .nev-bottom-bar {
+      display: flex; align-items: center; padding: 14px 22px;
+      border-top: 1px solid var(--surface-1); gap: 4px; flex-shrink: 0;
+    }
+    .nev-bottom-btn {
+      width: 30px; height: 30px; border: none; background: none; cursor: pointer;
+      color: var(--text-tertiary); border-radius: 5px;
+      display: flex; align-items: center; justify-content: center;
+    }
+    .nev-bottom-btn:hover { background: var(--surface-1); color: var(--text-primary); }
+    .nev-ftr-right { margin-left: auto; display: flex; gap: 8px; }
+    .btn-cancel-nev {
+      background: white; border: 1px solid var(--border); color: var(--text-primary);
+      border-radius: 6px; padding: 8px 22px; font-size: 13px; font-family: inherit; cursor: pointer;
+    }
+    .btn-cancel-nev:hover { background: var(--surface-1); }
+    .btn-save {
+      background: #B8D4F3; color: white; border: none; border-radius: 6px;
+      padding: 8px 22px; font-size: 13px; font-weight: 600; font-family: inherit; cursor: pointer;
+      transition: all .15s;
+    }
+    .btn-save.active { background: var(--blue); }
+    .btn-save.active:hover { opacity: .88; }
+
+    /* Date picker popup */
+    .dp-popup {
+      position: fixed; z-index: 1000; background: white;
+      border: 1px solid var(--border); border-radius: 10px;
+      box-shadow: 0 6px 20px rgba(0,0,0,0.14); padding: 14px;
+      width: 300px; display: none;
+    }
+    .dp-popup.on { display: block; }
+    .dp-pop-hdr { display: flex; align-items: center; margin-bottom: 10px; }
+    .dp-pop-month { font-size: 13px; font-weight: 700; color: var(--text-primary); flex: 1; }
+    .dp-nav-btn {
+      width: 24px; height: 24px; border: 1px solid var(--border); border-radius: 4px;
+      background: none; cursor: pointer; font-size: 12px; display: flex;
+      align-items: center; justify-content: center; color: var(--text-secondary);
+    }
+    .dp-pop-grid { display: grid; grid-template-columns: repeat(7, 1fr); gap: 2px; margin-bottom: 10px; }
+    .dp-pop-dl { text-align: center; font-size: 10px; font-weight: 600; color: var(--text-tertiary); padding: 3px 0; }
+    .dp-pop-dl.s { color: var(--sunday-red); }
+    .dp-pop-d {
+      width: 32px; height: 32px; border-radius: 50%; cursor: pointer;
+      display: flex; align-items: center; justify-content: center;
+      margin: 0 auto; font-size: 11px; color: var(--text-secondary);
+    }
+    .dp-pop-d:hover { background: var(--ai-blue-bg); color: var(--blue); }
+    .dp-pop-d.today-d { background: var(--blue); color: white; font-weight: 700; }
+    .dp-pop-d.sel-d { background: var(--blue); color: white; font-weight: 700; }
+    .dp-pop-d.other-d { color: #ccc; pointer-events: none; }
+    .dp-pop-d.sun-d { color: var(--sunday-red); }
+
+    /* Slots below date picker */
+    .dp-slots { border-top: 1px solid var(--border); padding-top: 10px; }
+    .dp-slots-hdr { font-size: 10px; font-weight: 700; color: var(--text-tertiary); text-transform: uppercase; letter-spacing: .04em; margin-bottom: 7px; display: flex; align-items: center; gap: 5px; }
+    .dp-slot-item { display: flex; align-items: center; justify-content: space-between; padding: 7px 8px; border: 1px solid var(--border); border-radius: 6px; margin-bottom: 5px; cursor: pointer; }
+    .dp-slot-item:hover { border-color: var(--blue); background: var(--ai-blue-bg); }
+    .dp-slot-item.sel { border-color: var(--blue); background: var(--ai-blue-bg); }
+    .dp-slot-time { font-size: 12px; font-weight: 600; color: var(--text-primary); }
+    .dp-slot-item.sel .dp-slot-time { color: var(--blue); }
+
+    /* All-day row */
+    .allday-row { display: flex; align-items: center; gap: 12px; margin-bottom: 12px; padding-bottom: 12px; border-bottom: 1px solid var(--border); }
+    .tgl { position: relative; width: 32px; height: 18px; }
+    .tgl input { opacity: 0; width: 0; height: 0; }
+    .tgl-sl { position: absolute; inset: 0; background: var(--border); border-radius: 10px; cursor: pointer; }
+    .tgl-sl:before { content: ''; position: absolute; width: 14px; height: 14px; background: white; border-radius: 50%; top: 2px; left: 2px; transition: .2s; }
+    .tgl input:checked + .tgl-sl { background: var(--blue); }
+    .tgl input:checked + .tgl-sl:before { transform: translateX(14px); }
+    .allday-lbl { font-size: 12px; color: var(--text-secondary); }
+    .repeat-sel { border: 1px solid var(--border); border-radius: 5px; padding: 4px 8px; font-size: 12px; font-family: inherit; color: var(--text-secondary); background: white; cursor: pointer; outline: none; }
+
+    /* Cal selector */
+    .cal-sel-row { margin-bottom: 12px; padding-bottom: 12px; border-bottom: 1px solid var(--border); }
+    .cal-sel-btn { display: inline-flex; align-items: center; gap: 7px; border: 1px solid var(--border); border-radius: 6px; padding: 6px 10px; font-size: 13px; font-family: inherit; background: white; cursor: pointer; color: var(--text-primary); }
+    .cal-dot { width: 10px; height: 10px; border-radius: 50%; background: var(--cal-purple); flex-shrink: 0; }
+
+    /* Attendee section */
+    .attendee-row { position: relative; margin-bottom: 10px; }
+    .attendee-top { display: flex; align-items: center; gap: 7px; margin-bottom: 8px; }
+    .attendee-title { font-size: 13px; font-weight: 600; color: var(--text-primary); }
+    .person-icon-btn {
+      width: 26px; height: 26px; border: 1px solid var(--border); border-radius: 5px;
+      background: white; cursor: pointer; display: flex; align-items: center; justify-content: center;
+      color: var(--text-tertiary); transition: all .15s;
+    }
+    .person-icon-btn:hover { background: var(--ai-blue-bg); border-color: var(--blue); color: var(--blue); }
+    .addr-link { font-size: 11px; color: var(--blue); cursor: pointer; margin-left: auto; }
+
+    /* Recent people dropdown — reference style */
+    @keyframes ddFadeIn {
+      from { opacity: 0; transform: translateY(-4px); }
+      to   { opacity: 1; transform: translateY(0); }
+    }
+    .recent-dropdown {
+      background: white; border: 1px solid #D8DCE3; border-radius: 10px;
+      box-shadow: 0 8px 28px rgba(0,0,0,0.14); overflow: hidden;
+      width: 440px; position: absolute; z-index: 700; display: none; top: 44px; left: 0;
+    }
+    .recent-dropdown.on { display: flex; flex-direction: column; animation: ddFadeIn 0.18s ease both; }
+    .rdd-search-wrap {
+      padding: 12px 12px 8px;
+      border-bottom: 1px solid #ECEEF2;
+    }
+    .rdd-search-box {
+      display: flex; align-items: center; gap: 0;
+      border: 1.5px solid var(--blue); border-radius: 7px;
+      overflow: hidden; height: 40px;
+    }
+    .rdd-search-box input {
+      flex: 1; border: none; outline: none; font-size: 14px;
+      color: var(--text-primary); padding: 0 10px; font-family: inherit;
+    }
+    .rdd-search-box input::placeholder { color: var(--text-tertiary); }
+    .rdd-clear-btn {
+      background: none; border: none; cursor: pointer; padding: 0 6px;
+      display: none; align-items: center; justify-content: center;
+      color: #999;
+    }
+    .rdd-clear-btn.vis { display: flex; }
+    .rdd-clear-btn svg { pointer-events: none; }
+    .rdd-divider { width: 1px; height: 20px; background: #D8DCE3; flex-shrink: 0; }
+    .rdd-search-icon { padding: 0 10px; color: var(--blue); display: flex; align-items: center; }
+    .rdd-section-lbl { font-size: 11px; color: var(--text-tertiary); font-weight: 500; padding: 10px 14px 4px; }
+    .recent-list { max-height: 240px; overflow-y: auto; }
+    .recent-list::-webkit-scrollbar { width: 4px; }
+    .recent-list::-webkit-scrollbar-thumb { background: #D8DCE3; border-radius: 2px; }
+    .recent-person {
+      display: flex; align-items: center; gap: 10px;
+      padding: 8px 14px; cursor: pointer;
+    }
+    .recent-person:hover, .recent-person.added { background: #F0F4FF; }
+    .rp-av {
+      width: 38px; height: 38px; border-radius: 50%; font-size: 14px;
+      font-weight: 700; color: white; display: flex; align-items: center;
+      justify-content: center; flex-shrink: 0;
+    }
+    .rp-info { flex: 1; min-width: 0; }
+    .rp-name { font-size: 13px; font-weight: 500; color: var(--text-primary); margin-bottom: 2px; }
+    .rp-name .hl { color: var(--blue); }
+    .rp-detail { font-size: 11px; color: var(--text-tertiary); white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+    .rp-check-circle {
+      display: none; width: 20px; height: 20px; border-radius: 50%;
+      background: var(--blue); color: white; font-size: 11px;
+      align-items: center; justify-content: center; flex-shrink: 0;
+    }
+    .recent-person.added .rp-check-circle { display: flex; }
+    .recent-empty { font-size: 12px; color: var(--text-tertiary); text-align: center; padding: 20px 0; }
+    .rdd-footer {
+      display: flex; align-items: center; justify-content: space-between;
+      padding: 9px 14px; border-top: 1px solid #ECEEF2; background: #FAFBFC;
+    }
+    .rdd-toggle-wrap { display: flex; align-items: center; gap: 7px; font-size: 12px; color: var(--text-secondary); }
+    .rdd-toggle {
+      width: 32px; height: 18px; border-radius: 9px; background: var(--blue);
+      position: relative; cursor: pointer; flex-shrink: 0;
+    }
+    .rdd-toggle::after {
+      content: ''; position: absolute; width: 14px; height: 14px;
+      background: white; border-radius: 50%; top: 2px; right: 2px;
+      transition: right .15s;
+    }
+    .rdd-address-btn {
+      font-size: 12px; color: var(--text-tertiary); background: none;
+      border: none; cursor: pointer; padding: 0;
+    }
+    .rdd-address-btn:hover { color: var(--blue); }
+
+    /* Attendee chips */
+    .attendee-chips { display: flex; flex-wrap: wrap; gap: 5px; margin-bottom: 8px; }
+    .att-chip { display: flex; align-items: center; gap: 4px; border: 1px solid var(--border); border-radius: 20px; padding: 3px 8px 3px 4px; }
+    .att-av { width: 22px; height: 22px; border-radius: 50%; font-size: 8px; font-weight: 700; color: white; display: flex; align-items: center; justify-content: center; flex-shrink: 0; }
+    .att-name { font-size: 11px; color: var(--text-primary); }
+    .att-req { font-size: 9px; font-weight: 700; color: var(--red); border: 1px solid rgba(253,71,43,.3); border-radius: 3px; padding: 0 4px; }
+    .att-opt-tag { font-size: 9px; font-weight: 700; color: var(--text-tertiary); border: 1px solid var(--border); border-radius: 3px; padding: 0 4px; }
+    .att-x { background: none; border: none; cursor: pointer; color: var(--text-tertiary); font-size: 12px; margin-left: 2px; padding: 0; line-height: 1; }
+    .att-input-wrap { border: 1px solid var(--border); border-radius: 6px; padding: 5px 10px; display: flex; align-items: center; margin-bottom: 7px; }
+    .att-input-wrap input { border: none; outline: none; font-size: 12px; font-family: inherit; color: var(--text-primary); flex: 1; }
+    .att-input-wrap input::placeholder { color: var(--text-tertiary); }
+    .att-opts { display: flex; align-items: center; gap: 7px; margin-bottom: 10px; flex-wrap: wrap; }
+    .att-opt-btn { font-size: 11px; color: var(--text-secondary); border: 1px solid var(--border); border-radius: 5px; padding: 3px 8px; background: none; cursor: pointer; }
+    .att-opt-btn:hover { background: var(--surface-1); }
+    .att-count { font-size: 11px; color: var(--text-tertiary); margin-left: auto; }
+
+    /* Form icon rows */
+    .form-icon-row { display: flex; align-items: flex-start; gap: 10px; padding: 9px 0; border-top: 1px solid var(--border); }
+    .fir-icon { width: 20px; flex-shrink: 0; display: flex; align-items: center; justify-content: center; margin-top: 1px; color: var(--text-tertiary); }
+    .fir-content { flex: 1; font-size: 13px; color: var(--text-tertiary); }
+    .fir-content input { border: none; outline: none; font-size: 13px; font-family: inherit; color: var(--text-primary); background: none; width: 100%; }
+    .fir-content input::placeholder { color: var(--text-tertiary); }
+    .fir-content select { border: none; outline: none; font-size: 13px; font-family: inherit; color: var(--text-tertiary); background: none; cursor: pointer; }
+    .fir-badge { font-size: 11px; color: var(--cal-purple); border: 1px solid rgba(116,77,200,.25); border-radius: 5px; padding: 2px 8px; background: none; cursor: pointer; white-space: nowrap; }
+
+    /* Previous meeting analysis */
+    .prev-analysis {
+      background: linear-gradient(135deg, #F3EFFE, #EBF3FF);
+      border: 1px solid var(--ai-blue-border); border-radius: 8px;
+      padding: 10px 12px; margin-bottom: 14px; display: none;
+    }
+    .prev-analysis.on { display: block; }
+    .prev-a-hdr { display: flex; align-items: center; justify-content: space-between; margin-bottom: 6px; }
+    .prev-a-title { font-size: 11px; font-weight: 700; color: var(--cal-purple); display: flex; align-items: center; gap: 5px; }
+    .prev-a-date { font-size: 10px; color: var(--text-tertiary); }
+    .prev-a-summary { font-size: 11px; color: var(--text-secondary); line-height: 1.7; margin-bottom: 10px; }
+    .prev-wiki { display: inline-flex; align-items: center; gap: 4px; font-size: 11px; color: var(--blue); cursor: pointer; }
+
+    /* Privacy */
+    .privacy-row { display: flex; align-items: center; gap: 16px; padding: 10px 0; border-top: 1px solid var(--border); }
+    .privacy-opt { display: flex; align-items: center; gap: 5px; font-size: 12px; color: var(--text-secondary); cursor: pointer; }
+    .privacy-opt input[type="radio"] { accent-color: var(--blue); }
+
+    /* Notification */
+    .notif-row { display: flex; align-items: center; gap: 8px; padding: 8px 0; border-top: 1px solid var(--border); font-size: 12px; color: var(--text-secondary); }
+    .notif-sel { border: 1px solid var(--border); border-radius: 5px; padding: 4px 8px; font-size: 12px; font-family: inherit; color: var(--text-secondary); background: white; cursor: pointer; outline: none; }
+    .notif-radio { display: flex; align-items: center; gap: 4px; font-size: 11px; color: var(--text-secondary); cursor: pointer; }
+    .notif-radio input { accent-color: var(--blue); }
+    .notif-x { background: none; border: none; cursor: pointer; color: var(--text-tertiary); font-size: 14px; }
+
+    /* Footer */
+    .nev-ftr { padding: 10px 16px; border-top: 1px solid var(--border); display: flex; align-items: center; gap: 8px; flex-shrink: 0; background: white; }
+    .btn-save { background: var(--blue); color: white; border: none; border-radius: 6px; padding: 8px 18px; font-size: 13px; font-weight: 700; font-family: inherit; cursor: pointer; }
+    .btn-save:hover { opacity: .88; }
+    .btn-cancel-nev { background: none; border: none; color: var(--text-secondary); font-size: 13px; font-family: inherit; cursor: pointer; padding: 8px; }
+
+    /* ── Right panel (free time checker) ── */
+    .nev-right { flex: 1; display: flex; flex-direction: column; background: #FAFAFA; min-width: 0; }
+    .free-tabs-row { display: flex; align-items: center; padding: 0 16px; border-bottom: 1px solid var(--border); background: white; flex-shrink: 0; }
+    .free-tab { padding: 12px 14px; font-size: 12px; font-weight: 500; color: var(--text-tertiary); cursor: pointer; border-bottom: 2px solid transparent; margin-bottom: -1px; white-space: nowrap; }
+    .free-tab.act { color: var(--blue); border-bottom-color: var(--blue); font-weight: 600; }
+    .free-date-row { display: flex; align-items: center; padding: 8px 12px; background: white; border-bottom: 1px solid var(--border); flex-shrink: 0; gap: 6px; }
+    .free-nav { width: 20px; height: 20px; border: 1px solid var(--border); border-radius: 4px; background: none; cursor: pointer; font-size: 11px; display: flex; align-items: center; justify-content: center; color: var(--text-secondary); }
+    .free-d-lbl { font-size: 12px; font-weight: 600; color: var(--text-primary); flex: 1; text-align: center; }
+    .free-sync-btn { width: 20px; height: 20px; border: 1px solid var(--border); border-radius: 4px; background: none; cursor: pointer; font-size: 11px; display: flex; align-items: center; justify-content: center; color: var(--text-tertiary); }
+    .free-legend { display: flex; align-items: center; gap: 8px; font-size: 9px; color: var(--text-tertiary); }
+    .leg-item { display: flex; align-items: center; gap: 3px; white-space: nowrap; }
+    .leg-c { width: 8px; height: 8px; border-radius: 50%; border: 1.5px solid; display: inline-block; flex-shrink: 0; }
+
+    .timeline-area { flex: 1; overflow-y: auto; padding: 8px 12px; }
+    .tl-hours { display: flex; margin-left: 88px; margin-bottom: 3px; }
+    .tl-h { flex: 1; font-size: 9px; color: var(--text-tertiary); text-align: center; min-width: 0; }
+    .tl-row { display: flex; align-items: center; margin-bottom: 5px; }
+    .tl-person { width: 88px; display: flex; align-items: center; gap: 5px; flex-shrink: 0; }
+    .tl-av { width: 20px; height: 20px; border-radius: 50%; font-size: 7px; font-weight: 700; color: white; display: flex; align-items: center; justify-content: center; flex-shrink: 0; }
+    .tl-name { font-size: 9px; color: var(--text-secondary); overflow: hidden; text-overflow: ellipsis; white-space: nowrap; line-height: 1.3; }
+    .tl-bar { flex: 1; height: 24px; background: #F0F0F0; border-radius: 3px; position: relative; overflow: hidden; cursor: pointer; }
+    .tl-busy { position: absolute; height: 100%; background: #C8D0D8; }
+    .tl-sel { position: absolute; height: 100%; background: rgba(21,126,251,0.25); border: 1.5px solid var(--blue); border-radius: 2px; }
+
+    .free-notes { padding: 10px 14px; font-size: 10px; color: var(--text-tertiary); line-height: 1.8; border-top: 1px solid var(--border); background: white; flex-shrink: 0; }
   </style>
 </head>
 <body>
@@ -628,108 +976,178 @@
     </main>
   </div><!-- /app-body -->
 
-  <!-- ── New Event overlay (Feature 1+2) ── -->
+  <!-- ── New Event overlay — minimal style ── -->
   <div class="overlay" id="newEventOverlay">
-    <div class="modal" style="width:520px;">
-      <div class="modal-hdr">
-        <div class="modal-title">
-          새 일정 만들기
-          <span class="ai-bdg">AI</span>
-        </div>
-        <button class="modal-x" onclick="closeNewEvent()">✕</button>
+    <div class="modal new-event-modal">
+
+      <!-- Top actions -->
+      <div class="nev-top-actions">
+        <button class="nev-top-btn" title="확장">
+          <svg width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M10 2h4v4M6 14H2v-4M14 2L9 7M2 14l5-5" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        </button>
+        <button class="nev-top-btn" onclick="closeNewEvent()" title="닫기">
+          <svg width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M3 3l10 10M13 3L3 13" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg>
+        </button>
       </div>
-      <div class="modal-body">
 
-        <div class="frow">
-          <label class="flabel">제목</label>
-          <input type="text" class="finput" value="Q4 마케팅 전략 회의" placeholder="일정 제목">
+      <div class="nev-body-simple">
+
+        <!-- Title input (placeholder + hover dashed + focus shows chips) -->
+        <input type="text" class="title-input-main" id="eventTitle"
+          placeholder="일정 제목을 입력하세요"
+          onclick="onTitleFocus()"
+          onfocus="onTitleFocus()"
+          oninput="onTitleInput(this.value)">
+
+        <!-- Keyword chips (shown on focus/click) -->
+        <div class="keyword-row" id="keywordRow">
+          <span class="kw-label">추천</span>
+          <button class="kwchip" onclick="setKeyword('Q4 마케팅 전략 회의')">Q4 마케팅 전략 회의</button>
+          <button class="kwchip" onclick="setKeyword('캠페인 론칭 준비')">캠페인 론칭 준비</button>
+          <button class="kwchip" onclick="setKeyword('예산 검토 미팅')">예산 검토 미팅</button>
+          <button class="kwchip" onclick="setKeyword('주간 스탠드업')">주간 스탠드업</button>
         </div>
 
-        <div class="frow">
-          <label class="flabel">참석자</label>
-          <div class="pbox">
-            <div class="pchip"><div class="pa" style="background:#4A85E8;">김</div>김지현</div>
-            <div class="pchip"><div class="pa" style="background:#FF8C42;">박</div>박민수</div>
-            <div class="pchip"><div class="pa" style="background:#1ABC9C;">이</div>이수진</div>
-            <input placeholder="이름 또는 이메일 추가">
-          </div>
-        </div>
-
-        <!-- Feature 1: AI slot cards -->
-        <div class="frow" id="slotSection">
-          <div class="ai-lbl">
-            <span class="ai-bdg">AI</span> 최적 일정 제안 — Feature 1
-          </div>
-          <div class="ai-ld" id="slotLoading">
+        <!-- Previous meeting analysis -->
+        <div class="prev-analysis" id="prevAnalysis">
+          <div id="prevLoading" style="display:flex;gap:6px;align-items:center;font-size:11px;color:var(--text-tertiary);">
             <div class="dp"><span></span><span></span><span></span></div>
-            참석자 캘린더 분석 중…
+            이전 회의 내용 + 첨부 위키 링크 분석 중…
           </div>
-          <div class="slot-grid" id="slotCards" style="display:none;">
-            <div class="slot-card sel" onclick="pickSlot(this,'2025년 11월 5일 (수)','오전 11:00 — 12:00')">
-              <div class="slot-day">수 · 11/5</div>
-              <div class="slot-time">오전 11:00</div>
-              <span class="slot-av av-all">✓ 전원 가능</span>
+          <div id="prevContent" style="display:none;">
+            <div class="prev-a-hdr">
+              <div class="prev-a-title">✦ 이전 회의 분석 완료</div>
+              <div class="prev-a-date">2025. 10. 22 회의 기준</div>
             </div>
-            <div class="slot-card" onclick="pickSlot(this,'2025년 11월 6일 (목)','오전 10:00 — 11:00')">
-              <div class="slot-day">목 · 11/6</div>
-              <div class="slot-time">오전 10:00</div>
-              <span class="slot-av av-part">4/5 가능</span>
+            <div class="prev-a-summary">
+              Q3 ROAS 하락 대응 → 소셜 예산 비중 상향 합의<br>
+              캠페인 론칭 11/18 확정 · 리포팅 주기 매주 금요일로 변경<br>
+              <span class="prev-wiki">📎 Q4마케팅전략_위키.md 참조됨</span>
             </div>
-            <div class="slot-card" onclick="pickSlot(this,'2025년 11월 7일 (금)','오후 2:00 — 3:00')">
-              <div class="slot-day">금 · 11/7</div>
-              <div class="slot-time">오후 2:00</div>
-              <span class="slot-av av-part">4/5 가능</span>
-            </div>
-          </div>
-        </div>
-
-        <!-- Date/time row -->
-        <div class="frow frow-2" id="dtRow" style="display:none;">
-          <div>
-            <label class="flabel">날짜</label>
-            <input type="text" class="finput" id="dtDate" value="2025년 11월 5일 (수)" readonly>
-          </div>
-          <div>
-            <label class="flabel">시간</label>
-            <input type="text" class="finput" id="dtTime" value="오전 11:00 — 12:00" readonly>
-          </div>
-        </div>
-
-        <!-- Feature 2: Agenda draft -->
-        <div class="frow" id="agendaSection" style="display:none;">
-          <div class="ai-lbl">
-            <span class="ai-bdg">AI</span> 아젠다 초안 자동 생성 — Feature 2
-          </div>
-          <div class="ai-ld" id="agendaLoading">
-            <div class="dp"><span></span><span></span><span></span></div>
-            이전 회의록 · 문서 분석 중…
-          </div>
-          <div class="agenda-box" id="agendaBox" style="display:none;">
-            <div class="agenda-box-hdr">
-              <div class="agenda-box-title"><span>✦</span> AI 아젠다 초안</div>
-              <button class="agenda-edit-btn">✎ 편집</button>
-            </div>
-            <div class="agenda-items">
-              <div class="aitem"><div class="anum">1</div><div style="flex:1;">Q4 목표 달성 현황 리뷰</div><div class="adur">15분</div></div>
-              <div class="aitem"><div class="anum">2</div><div style="flex:1;">채널별 예산 배분 논의 (소셜 / 검색 / 디스플레이)</div><div class="adur">20분</div></div>
-              <div class="aitem"><div class="anum">3</div><div style="flex:1;">Q4 캠페인 일정 및 담당자 확정</div><div class="adur">15분</div></div>
-              <div class="aitem"><div class="anum">4</div><div style="flex:1;">액션 아이템 정리 및 다음 미팅 일정</div><div class="adur">10분</div></div>
+            <div class="agenda-box" style="margin-top:8px;">
+              <div class="agenda-box-hdr">
+                <div class="agenda-box-title"><span>✦</span> AI 아젠다 초안</div>
+                <button class="agenda-edit-btn">✎ 편집</button>
+              </div>
+              <div class="agenda-items">
+                <div class="aitem"><div class="anum">1</div><div style="flex:1;">Q4 캠페인 진행 현황 리뷰 (10/22 회의 후속)</div><div class="adur">15분</div></div>
+                <div class="aitem"><div class="anum">2</div><div style="flex:1;">채널별 예산 소진율 및 성과 점검</div><div class="adur">20분</div></div>
+                <div class="aitem"><div class="anum">3</div><div style="flex:1;">론칭 크리에이티브 최종 확인 (이수진)</div><div class="adur">15분</div></div>
+                <div class="aitem"><div class="anum">4</div><div style="flex:1;">액션 아이템 정리 및 다음 미팅 일정</div><div class="adur">10분</div></div>
+              </div>
             </div>
           </div>
         </div>
 
-        <div class="frow" id="locRow" style="display:none;">
-          <label class="flabel">장소 / 링크</label>
-          <input type="text" class="finput" value="WORKS 화상회의 (자동 링크 생성)" readonly>
+        <!-- Attendee section -->
+        <div class="nev-att-section">
+          <div class="nev-att-label">담당자</div>
+          <div class="nev-att-row" id="attRow">
+            <div id="attendeeChips"></div>
+            <button class="nev-person-btn" onclick="toggleRecentPeople(event)" title="참석자 추가">
+              <svg width="16" height="16" viewBox="0 0 16 16" fill="none">
+                <circle cx="8" cy="5.5" r="3" stroke="currentColor" stroke-width="1.3"/>
+                <path d="M2 14c0-3.3 2.7-5 6-5s6 1.7 6 5" stroke="currentColor" stroke-width="1.3" stroke-linecap="round"/>
+              </svg>
+            </button>
+
+            <!-- People search dropdown -->
+            <div class="recent-dropdown" id="recentDropdown" onclick="event.stopPropagation()">
+              <div class="rdd-search-wrap">
+                <div class="rdd-search-box">
+                  <input type="text" id="peopleSearch" placeholder="이름으로 검색"
+                    oninput="filterPeople(this.value)" onclick="event.stopPropagation()">
+                  <button class="rdd-clear-btn" id="rddClear" onclick="clearPeopleSearch()">
+                    <svg width="16" height="16" viewBox="0 0 16 16" fill="none"><circle cx="8" cy="8" r="7" fill="#C0C0C0"/><path d="M5.5 5.5l5 5M10.5 5.5l-5 5" stroke="white" stroke-width="1.5" stroke-linecap="round"/></svg>
+                  </button>
+                  <div class="rdd-divider"></div>
+                  <div class="rdd-search-icon">
+                    <svg width="16" height="16" viewBox="0 0 16 16" fill="none"><circle cx="6.5" cy="6.5" r="4.5" stroke="currentColor" stroke-width="1.6"/><path d="M10.5 10.5l3.5 3.5" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/></svg>
+                  </div>
+                </div>
+              </div>
+              <div class="rdd-section-lbl">담당자</div>
+              <div class="recent-list" id="recentList"></div>
+              <div class="rdd-footer">
+                <div class="rdd-toggle-wrap">
+                  <div class="rdd-toggle"></div>
+                  프로필 이미지 표시
+                </div>
+                <button class="rdd-address-btn">주소록</button>
+              </div>
+            </div>
+          </div>
         </div>
 
+        <!-- Category chip (separate) -->
+        <div style="margin: 10px 10px 0;">
+          <button class="nev-cat-chip">캘린더</button>
+        </div>
+
+        <!-- 기한 -->
+        <div class="nev-section">
+          <div class="nev-section-label">기한</div>
+          <div class="nev-date-line" id="dateBtn" onclick="toggleDatePicker(event)">
+            <svg width="15" height="15" viewBox="0 0 15 15" fill="none">
+              <rect x="1.5" y="2.5" width="12" height="11" rx="1.5" stroke="currentColor" stroke-width="1.3"/>
+              <path d="M4.5 1v2.5M10.5 1v2.5M1.5 6h12" stroke="currentColor" stroke-width="1.3" stroke-linecap="round"/>
+            </svg>
+            <span id="dateLbl">2026. 4. 21. (화) 오후 5:00 — 6:00</span>
+          </div>
+
+          <!-- Date picker popup -->
+          <div class="dp-popup" id="dpPopup">
+            <div class="dp-pop-hdr">
+              <span class="dp-pop-month" id="dpMonthLbl">2026년 4월</span>
+              <div style="display:flex;gap:4px;">
+                <button class="dp-nav-btn" onclick="dpNav(-1)">‹</button>
+                <button class="dp-nav-btn" onclick="dpNav(1)">›</button>
+              </div>
+            </div>
+            <div class="dp-pop-grid" id="dpGrid"></div>
+            <div class="dp-slots" id="dpSlots" style="display:none;">
+              <div class="dp-slots-hdr"><span class="ai-bdg">AI</span> 추천 시간대 · 가용 인원</div>
+              <div class="dp-slot-item sel" onclick="pickDpSlot(this,'오전 10:00','오전 11:00')">
+                <span class="dp-slot-time">오전 10:00 — 11:00</span>
+                <span class="slot-av av-all">✓ 전원 가능 (4/4)</span>
+              </div>
+              <div class="dp-slot-item" onclick="pickDpSlot(this,'오후 2:00','오후 3:00')">
+                <span class="dp-slot-time">오후 2:00 — 3:00</span>
+                <span class="slot-av av-part">3/4 가능</span>
+              </div>
+              <div class="dp-slot-item" onclick="pickDpSlot(this,'오후 4:00','오후 5:00')">
+                <span class="dp-slot-time">오후 4:00 — 5:00</span>
+                <span class="slot-av av-part">3/4 가능</span>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- 내용 -->
+        <div class="nev-section">
+          <div class="nev-section-label">내용</div>
+          <textarea class="nev-memo-input" placeholder="내용 쓰기('/'를 입력하면 서식·AI 기능을 사용할 수 있습니다.)"></textarea>
+        </div>
+
+      </div><!-- /nev-body-simple -->
+
+      <!-- Bottom bar -->
+      <div class="nev-bottom-bar">
+        <button class="nev-bottom-btn" title="첨부파일">
+          <svg width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M13 7.5l-5.5 5.5a3.5 3.5 0 01-5-5l6.5-6.5a2.4 2.4 0 013.4 3.4L5.8 11.3a1.2 1.2 0 01-1.7-1.7l5-5" stroke="currentColor" stroke-width="1.3" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        </button>
+        <button class="nev-bottom-btn" title="파일">
+          <svg width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M9.5 1.5h-6A1.5 1.5 0 002 3v10a1.5 1.5 0 001.5 1.5h9A1.5 1.5 0 0014 13V6l-4.5-4.5z" stroke="currentColor" stroke-width="1.3" stroke-linejoin="round"/><path d="M9.5 1.5V6H14" stroke="currentColor" stroke-width="1.3" stroke-linejoin="round"/></svg>
+        </button>
+        <div class="nev-ftr-right">
+          <button class="btn-cancel-nev" onclick="closeNewEvent()">취소</button>
+          <button class="btn-save" onclick="saveEvent()">생성</button>
+        </div>
       </div>
-      <div class="modal-ftr">
-        <button class="btn-c" onclick="closeNewEvent()">취소</button>
-        <button class="btn-s" onclick="saveEvent()">일정 저장</button>
-      </div>
-    </div>
-  </div>
+
+    </div><!-- /modal -->
+  </div><!-- /overlay -->
+
 
   <!-- ── Meeting detail overlay (Feature 3+4) ── -->
   <div class="overlay" id="meetingOverlay">
@@ -818,41 +1236,27 @@
 </div><!-- /app-frame -->
 
 <script>
-  /* ── New Event (F1+F2) ── */
+  /* ── New Event ── */
   function openNewEvent() {
     document.getElementById('newEventOverlay').classList.add('on');
-    // Reset
-    document.getElementById('slotLoading').style.display = 'flex';
-    document.getElementById('slotCards').style.display = 'none';
-    document.getElementById('dtRow').style.display = 'none';
-    document.getElementById('agendaSection').style.display = 'none';
-    document.getElementById('agendaLoading').style.display = 'flex';
-    document.getElementById('agendaBox').style.display = 'none';
-    document.getElementById('locRow').style.display = 'none';
+    document.getElementById('eventTitle').value = '';
+    document.getElementById('keywordRow').classList.remove('show');
+    document.getElementById('prevAnalysis').classList.remove('on');
+    document.getElementById('dpPopup').classList.remove('on');
+    document.getElementById('recentDropdown').classList.remove('on');
+    document.querySelector('.btn-save').classList.remove('active');
+    attendees = [{ name: '홍미학 Hong mihak', initials: '홍', color: '#4A85E8' }];
+    renderAttendeeChips();
+    renderDpGrid();
+  }
 
-    // Simulate AI loading
-    setTimeout(() => {
-      document.getElementById('slotLoading').style.display = 'none';
-      document.getElementById('slotCards').style.display = 'grid';
-      document.getElementById('dtRow').style.display = 'grid';
-      document.getElementById('agendaSection').style.display = 'block';
-      document.getElementById('locRow').style.display = 'block';
-      setTimeout(() => {
-        document.getElementById('agendaLoading').style.display = 'none';
-        document.getElementById('agendaBox').style.display = 'block';
-      }, 1600);
-    }, 1100);
+  function onTitleFocus() {
+    document.getElementById('keywordRow').classList.add('show');
   }
 
   function closeNewEvent() {
     document.getElementById('newEventOverlay').classList.remove('on');
-  }
-
-  function pickSlot(el, date, time) {
-    document.querySelectorAll('.slot-card').forEach(c => c.classList.remove('sel'));
-    el.classList.add('sel');
-    document.getElementById('dtDate').value = date;
-    document.getElementById('dtTime').value = time;
+    document.getElementById('dpPopup').classList.remove('on');
   }
 
   function saveEvent() {
@@ -860,15 +1264,204 @@
     alert('✓ 일정이 저장되었습니다. 참석자에게 초대가 발송됩니다.');
   }
 
-  /* ── Meeting Detail (F3+F4) ── */
+  /* ── Title & Keywords ── */
+  function onTitleInput(val) {
+    document.getElementById('keywordRow').classList.add('show');
+    document.querySelector('.btn-save').classList.toggle('active', !!val.trim());
+    const triggers = ['마케팅', '전략', '캠페인', '예산', '론칭'];
+    if (triggers.some(k => val.includes(k))) showPrevAnalysis();
+  }
+
+  function setKeyword(keyword) {
+    const t = document.getElementById('eventTitle');
+    t.value = keyword;
+    document.querySelector('.btn-save').classList.add('active');
+    const cont = ['Q4 마케팅 전략 회의', '캠페인 론칭 준비', '예산 검토 미팅'];
+    if (cont.includes(keyword)) showPrevAnalysis();
+  }
+
+  function showPrevAnalysis() {
+    const box = document.getElementById('prevAnalysis');
+    if (box.classList.contains('on')) return;
+    box.classList.add('on');
+    document.getElementById('prevLoading').style.display = 'flex';
+    document.getElementById('prevContent').style.display = 'none';
+    setTimeout(() => {
+      document.getElementById('prevLoading').style.display = 'none';
+      document.getElementById('prevContent').style.display = 'block';
+    }, 1800);
+  }
+
+  /* ── Date Picker ── */
+  let dpYear = 2026, dpMonth = 4;
+  const DOW_LABELS = ['일','월','화','수','목','금','토'];
+  const DOW_KO = ['(일)','(월)','(화)','(수)','(목)','(금)','(토)'];
+
+  function renderDpGrid() {
+    const monthNames = ['1월','2월','3월','4월','5월','6월','7월','8월','9월','10월','11월','12월'];
+    document.getElementById('dpMonthLbl').textContent = dpYear + '년 ' + monthNames[dpMonth - 1];
+    const firstDow = new Date(dpYear, dpMonth - 1, 1).getDay();
+    const daysInMonth = new Date(dpYear, dpMonth, 0).getDate();
+    let html = DOW_LABELS.map((d, i) => `<div class="dp-pop-dl${i === 0 ? ' s' : ''}">${d}</div>`).join('');
+    for (let i = 0; i < firstDow; i++) html += `<div class="dp-pop-d other-d"></div>`;
+    for (let d = 1; d <= daysInMonth; d++) {
+      const dow = new Date(dpYear, dpMonth - 1, d).getDay();
+      const isToday = d === 21 && dpMonth === 4 && dpYear === 2026;
+      const label = `${dpYear}. ${dpMonth}. ${d}. ${DOW_KO[dow]}`;
+      const cls = ['dp-pop-d', dow === 0 ? 'sun-d' : '', isToday ? 'today-d' : ''].filter(Boolean).join(' ');
+      html += `<div class="${cls}" onclick="selectDpDate(${d},'${label}')">${d}</div>`;
+    }
+    document.getElementById('dpGrid').innerHTML = html;
+  }
+
+  function toggleDatePicker(e) {
+    e.stopPropagation();
+    const popup = document.getElementById('dpPopup');
+    if (popup.classList.contains('on')) { popup.classList.remove('on'); return; }
+    renderDpGrid();
+    document.getElementById('dpSlots').style.display = 'none';
+    const rect = document.getElementById('dateBtn').getBoundingClientRect();
+    popup.style.top = (rect.bottom + 6) + 'px';
+    popup.style.left = rect.left + 'px';
+    popup.classList.add('on');
+  }
+
+  function dpNav(dir) {
+    dpMonth += dir;
+    if (dpMonth > 12) { dpMonth = 1; dpYear++; }
+    if (dpMonth < 1) { dpMonth = 12; dpYear--; }
+    renderDpGrid();
+  }
+
+  let currentDateLabel = '2026. 4. 21. (화)';
+  let currentTimeRange = '오후 5:00 — 6:00';
+
+  function selectDpDate(day, label) {
+    currentDateLabel = label;
+    document.getElementById('dateLbl').textContent = `${label} ${currentTimeRange}`;
+    renderDpGrid();
+    document.getElementById('dpSlots').style.display = 'block';
+  }
+
+  function pickDpSlot(el, start, end) {
+    document.querySelectorAll('.dp-slot-item').forEach(s => s.classList.remove('sel'));
+    el.classList.add('sel');
+    currentTimeRange = `${start} — ${end}`;
+    document.getElementById('dateLbl').textContent = `${currentDateLabel} ${currentTimeRange}`;
+    setTimeout(() => document.getElementById('dpPopup').classList.remove('on'), 280);
+  }
+
+  /* ── Attendees ── */
+  let attendees = [{ name: '홍미학 Hong mihak', initials: '홍', color: '#4A85E8', req: true }];
+
+  const recentPeopleData = [
+    { name: '정예지', eng: 'JEONG YEJI', team: 'AI Solution Design2 · NAVER Cloud', color: '#5C6BC0', last: '1일 전' },
+    { name: '오항남', eng: 'Oh Hyangnam', team: 'AI Solution Design2 · NAVER Cloud', color: '#E67E22', last: '2일 전' },
+    { name: '김서윤', eng: 'KIM SEOYOON', team: 'Product Design · NAVER Cloud', color: '#27AE60', last: '3일 전' },
+    { name: '이준혁', eng: 'LEE JUNHYUK', team: 'Platform Engineering · NAVER', color: '#E84393', last: '5일 전' },
+    { name: '박지현', eng: 'PARK JIHYUN', team: 'UX Research · NAVER Cloud', color: '#8E44AD', last: '1주 전' },
+  ];
+
+  function highlightMatch(text, q) {
+    if (!q) return text;
+    const idx = text.toLowerCase().indexOf(q.toLowerCase());
+    if (idx === -1) return text;
+    return text.slice(0, idx) + '<span class="hl">' + text.slice(idx, idx + q.length) + '</span>' + text.slice(idx + q.length);
+  }
+
+  function renderPeopleList(query) {
+    const list = document.getElementById('recentList');
+    const q = (query || '').trim();
+    const ql = q.toLowerCase();
+    const filtered = recentPeopleData.filter(p =>
+      !q || p.name.toLowerCase().includes(ql) || p.eng.toLowerCase().includes(ql)
+    );
+    // show clear button
+    const clearBtn = document.getElementById('rddClear');
+    if (clearBtn) clearBtn.classList.toggle('vis', !!q);
+
+    if (!filtered.length) {
+      list.innerHTML = '<div class="recent-empty">검색 결과가 없습니다</div>';
+      return;
+    }
+    list.innerHTML = filtered.map(p => {
+      const fullName = p.name + ' ' + p.eng;
+      const isAdded = !!attendees.find(a => a.name === fullName);
+      const nameHl = highlightMatch(p.name, q);
+      const engHl = highlightMatch(p.eng, q);
+      return `<div class="recent-person${isAdded ? ' added' : ''}" onclick="addAttendee('${p.name}','${p.eng}','${p.color}')">
+        <div class="rp-av" style="background:${p.color};">${p.name[0]}</div>
+        <div class="rp-info">
+          <div class="rp-name">${nameHl} ${engHl}</div>
+          <div class="rp-detail">${p.team} · ${p.name.toLowerCase()}@navercorp.com</div>
+        </div>
+        <div class="rp-check-circle">✓</div>
+      </div>`;
+    }).join('');
+  }
+
+  function filterPeople(val) { renderPeopleList(val); }
+
+  function clearPeopleSearch() {
+    document.getElementById('peopleSearch').value = '';
+    renderPeopleList('');
+    document.getElementById('peopleSearch').focus();
+  }
+
+  function toggleRecentPeople(e) {
+    e.stopPropagation();
+    const dd = document.getElementById('recentDropdown');
+    const isOpen = dd.classList.contains('on');
+    dd.classList.toggle('on');
+    if (!isOpen) {
+      document.getElementById('peopleSearch').value = '';
+      renderPeopleList('');
+      setTimeout(() => document.getElementById('peopleSearch').focus(), 50);
+    }
+  }
+
+  function addAttendee(name, eng, color) {
+    const fullName = name + ' ' + eng;
+    if (attendees.find(a => a.name === fullName)) {
+      attendees = attendees.filter(a => a.name !== fullName);
+    } else {
+      attendees.push({ name: fullName, initials: name[0], color });
+    }
+    renderAttendeeChips();
+    renderPeopleList(document.getElementById('peopleSearch').value);
+  }
+
+  function removeAttendee(name) {
+    attendees = attendees.filter(a => a.name !== name);
+    renderAttendeeChips();
+  }
+
+  function renderAttendeeChips() {
+    document.getElementById('attendeeChips').innerHTML = attendees.map(a => `
+      <div class="att-chip">
+        <div class="att-av" style="background:${a.color};">${a.initials}</div>
+        <span class="att-av-name">${a.name.split(' ')[0]}</span>
+        <button class="att-x" onclick="removeAttendee('${a.name}')">×</button>
+      </div>`).join('');
+  }
+
+  /* ── Global click outside ── */
+  document.addEventListener('click', e => {
+    const dp = document.getElementById('dpPopup');
+    if (dp && dp.classList.contains('on') && !dp.contains(e.target) && e.target.id !== 'dateBtn')
+      dp.classList.remove('on');
+    const dd = document.getElementById('recentDropdown');
+    if (dd && dd.classList.contains('on') && !dd.contains(e.target))
+      dd.classList.remove('on');
+  });
+
+  /* ── Meeting Detail ── */
   function openMeetingDetail() {
     document.getElementById('meetingOverlay').classList.add('on');
   }
-
   function closeMeetingDetail() {
     document.getElementById('meetingOverlay').classList.remove('on');
   }
-
   function registerTasks() {
     const btn = document.getElementById('tregBtn');
     btn.textContent = '✓ 등록 완료';
@@ -876,7 +1469,6 @@
     btn.disabled = true;
     document.getElementById('regOk').classList.add('on');
   }
-
   function toggleTask(cb) {
     cb.classList.toggle('chk');
     const t = cb.closest('.task-row').querySelector('.task-t');
@@ -891,7 +1483,6 @@
     }
   }
 
-  /* Close overlay on outside click */
   document.getElementById('newEventOverlay').addEventListener('click', e => { if (e.target === e.currentTarget) closeNewEvent(); });
   document.getElementById('meetingOverlay').addEventListener('click', e => { if (e.target === e.currentTarget) closeMeetingDetail(); });
 </script>
