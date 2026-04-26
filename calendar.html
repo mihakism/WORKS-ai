@@ -789,6 +789,35 @@
       line-height: 1.8;
     }
 
+    /* AI default panel */
+    .ws-ai-default { padding: 16px 20px; display: flex; flex-direction: column; gap: 20px; }
+    .ws-today-summary { background: white; border: 1px solid #E6E8EB; border-radius: 10px; padding: 14px 16px; }
+    .ws-today-hdr { font-size: 12px; font-weight: 700; color: var(--text-primary); margin-bottom: 12px; display: flex; align-items: center; justify-content: space-between; }
+    .ws-today-date { font-size: 11px; font-weight: 400; color: var(--text-tertiary); }
+    .ws-track-row { display: flex; align-items: center; gap: 8px; margin-bottom: 7px; }
+    .ws-track-row:last-child { margin-bottom: 0; }
+    .ws-track-label { font-size: 10px; color: var(--text-tertiary); width: 24px; flex-shrink: 0; }
+    .ws-track-bar { flex: 1; height: 8px; background: #F2F3F5; border-radius: 4px; position: relative; overflow: hidden; }
+    .ws-track-bar.empty { background: #F2F3F5; }
+    .ws-track-block { position: absolute; top: 0; height: 100%; background: var(--blue); opacity: 0.45; border-radius: 3px; }
+    .ws-track-block.busy { background: var(--cal-orange); opacity: 0.5; }
+    .ws-track-count { font-size: 10px; color: var(--text-tertiary); width: 20px; text-align: right; flex-shrink: 0; }
+    .ws-track-count.free { color: var(--green); }
+    .ws-today-hint { margin: 10px 0 0; font-size: 11px; color: var(--cal-purple); font-weight: 600; display: flex; align-items: center; gap: 4px; }
+    .ws-type-section {}
+    .ws-type-label { font-size: 11px; font-weight: 700; color: var(--text-secondary); margin-bottom: 10px; }
+    .ws-type-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 8px; }
+    .ws-type-btn {
+      display: flex; align-items: center; gap: 7px;
+      background: white; border: 1px solid #E6E8EB; border-radius: 8px;
+      padding: 10px 12px; font-size: 12px; font-weight: 500; color: var(--text-primary);
+      cursor: pointer; font-family: inherit; text-align: left;
+      transition: border-color .15s, background .15s;
+    }
+    .ws-type-btn:hover { border-color: var(--blue); background: var(--ai-blue-bg); color: var(--blue); }
+    .ws-type-btn.active { border-color: var(--blue); background: var(--ai-blue-bg); color: var(--blue); font-weight: 700; }
+    .ws-type-icon { font-size: 15px; line-height: 1; }
+
     /* Attendee chips + suggestions */
     .ws-attendee-chips { display: flex; flex-wrap: wrap; gap: 6px; margin-bottom: 8px; }
     .ws-attendee-chips:empty { display: none; }
@@ -1152,6 +1181,21 @@
     .prev-a-date { font-size: 10px; color: var(--text-tertiary); }
     .prev-a-summary { font-size: 11px; color: var(--text-secondary); line-height: 1.7; margin-bottom: 10px; }
     .prev-wiki { display: inline-flex; align-items: center; gap: 4px; font-size: 11px; color: var(--blue); cursor: pointer; }
+
+    /* Wiki link row */
+    .ws-wiki-chips { display: flex; flex-wrap: wrap; gap: 6px; margin-bottom: 6px; }
+    .ws-wiki-chip { display: inline-flex; align-items: center; gap: 5px; background: var(--ai-blue-bg); border: 1px solid var(--ai-blue-border); border-radius: 4px; padding: 3px 8px; font-size: 11px; color: var(--blue); max-width: 260px; }
+    .ws-wiki-chip span { overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+    .ws-wiki-chip-x { background: none; border: none; color: #999; cursor: pointer; font-size: 13px; padding: 0; line-height: 1; flex-shrink: 0; }
+
+    /* Wiki panel (right side) */
+    .ws-wiki-panel { background: #F5F0FF; border: 1px solid #DDD0F8; border-radius: 8px; padding: 10px 12px; margin-bottom: 0; }
+    .ws-wiki-panel-hdr { font-size: 11px; font-weight: 700; color: var(--cal-purple); display: flex; align-items: center; gap: 5px; margin-bottom: 8px; }
+    .ws-wiki-panel-link { display: flex; align-items: center; gap: 7px; padding: 5px 0; border-bottom: 1px solid #EDE8FA; font-size: 11px; }
+    .ws-wiki-panel-link:last-child { border-bottom: none; padding-bottom: 0; }
+    .ws-wiki-panel-link a { color: var(--blue); text-decoration: none; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; flex: 1; }
+    .ws-wiki-panel-link a:hover { text-decoration: underline; }
+    .ws-wiki-badge { font-size: 9px; font-weight: 700; background: var(--cal-purple); color: white; border-radius: 3px; padding: 1px 5px; flex-shrink: 0; }
 
     /* Privacy */
     .privacy-row { display: flex; align-items: center; gap: 16px; padding: 10px 0; border-top: 1px solid var(--border); }
@@ -1634,6 +1678,11 @@
           <dl style="margin:0;">
             <!-- Title (prev design: hover dashed + recommended keywords) -->
             <div class="ws-item-cover title">
+              <dt>
+                <button class="ws-important-star" title="중요" onclick="this.classList.toggle('on')">
+                  <svg width="20" height="20" viewBox="0 0 20 20" fill="none"><path d="M10 2l2.4 4.9 5.4.8-3.9 3.8.9 5.4L10 14.3l-4.8 2.6.9-5.4L2.2 7.7l5.4-.8L10 2z" stroke="currentColor" stroke-width="1.5" stroke-linejoin="round" fill="currentColor"/></svg>
+                </button>
+              </dt>
               <dd style="flex:1;">
                 <div class="ws-title-row" style="border:none; padding:0; position:relative;">
                   <input type="text" class="title-input-main" id="eventTitle"
@@ -1641,13 +1690,10 @@
                     onclick="onTitleFocus()"
                     onfocus="onTitleFocus()"
                     oninput="onTitleInput(this.value)">
-                  <button class="ws-important-star" title="중요" onclick="this.classList.toggle('on')">
-                    <svg width="20" height="20" viewBox="0 0 20 20" fill="none"><path d="M10 2l2.4 4.9 5.4.8-3.9 3.8.9 5.4L10 14.3l-4.8 2.6.9-5.4L2.2 7.7l5.4-.8L10 2z" stroke="currentColor" stroke-width="1.5" stroke-linejoin="round" fill="currentColor"/></svg>
-                  </button>
                 </div>
                 <!-- Recommended keyword chips (auto-show on modal open, animate) -->
                 <div class="keyword-row" id="keywordRow">
-                  <span class="kw-label">추천</span>
+                  <span class="kw-label"></span>
                   <button class="kwchip" onclick="setKeyword('Q4 마케팅 전략 회의')">Q4 마케팅 전략 회의</button>
                   <button class="kwchip" onclick="setKeyword('캠페인 론칭 준비')">캠페인 론칭 준비</button>
                   <button class="kwchip" onclick="setKeyword('예산 검토 미팅')">예산 검토 미팅</button>
@@ -1668,7 +1714,7 @@
                   <button type="button" class="lw_btn">주소록</button>
                 </div>
                 <div class="ws-att-suggest">
-                  <span class="kw-label">추천</span>
+                  <span class="kw-label"></span>
                   <button type="button" class="ws-sg-chip" onclick="wsAddAttendee('정예지','#5C6BC0',this)">정예지</button>
                   <button type="button" class="ws-sg-chip" onclick="wsAddAttendee('오항남','#E67E22',this)">오항남</button>
                   <button type="button" class="ws-sg-chip" onclick="wsAddAttendee('김서윤','#27AE60',this)">김서윤</button>
@@ -1752,6 +1798,23 @@
               </dd>
             </div>
 
+            <!-- Wiki links -->
+            <div class="ws-item-cover" id="wsWikiRow">
+              <dt title="위키 링크">
+                <svg width="20" height="20" viewBox="0 0 20 20" fill="none" style="color:#5F6368;">
+                  <path d="M8.5 11.5a4.5 4.5 0 006.364 0l2-2a4.5 4.5 0 00-6.364-6.364l-1 1" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/>
+                  <path d="M11.5 8.5a4.5 4.5 0 00-6.364 0l-2 2a4.5 4.5 0 006.364 6.364l1-1" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/>
+                </svg>
+              </dt>
+              <dd>
+                <div id="wsWikiChips" class="ws-wiki-chips"></div>
+                <div class="ws-input-cover multiple ws-wiki-input-row">
+                  <input type="text" class="lw_input" id="wsWikiInput" placeholder="위키 링크를 붙여넣으세요" style="flex:1;">
+                  <button type="button" class="lw_btn" onclick="wsAddWiki()">추가</button>
+                </div>
+              </dd>
+            </div>
+
             <!-- Security -->
             <div class="ws-item-cover">
               <dt title="공개"><span class="item_title_security"></span></dt>
@@ -1824,23 +1887,73 @@
           </dl>
         </div>
 
-        <!-- RIGHT: 추천 시간 panel -->
+        <!-- RIGHT: AI 패널 -->
         <div class="ws-detail-box">
-          <div class="ws-tab-nav">
-            <ul>
-              <li><button type="button">빈 시간 확인</button></li>
-              <li class="selected"><button type="button" class="ico_ai_feature">추천 시간</button></li>
-            </ul>
-          </div>
           <div class="ws-reco-cover">
             <div class="ws-toolbar">
-              <span class="ws-toggle-cover">
-                <input type="checkbox" id="recoToggle" class="lw_toggle_small" checked>
-                <label for="recoToggle">모두 가능한 시간만 보기</label>
+              <span style="font-size:11px; font-weight:700; color:var(--cal-purple); display:flex; align-items:center; gap:5px;">
+                <svg width="13" height="13" viewBox="0 0 20 20" fill="none"><path d="M10 2l2.4 4.9 5.4.8-3.9 3.8.9 5.4L10 14.3l-4.8 2.6.9-5.4L2.2 7.7l5.4-.8L10 2z" fill="currentColor"/></svg>
+                AI 어시스턴트
               </span>
             </div>
-            <div class="ws-empty-cover" id="wsRecoEmpty">
-              <p class="msg">참석자를 추가하고 추천 시간을 확인해 보세요.</p>
+
+            <!-- 상태 1: 기본 (제목 입력 전) -->
+            <div id="wsDefaultPanel" class="ws-ai-default">
+              <div class="ws-today-summary">
+                <div class="ws-today-hdr">오늘 일정 현황 <span class="ws-today-date">4월 27일 (월)</span></div>
+                <div class="ws-today-track">
+                  <div class="ws-track-row">
+                    <span class="ws-track-label">오전</span>
+                    <div class="ws-track-bar">
+                      <div class="ws-track-block" style="left:20%;width:25%;" title="팀 스탠드업 10:00"></div>
+                    </div>
+                    <span class="ws-track-count">1개</span>
+                  </div>
+                  <div class="ws-track-row">
+                    <span class="ws-track-label">오후</span>
+                    <div class="ws-track-bar">
+                      <div class="ws-track-block" style="left:10%;width:30%;" title="디자인 리뷰 13:00"></div>
+                      <div class="ws-track-block busy" style="left:55%;width:25%;" title="주간 보고 15:30"></div>
+                    </div>
+                    <span class="ws-track-count">2개</span>
+                  </div>
+                  <div class="ws-track-row">
+                    <span class="ws-track-label">저녁</span>
+                    <div class="ws-track-bar empty"></div>
+                    <span class="ws-track-count free">여유</span>
+                  </div>
+                </div>
+                <p class="ws-today-hint">✦ 오전 11시 이후 또는 저녁 시간대 추천</p>
+              </div>
+
+              <div class="ws-type-section">
+                <div class="ws-type-label">어떤 회의인가요?</div>
+                <div class="ws-type-grid">
+                  <button class="ws-type-btn" onclick="wsPickType('주간 스탠드업', '스탠드업')">
+                    <span class="ws-type-icon">🔄</span>주간 스탠드업
+                  </button>
+                  <button class="ws-type-btn" onclick="wsPickType('Q4 마케팅 전략 회의', '기획리뷰')">
+                    <span class="ws-type-icon">📋</span>기획 리뷰
+                  </button>
+                  <button class="ws-type-btn" onclick="wsPickType('캠페인 론칭 준비', '론칭')">
+                    <span class="ws-type-icon">🚀</span>론칭 준비
+                  </button>
+                  <button class="ws-type-btn" onclick="wsPickType('예산 검토 미팅', '의사결정')">
+                    <span class="ws-type-icon">✅</span>의사결정
+                  </button>
+                  <button class="ws-type-btn" onclick="wsPickType('1:1 미팅', '1on1')">
+                    <span class="ws-type-icon">👥</span>1:1
+                  </button>
+                  <button class="ws-type-btn" onclick="wsPickType('위클리 팀 회의', '팀회의')">
+                    <span class="ws-type-icon">📅</span>팀 회의
+                  </button>
+                </div>
+              </div>
+            </div>
+
+            <!-- 상태 2: 참석자 없을 때 (제목 입력 후) -->
+            <div class="ws-empty-cover" id="wsRecoEmpty" style="display:none;">
+              <p class="msg">참석자를 추가하면<br>추천 시간을 확인할 수 있어요.</p>
               <button type="button" class="btn_ai_feature">추천 시간 보기</button>
             </div>
 
@@ -1866,6 +1979,50 @@
               </div>
             </div>
 
+            <!-- Wiki review section (shown when wiki links added) -->
+            <div id="wsWikiSection" style="display:none; margin-top:14px;">
+              <div class="ws-wiki-panel">
+                <div class="ws-wiki-panel-hdr">
+                  <svg width="13" height="13" viewBox="0 0 20 20" fill="none"><path d="M8.5 11.5a4.5 4.5 0 006.364 0l2-2a4.5 4.5 0 00-6.364-6.364l-1 1" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/><path d="M11.5 8.5a4.5 4.5 0 00-6.364 0l-2 2a4.5 4.5 0 006.364 6.364l1-1" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/></svg>
+                  숙지 자료
+                </div>
+                <div id="wsWikiPanelLinks"></div>
+              </div>
+            </div>
+
+            <!-- Agenda section (shown when title entered) -->
+            <div id="wsAgendaSection" style="display:none; margin-top:14px;">
+              <div class="prev-analysis on" style="margin-bottom:0;">
+                <div id="wsAgendaLoading" style="display:flex;gap:6px;align-items:center;font-size:11px;color:var(--text-tertiary);">
+                  <div class="dp"><span></span><span></span><span></span></div>
+                  이전 회의 내용 분석 중…
+                </div>
+                <div id="wsAgendaContent" style="display:none;">
+                  <div class="prev-a-hdr">
+                    <div class="prev-a-title">✦ 이전 회의 분석 완료</div>
+                    <div class="prev-a-date">2025. 10. 22 회의 기준</div>
+                  </div>
+                  <div class="prev-a-summary">
+                    Q3 ROAS 하락 대응 → 소셜 예산 비중 상향 합의<br>
+                    캠페인 론칭 11/18 확정 · 리포팅 주기 매주 금요일로 변경<br>
+                    <span class="prev-wiki">📎 Q4마케팅전략_위키.md 참조됨</span>
+                  </div>
+                  <div class="agenda-box">
+                    <div class="agenda-box-hdr">
+                      <div class="agenda-box-title"><span>✦</span> AI 아젠다 초안</div>
+                      <button class="agenda-edit-btn">✎ 편집</button>
+                    </div>
+                    <div class="agenda-items">
+                      <div class="aitem"><div class="anum">1</div><div style="flex:1;">Q4 캠페인 진행 현황 리뷰 (10/22 회의 후속)</div><div class="adur">15분</div></div>
+                      <div class="aitem"><div class="anum">2</div><div style="flex:1;">채널별 예산 소진율 및 성과 점검</div><div class="adur">20분</div></div>
+                      <div class="aitem"><div class="anum">3</div><div style="flex:1;">론칭 크리에이티브 최종 확인 (이수진)</div><div class="adur">15분</div></div>
+                      <div class="aitem"><div class="anum">4</div><div style="flex:1;">액션 아이템 정리 및 다음 미팅 일정</div><div class="adur">10분</div></div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+
             <ul class="ws-desc">
               <li>- 소속 회사 및 다른 계열사 구성원들이 참석 가능한 시간을 바탕으로 적절한 일정 시간을 추천합니다.</li>
               <li>- 외부 참석자의 빈 시간은 고려하지 않습니다.</li>
@@ -1885,7 +2042,6 @@
 
         <!-- Keyword chips (shown on focus/click) -->
         <div class="keyword-row" id="keywordRow">
-          <span class="kw-label">추천</span>
           <button class="kwchip" onclick="setKeyword('Q4 마케팅 전략 회의')">Q4 마케팅 전략 회의</button>
           <button class="kwchip" onclick="setKeyword('캠페인 론칭 준비')">캠페인 론칭 준비</button>
           <button class="kwchip" onclick="setKeyword('예산 검토 미팅')">예산 검토 미팅</button>
@@ -2030,20 +2186,6 @@
         </div>
 
       </div><!-- /nev-body-simple -->
-
-      <!-- Bottom bar -->
-      <div class="nev-bottom-bar">
-        <button class="nev-bottom-btn" title="첨부파일">
-          <svg width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M13 7.5l-5.5 5.5a3.5 3.5 0 01-5-5l6.5-6.5a2.4 2.4 0 013.4 3.4L5.8 11.3a1.2 1.2 0 01-1.7-1.7l5-5" stroke="currentColor" stroke-width="1.3" stroke-linecap="round" stroke-linejoin="round"/></svg>
-        </button>
-        <button class="nev-bottom-btn" title="파일">
-          <svg width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M9.5 1.5h-6A1.5 1.5 0 002 3v10a1.5 1.5 0 001.5 1.5h9A1.5 1.5 0 0014 13V6l-4.5-4.5z" stroke="currentColor" stroke-width="1.3" stroke-linejoin="round"/><path d="M9.5 1.5V6H14" stroke="currentColor" stroke-width="1.3" stroke-linejoin="round"/></svg>
-        </button>
-        <div class="nev-ftr-right">
-          <button class="btn-cancel-nev" onclick="closeNewEvent()">취소</button>
-          <button class="btn-save" onclick="saveEvent()">생성</button>
-        </div>
-      </div>
       </div><!-- /legacy hidden -->
 
     </div><!-- /modal -->
@@ -2182,7 +2324,9 @@
         <button class="ws-att-x" onclick="wsRemoveAttendee('${a.name}')">×</button>
       </span>`).join('');
     const hasAny = wsAttendees.length > 0;
-    document.getElementById('wsRecoEmpty').style.display = hasAny ? 'none' : 'flex';
+    const titleFilled = !!document.getElementById('eventTitle').value.trim();
+    document.getElementById('wsDefaultPanel').style.display = (hasAny || titleFilled) ? 'none' : 'flex';
+    document.getElementById('wsRecoEmpty').style.display = (!hasAny && titleFilled) ? 'flex' : 'none';
     document.getElementById('wsRecoList').style.display  = hasAny ? 'block' : 'none';
     const partEl = document.getElementById('wsPartCount');
     if (partEl) partEl.textContent = Math.max(1, wsAttendees.length - 1) + '명 가능';
@@ -2200,6 +2344,23 @@
     document.getElementById('keywordRow').classList.add('show');
   }
 
+  function wsPickType(title, typeKey) {
+    // 제목 입력
+    const input = document.getElementById('eventTitle');
+    input.value = title;
+    document.getElementById('keywordRow').classList.add('show');
+    try { document.querySelector('.btn-save').classList.add('active'); } catch(e) {}
+
+    // 버튼 active
+    document.querySelectorAll('.ws-type-btn').forEach(b => b.classList.remove('active'));
+    event.currentTarget.classList.add('active');
+
+    // 기본 패널 숨기고 아젠다 표시
+    document.getElementById('wsDefaultPanel').style.display = 'none';
+    document.getElementById('wsRecoEmpty').style.display = 'none';
+    showWsAgenda();
+  }
+
   function closeNewEvent() {
     document.getElementById('newEventOverlay').classList.remove('on');
     document.getElementById('dpPopup').classList.remove('on');
@@ -2213,9 +2374,16 @@
   /* ── Title & Keywords ── */
   function onTitleInput(val) {
     document.getElementById('keywordRow').classList.add('show');
-    document.querySelector('.btn-save').classList.toggle('active', !!val.trim());
-    const triggers = ['마케팅', '전략', '캠페인', '예산', '론칭'];
-    if (triggers.some(k => val.includes(k))) showPrevAnalysis();
+    try { document.querySelector('.btn-save').classList.toggle('active', !!val.trim()); } catch(e) {}
+    if (val.trim()) {
+      document.getElementById('wsDefaultPanel').style.display = 'none';
+      document.getElementById('wsRecoEmpty').style.display = 'flex';
+    } else {
+      document.getElementById('wsDefaultPanel').style.display = 'flex';
+      document.getElementById('wsRecoEmpty').style.display = 'none';
+    }
+    const triggers = ['마케팅', '전략', '캠페인', '예산', '론칭', '스탠드업', '미팅', '회의', '준비', '검토'];
+    if (triggers.some(k => val.includes(k))) showWsAgenda();
   }
 
   function setKeyword(keyword) {
@@ -2223,12 +2391,67 @@
     t.value = keyword;
     document.querySelector('.btn-save').classList.add('active');
     const cont = ['Q4 마케팅 전략 회의', '캠페인 론칭 준비', '예산 검토 미팅'];
-    if (cont.includes(keyword)) showPrevAnalysis();
+    if (cont.includes(keyword)) showWsAgenda();
+  }
+
+  let wsAgendaShown = false;
+  function showWsAgenda() {
+    if (wsAgendaShown) return;
+    wsAgendaShown = true;
+    const sec = document.getElementById('wsAgendaSection');
+    sec.style.display = 'block';
+    document.getElementById('wsAgendaLoading').style.display = 'flex';
+    document.getElementById('wsAgendaContent').style.display = 'none';
+    setTimeout(() => {
+      document.getElementById('wsAgendaLoading').style.display = 'none';
+      document.getElementById('wsAgendaContent').style.display = 'block';
+    }, 1800);
+  }
+
+  /* ── Wiki links ── */
+  let wsWikiLinks = [];
+  function wsAddWiki() {
+    const input = document.getElementById('wsWikiInput');
+    const url = input.value.trim();
+    if (!url) return;
+    wsWikiLinks.push(url);
+    input.value = '';
+    renderWsWiki();
+  }
+  document.addEventListener('DOMContentLoaded', () => {
+    const inp = document.getElementById('wsWikiInput');
+    if (inp) inp.addEventListener('keydown', e => { if (e.key === 'Enter') wsAddWiki(); });
+  });
+  function wsRemoveWiki(idx) {
+    wsWikiLinks.splice(idx, 1);
+    renderWsWiki();
+  }
+  function renderWsWiki() {
+    const chipsEl = document.getElementById('wsWikiChips');
+    const panelEl = document.getElementById('wsWikiPanelLinks');
+    const sec = document.getElementById('wsWikiSection');
+    chipsEl.innerHTML = wsWikiLinks.map((u, i) => {
+      const label = u.replace(/^https?:\/\//, '').replace(/\/$/, '');
+      return `<span class="ws-wiki-chip">
+        <svg width="11" height="11" viewBox="0 0 20 20" fill="none"><path d="M8.5 11.5a4.5 4.5 0 006.364 0l2-2a4.5 4.5 0 00-6.364-6.364l-1 1" stroke="currentColor" stroke-width="2" stroke-linecap="round"/><path d="M11.5 8.5a4.5 4.5 0 00-6.364 0l-2 2a4.5 4.5 0 006.364 6.364l1-1" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>
+        <span>${label}</span>
+        <button class="ws-wiki-chip-x" onclick="wsRemoveWiki(${i})">×</button>
+      </span>`;
+    }).join('');
+    panelEl.innerHTML = wsWikiLinks.map(u => {
+      const label = u.replace(/^https?:\/\//, '').replace(/\/$/, '');
+      return `<div class="ws-wiki-panel-link">
+        <svg width="12" height="12" viewBox="0 0 20 20" fill="none"><path d="M8.5 11.5a4.5 4.5 0 006.364 0l2-2a4.5 4.5 0 00-6.364-6.364l-1 1" stroke="currentColor" stroke-width="2" stroke-linecap="round"/><path d="M11.5 8.5a4.5 4.5 0 00-6.364 0l-2 2a4.5 4.5 0 006.364 6.364l1-1" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>
+        <a href="${u}" target="_blank">${label}</a>
+        <span class="ws-wiki-badge">숙지</span>
+      </div>`;
+    }).join('');
+    sec.style.display = wsWikiLinks.length > 0 ? 'block' : 'none';
   }
 
   function showPrevAnalysis() {
     const box = document.getElementById('prevAnalysis');
-    if (box.classList.contains('on')) return;
+    if (!box || box.classList.contains('on')) return;
     box.classList.add('on');
     document.getElementById('prevLoading').style.display = 'flex';
     document.getElementById('prevContent').style.display = 'none';
