@@ -485,14 +485,14 @@
     .av-all { background: var(--ai-green-bg); color: var(--green); }
     .av-part { background: #FFF8E1; color: #CC8800; }
 
-    .agenda-box { background: var(--ai-blue-bg); border: 1px solid var(--ai-blue-border); border-radius: 8px; overflow: hidden; }
-    .agenda-box-hdr { display: flex; align-items: center; justify-content: space-between; padding: 8px 12px; border-bottom: 1px solid var(--ai-blue-border); }
-    .agenda-box-title { font-size: 12px; font-weight: 600; color: var(--blue); display: flex; align-items: center; gap: 5px; }
+    .agenda-box { background: var(--ai-blue-bg); border-radius: 8px; overflow: hidden; }
+    .agenda-box-hdr { display: flex; align-items: center; justify-content: space-between; padding: 12px 16px; }
+    .agenda-box-title { font-size: 13px; font-weight: 600; color: var(--blue); display: flex; align-items: center; gap: 5px; }
     .agenda-edit-btn { font-size: 11px; color: var(--blue); padding: 2px 8px; border-radius: 4px; border: 1px solid var(--ai-blue-border); background: white; cursor: pointer; }
-    .agenda-items { padding: 8px 12px; }
-    .aitem { display: flex; align-items: center; gap: 8px; margin-bottom: 6px; font-size: 12px; color: var(--text-secondary); }
+    .agenda-items { padding: 12px 16px; }
+    .aitem { display: flex; align-items: center; gap: 10px; margin-bottom: 8px; font-size: 12px; color: var(--text-secondary); }
     .aitem:last-child { margin-bottom: 0; }
-    .anum { width: 18px; height: 18px; border-radius: 50%; background: var(--blue); color: white; font-size: 9px; font-weight: 700; display: flex; align-items: center; justify-content: center; flex-shrink: 0; }
+    .anum { width: 22px; height: 22px; border-radius: 50%; background: var(--blue); color: white; font-size: 14px; font-weight: 700; display: flex; align-items: center; justify-content: center; flex-shrink: 0; }
     .adur { font-size: 10px; color: var(--text-tertiary); white-space: nowrap; }
 
     .modal-ftr { padding: 12px 20px; border-top: 1px solid var(--border); display: flex; gap: 8px; justify-content: flex-end; }
@@ -500,11 +500,14 @@
     .btn-c { background: var(--surface-1); border: 1px solid var(--border); color: var(--text-secondary); border-radius: 6px; padding: 8px 14px; font-size: 13px; font-family: inherit; cursor: pointer; }
 
     /* Meeting detail */
-    .mtg-detail { width: 580px; }
+    .mtg-detail { width: 960px; height: 82vh; display: flex; flex-direction: column; overflow: hidden; border-radius: 12px; }
+    .mtg-hdr-info { flex: 1; min-width: 0; }
     .mtg-tag { display: inline-flex; align-items: center; gap: 4px; background: var(--ai-blue-bg); color: var(--blue); font-size: 11px; font-weight: 600; padding: 3px 10px; border-radius: 20px; margin-bottom: 8px; }
     .mtg-title { font-size: 18px; font-weight: 700; color: var(--text-primary); margin-bottom: 8px; }
-    .mtg-metas { display: flex; flex-wrap: wrap; gap: 12px; }
-    .mtg-meta { font-size: 12px; color: var(--text-secondary); display: flex; align-items: center; gap: 4px; }
+    .mtg-metas { display: flex; flex-wrap: wrap; gap: 14px; }
+    .mtg-meta { font-size: 12px; color: var(--text-secondary); display: flex; align-items: center; gap: 5px; }
+    .mtg-meta svg { color: #9EA5AE; flex-shrink: 0; }
+    .mtg-right-col { width: 340px; flex-shrink: 0; display: flex; flex-direction: column; background: #FAFBFC; border-left: 1px solid #E6E8EB; overflow-y: auto; padding: 20px; }
 
     .notes-card { background: var(--ai-blue-bg); border: 1px solid var(--ai-blue-border); border-radius: 8px; overflow: hidden; margin-bottom: 14px; }
     .notes-card-hdr { display: flex; align-items: center; justify-content: space-between; padding: 10px 14px; border-bottom: 1px solid var(--ai-blue-border); }
@@ -583,7 +586,7 @@
     }
     .ws-detail-box {
       width: 420px; display: flex; flex-direction: column;
-      background: #FAFBFC;
+      background: white;
     }
 
     /* Form items */
@@ -791,9 +794,8 @@
 
     /* AI default panel */
     .ws-ai-default { padding: 16px 20px; display: flex; flex-direction: column; gap: 20px; }
-    .ws-today-summary { background: white; border: 1px solid #E6E8EB; border-radius: 10px; padding: 14px 16px; }
-    .ws-today-hdr { font-size: 12px; font-weight: 700; color: var(--text-primary); margin-bottom: 12px; display: flex; align-items: center; justify-content: space-between; }
-    .ws-today-date { font-size: 11px; font-weight: 400; color: var(--text-tertiary); }
+    .ws-today-block { display: flex; flex-direction: column; gap: 8px; }
+    .ws-today-summary { background: #F2F3F5; border-radius: 10px; padding: 14px 16px; }
     .ws-track-row { display: flex; align-items: center; gap: 8px; margin-bottom: 7px; }
     .ws-track-row:last-child { margin-bottom: 0; }
     .ws-track-label { font-size: 10px; color: var(--text-tertiary); width: 24px; flex-shrink: 0; }
@@ -804,22 +806,200 @@
     .ws-track-count { font-size: 10px; color: var(--text-tertiary); width: 20px; text-align: right; flex-shrink: 0; }
     .ws-track-count.free { color: var(--green); }
     .ws-today-hint { margin: 10px 0 0; font-size: 11px; color: var(--cal-purple); font-weight: 600; display: flex; align-items: center; gap: 4px; }
-    .ws-type-section {}
-    .ws-type-label { font-size: 11px; font-weight: 700; color: var(--text-secondary); margin-bottom: 10px; }
-    .ws-type-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 8px; }
-    .ws-type-btn {
-      display: flex; align-items: center; gap: 7px;
-      background: white; border: 1px solid #E6E8EB; border-radius: 8px;
-      padding: 10px 12px; font-size: 12px; font-weight: 500; color: var(--text-primary);
-      cursor: pointer; font-family: inherit; text-align: left;
-      transition: border-color .15s, background .15s;
+    /* Recent meetings (personalized) */
+    .ws-recent-section { display: flex; flex-direction: column; gap: 8px; }
+    .ws-section-hdr { display: flex; align-items: baseline; justify-content: space-between; margin-bottom: 2px; }
+    .ws-section-title { font-size: 11px; font-weight: 700; color: var(--text-secondary); }
+    .ws-section-sub { font-size: 10px; color: var(--cal-purple); font-weight: 600; }
+    .ws-recent-card {
+      display: flex; align-items: center; gap: 12px;
+      background: #F7F8FA; border: none; outline: none; border-radius: 10px;
+      padding: 12px 14px; cursor: pointer; font-family: inherit; text-align: left;
+      transition: box-shadow .15s, transform .1s;
+      width: 100%;
     }
-    .ws-type-btn:hover { border-color: var(--blue); background: var(--ai-blue-bg); color: var(--blue); }
-    .ws-type-btn.active { border-color: var(--blue); background: var(--ai-blue-bg); color: var(--blue); font-weight: 700; }
-    .ws-type-icon { font-size: 15px; line-height: 1; }
+    .ws-recent-card:hover { box-shadow: 0 1px 4px rgba(0,0,0,0.1); }
+    .ws-recent-card:active { transform: scale(0.99); }
+    .ws-recent-main { flex: 1; min-width: 0; }
+    .ws-recent-name { font-size: 13px; font-weight: 600; color: var(--text-primary); margin-bottom: 3px; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+    .ws-recent-meta { font-size: 11px; color: var(--text-tertiary); }
+    .ws-recent-right { flex-shrink: 0; }
+    .ws-recent-avs { display: flex; align-items: center; }
+    .ws-recent-av {
+      width: 22px; height: 22px; border-radius: 50%;
+      font-size: 10px; font-weight: 400; letter-spacing: -0.02em;
+      display: inline-flex; align-items: center; justify-content: center;
+      border: 1.5px solid white; margin-left: -5px;
+      background: #EEF0F3 !important; color: #5F6770 !important;
+    }
+    .ws-recent-av:first-child { margin-left: 0; }
+    .ws-recent-av.more { background: #F5F6F8 !important; color: #868A8F !important; font-size: 9px; }
+
+    .ws-other-types { display: flex; flex-wrap: wrap; gap: 6px; align-items: center; margin-top: 8px; padding-top: 12px; border-top: 1px dashed #E6E8EB; }
+    .ws-other-label { font-size: 11px; color: var(--text-tertiary); margin-right: 2px; font-weight: 500; }
+    .ws-other-chip {
+      background: transparent; border: 1px solid #E6E8EB; border-radius: 14px;
+      padding: 4px 11px; font-size: 11px; color: var(--text-secondary);
+      cursor: pointer; font-family: inherit;
+      transition: border-color .15s, color .15s, background .15s;
+    }
+    .ws-other-chip:hover { border-color: var(--blue); color: var(--blue); background: var(--ai-blue-bg); }
+
+    /* Smart suggestion card */
+    .ws-smart-card { padding: 16px 20px; }
+    .ws-smart-loading { display: flex; align-items: center; gap: 8px; padding: 18px 16px; background: linear-gradient(135deg, #F3EFFE, #EBF3FF); border: 1px solid var(--ai-blue-border); border-radius: 10px; font-size: 12px; color: var(--text-secondary); font-weight: 500; }
+    .ws-smart-content { background: linear-gradient(135deg, #F3EFFE, #EBF3FF); border: 1px solid var(--ai-blue-border); border-radius: 10px; padding: 14px 16px; animation: smartFadeIn .35s ease both; }
+    @keyframes smartFadeIn { from { opacity: 0; transform: translateY(6px); } to { opacity: 1; transform: translateY(0); } }
+    .ws-smart-hdr { display: flex; align-items: center; justify-content: space-between; margin-bottom: 12px; }
+    .ws-smart-title { font-size: 12px; font-weight: 700; color: var(--cal-purple); }
+    .ws-smart-conf { font-size: 10px; color: var(--text-tertiary); background: white; padding: 2px 7px; border-radius: 10px; font-weight: 500; }
+    .ws-smart-row { display: flex; gap: 10px; padding: 8px 0; border-top: 1px solid rgba(116,77,200,0.12); }
+    .ws-smart-row:first-of-type { border-top: none; padding-top: 0; }
+    .ws-smart-label { width: 44px; flex-shrink: 0; font-size: 10px; font-weight: 700; color: var(--text-tertiary); padding-top: 3px; letter-spacing: 0.04em; }
+    .ws-smart-value { flex: 1; font-size: 12px; color: var(--text-primary); display: flex; flex-wrap: wrap; gap: 6px; align-items: center; line-height: 1.6; }
+    .ws-smart-badge { font-size: 10px; padding: 2px 7px; border-radius: 10px; font-weight: 600; }
+    .ws-smart-badge.ok { background: var(--ai-green-bg); color: var(--green); }
+    .ws-smart-att-chip { display: inline-flex; align-items: center; gap: 4px; background: white; border-radius: 12px; padding: 2px 8px 2px 2px; font-size: 11px; font-weight: 500; }
+    .ws-smart-av { width: 18px; height: 18px; border-radius: 50%; background: var(--c, var(--blue)); color: white; font-size: 10px; font-weight: 700; display: inline-flex; align-items: center; justify-content: center; }
+    .ws-smart-agenda { margin: 0; padding-left: 16px; font-size: 11px; color: var(--text-secondary); list-style: decimal; }
+    .ws-smart-agenda li { padding: 2px 0; display: flex; justify-content: space-between; gap: 8px; }
+    .ws-smart-dur { font-size: 10px; color: var(--text-tertiary); flex-shrink: 0; }
+    .ws-smart-link { font-size: 11px; color: var(--blue); }
+    .ws-smart-actions { display: flex; gap: 6px; margin-top: 14px; padding-top: 12px; border-top: 1px solid rgba(116,77,200,0.15); }
+    .ws-smart-apply-btn { flex: 1; background: var(--blue); color: white; border: 0; border-radius: 8px; height: 36px; font-size: 13px; font-weight: 600; cursor: pointer; font-family: inherit; display: inline-flex; align-items: center; justify-content: center; gap: 5px; }
+    .ws-smart-apply-btn:hover { background: #0A55C2; }
+    .ws-smart-edit-btn { background: white; border: 1px solid var(--border); border-radius: 8px; height: 36px; padding: 0 14px; font-size: 12px; color: var(--text-secondary); cursor: pointer; font-family: inherit; }
+    .ws-smart-edit-btn:hover { background: var(--surface-1); }
+
+    /* Field highlight during apply animation */
+    @keyframes fieldFlash { 0%, 100% { background: transparent; } 50% { background: #FFF6CE; } }
+    .ws-flash { animation: fieldFlash .8s ease; }
 
     /* Attendee chips + suggestions */
-    .ws-attendee-chips { display: flex; flex-wrap: wrap; gap: 6px; margin-bottom: 8px; }
+    /* Attendee search dropdown */
+    .ws-att-dropdown {
+      position: absolute; top: calc(100% + 4px); left: 0; right: 0;
+      background: white; border: 1px solid #E6E8EB; border-radius: 8px;
+      box-shadow: 0 4px 16px rgba(0,0,0,0.08);
+      max-height: 320px; overflow-y: auto;
+      display: none; z-index: 100; padding: 4px 0;
+    }
+    .ws-att-dropdown.on { display: block; }
+    .ws-att-dd-row {
+      display: flex; align-items: center; gap: 8px;
+      padding: 9px 14px; cursor: pointer; min-width: 0;
+      border-bottom: 1px solid #F2F3F5;
+    }
+    .ws-att-dd-row:last-child { border-bottom: none; }
+    .ws-att-dd-row:first-child { background: #F5F6F8; }
+    .ws-att-dd-row:hover { background: #F0F4FF; }
+    .ws-att-dd-main {
+      flex: 1; min-width: 0; font-size: 13px; color: #202124;
+      overflow: hidden; text-overflow: ellipsis; white-space: nowrap; line-height: 1.4;
+    }
+    .ws-att-dd-main strong { font-weight: 600; }
+    .ws-att-dd-en { color: #202124; font-weight: 400; margin-left: 2px; }
+    .ws-att-dd-nick { color: #4A4F55; font-weight: 400; margin-left: 4px; }
+    .ws-att-dd-leader { color: #0C64E0; font-weight: 500; margin: 0 4px; font-size: 12px; }
+    .ws-att-dd-meta { color: #868A8F; margin-left: 6px; font-weight: 400; font-size: 12px; }
+    .ws-att-dd-x {
+      flex-shrink: 0;
+      width: 20px; height: 20px; border: none; background: none;
+      color: #B0B5BB; cursor: pointer; font-size: 16px; line-height: 1;
+      display: inline-flex; align-items: center; justify-content: center;
+      border-radius: 4px;
+    }
+    .ws-att-dd-x:hover { background: #ECEEF1; color: #4A4F55; }
+    .ws-att-dd-empty { padding: 18px; text-align: center; color: #868A8F; font-size: 12px; }
+
+    .ws-attendee-chips { margin-top: 12px; }
+    .ws-attendee-chips:empty { display: none; }
+
+    /* WORKS-style attendee card grid */
+    .ws-att-grid {
+      display: grid; grid-template-columns: 1fr 1fr; gap: 4px 16px;
+      background: #FAFBFC;
+      border-radius: 8px; border-bottom-left-radius: 0; border-bottom-right-radius: 0;
+      padding: 10px 12px;
+    }
+    .ws-att-card {
+      display: flex; align-items: center; gap: 10px;
+      padding: 8px 4px; min-width: 0;
+    }
+    .ws-att-required {
+      flex-shrink: 0;
+      font-size: 11px; font-weight: 500; color: #0C64E0;
+      background: white; border: 1px solid #B3D1F7;
+      border-radius: 4px; padding: 3px 8px; cursor: pointer;
+      font-family: inherit; line-height: 1.3;
+    }
+    .ws-att-required:hover { background: #F0F4FF; }
+    .ws-att-photo {
+      width: 24px; height: 24px; border-radius: 50%;
+      color: white; font-size: 11px; font-weight: 500;
+      display: inline-flex; align-items: center; justify-content: center;
+      flex-shrink: 0;
+    }
+    .ws-att-info { flex: 1; min-width: 0; line-height: 1.4; }
+    .ws-att-name-row {
+      font-size: 13px; color: #202124;
+      overflow: hidden; text-overflow: ellipsis; white-space: nowrap;
+    }
+    .ws-att-name-row strong { font-weight: 600; }
+    .ws-att-name-en { font-size: 12px; color: #4A4F55; font-weight: 400; margin-left: 2px; }
+    .ws-att-dept {
+      font-size: 11px; color: #868A8F; margin-top: 1px;
+      overflow: hidden; text-overflow: ellipsis; white-space: nowrap;
+    }
+    .ws-att-organizer {
+      flex-shrink: 0;
+      width: 18px; height: 18px; border-radius: 3px;
+      background: #0C64E0; color: white; font-size: 10px; font-weight: 700;
+      display: inline-flex; align-items: center; justify-content: center;
+    }
+    .ws-att-card-x {
+      flex-shrink: 0;
+      width: 20px; height: 20px; border: none; background: none;
+      color: #B0B5BB; cursor: pointer; font-size: 16px; line-height: 1;
+      display: inline-flex; align-items: center; justify-content: center;
+      border-radius: 4px;
+    }
+    .ws-att-card-x:hover { background: #F2F3F5; color: #4A4F55; }
+
+    /* Footer */
+    .ws-att-footer {
+      display: flex; align-items: center; justify-content: space-between;
+      padding: 10px 14px;
+      background: #FAFBFC;
+      border-radius: 0 0 8px 8px;
+      font-size: 12px; color: #4A4F55;
+      flex-wrap: wrap; gap: 8px;
+    }
+    .ws-att-footer-l, .ws-att-footer-r { display: flex; align-items: center; gap: 10px; }
+    .ws-att-foot-lbl { font-size: 12px; color: #4A4F55; display: inline-flex; align-items: center; gap: 4px; }
+    .ws-att-q {
+      width: 14px; height: 14px; border-radius: 50%;
+      background: #E6E8EB; color: #868A8F; font-size: 9px; font-weight: 700;
+      display: inline-flex; align-items: center; justify-content: center;
+    }
+    .ws-att-foot-drop {
+      background: white; border: 1px solid #E6E8EB; border-radius: 4px;
+      padding: 4px 22px 4px 10px; font-size: 12px; color: #202124; font-family: inherit;
+      cursor: pointer; position: relative;
+    }
+    .ws-att-foot-drop::after {
+      content: ''; position: absolute; right: 8px; top: 50%;
+      width: 0; height: 0; transform: translateY(-25%);
+      border-left: 4px solid transparent; border-right: 4px solid transparent;
+      border-top: 4px solid #868A8F;
+    }
+    .ws-att-foot-chk {
+      display: inline-flex; align-items: center; gap: 5px;
+      font-size: 12px; color: #4A4F55; cursor: pointer;
+    }
+    .ws-att-foot-chk input { margin: 0; cursor: pointer; }
+    .ws-att-foot-count { font-size: 12px; color: #4A4F55; padding-left: 10px; border-left: 1px solid #E6E8EB; }
+    .ws-att-foot-count strong { color: #0C64E0; font-weight: 700; margin: 0 2px; }
     .ws-attendee-chips:empty { display: none; }
     .ws-att-chip {
       display: inline-flex; align-items: center; gap: 6px;
@@ -841,6 +1021,54 @@
 
     .ws-att-suggest {
       display: flex; flex-wrap: wrap; gap: 6px; margin-top: 10px; align-items: center;
+    }
+    .ws-att-project { display: none; }
+    .ws-att-chips-wrap { display: contents; }
+
+    /* Slack-style project chip with hover tooltip */
+    .ws-proj-chip {
+      position: relative;
+      display: inline-flex; align-items: center; gap: 5px;
+      background: #F0F4FF; border: 1px solid transparent;
+      border-radius: 20px; padding: 4px 10px 4px 10px;
+      font-size: 12px; color: #0C64E0; font-family: inherit; cursor: pointer;
+      transition: all .15s;
+    }
+    .ws-proj-chip:hover { background: #0C64E0; color: #fff; }
+    .ws-proj-chip:hover .ws-proj-count { background: rgba(255,255,255,0.25); color: #fff; }
+    .ws-proj-name { white-space: nowrap; }
+    .ws-proj-count {
+      font-size: 10px; font-weight: 600;
+      background: rgba(12,100,224,0.12); color: #0C64E0;
+      border-radius: 10px; padding: 1px 6px; line-height: 1.4;
+      transition: background .15s, color .15s;
+    }
+    /* Tooltip */
+    .ws-proj-tt {
+      position: absolute; top: calc(100% + 6px); left: 0;
+      background: #FFFFFF; border: 1px solid #E6E8EB;
+      border-radius: 8px; padding: 8px 0; min-width: 180px;
+      box-shadow: 0 4px 14px rgba(0,0,0,0.08);
+      opacity: 0; pointer-events: none; transform: translateY(-2px);
+      transition: opacity .15s, transform .15s;
+      z-index: 10; color: var(--text-primary);
+    }
+    .ws-proj-chip:hover .ws-proj-tt {
+      opacity: 1; pointer-events: auto; transform: translateY(0);
+    }
+    .ws-proj-tt-hdr {
+      font-size: 11px; font-weight: 700; color: var(--text-secondary);
+      padding: 0 12px 6px; border-bottom: 1px solid #F2F3F5; margin-bottom: 4px;
+    }
+    .ws-proj-tt-row {
+      display: flex; align-items: center; gap: 7px;
+      padding: 4px 12px; font-size: 12px; color: var(--text-primary);
+    }
+    .ws-proj-tt-av {
+      width: 18px; height: 18px; border-radius: 50%; color: white;
+      font-size: 9px; font-weight: 400; letter-spacing: -0.02em;
+      display: inline-flex; align-items: center; justify-content: center;
+      background: #EEF0F3 !important; color: #5F6770 !important;
     }
     .ws-sg-chip {
       background: #F0F4FF; border: 1px solid #D2DEF6; color: #0C64E0;
@@ -899,8 +1127,13 @@
     }
     .keyword-row {
       display: none; flex-wrap: wrap; gap: 6px; align-items: center;
-      margin: 10px 10px 0;
+      margin: 10px 0 0; position: relative;
     }
+    .keyword-row .kw-label,
+    .ws-att-suggest .kw-label {
+      position: absolute; left: -22px; top: 50%; transform: translateY(-50%);
+    }
+    .ws-att-suggest { position: relative; padding-left: 0; }
     .keyword-row.show {
       display: flex;
       animation: kwFadeIn 0.22s ease both;
@@ -920,11 +1153,12 @@
       animation: kwSparkle 1.6s ease-in-out infinite;
     }
     .kwchip {
-      background: var(--ai-blue-bg); border: 1px solid var(--ai-blue-border);
+      background: var(--ai-blue-bg); border: 1px solid transparent;
       color: var(--blue); border-radius: 20px; padding: 4px 12px; font-size: 12px;
       font-family: inherit; cursor: pointer; transition: all .15s;
     }
-    .kwchip:hover { background: var(--blue); color: white; border-color: var(--blue); }
+    .kwchip:hover { background: var(--blue); color: white; }
+    .kwchip.active { background: var(--blue); color: white; font-weight: 600; }
 
     /* Attendee section */
     .nev-att-section { margin: 20px 10px 0; position: relative; }
@@ -1171,15 +1405,16 @@
 
     /* Previous meeting analysis */
     .prev-analysis {
-      background: linear-gradient(135deg, #F3EFFE, #EBF3FF);
-      border: 1px solid var(--ai-blue-border); border-radius: 8px;
-      padding: 10px 12px; margin-bottom: 14px; display: none;
+      background: transparent;
+      border-radius: 8px;
+      padding: 16px 18px; margin-bottom: 14px; display: none;
     }
     .prev-analysis.on { display: block; }
-    .prev-a-hdr { display: flex; align-items: center; justify-content: space-between; margin-bottom: 6px; }
-    .prev-a-title { font-size: 11px; font-weight: 700; color: var(--cal-purple); display: flex; align-items: center; gap: 5px; }
+    .prev-a-hdr { display: flex; align-items: center; justify-content: space-between; margin-bottom: 8px; }
+    .prev-a-title { font-size: 12px; font-weight: 700; color: var(--blue); display: flex; align-items: center; gap: 5px; animation: sparkle-pulse 2s ease-in-out infinite; }
+    @keyframes sparkle-pulse { 0%,100% { opacity:1; } 50% { opacity:0.6; } }
     .prev-a-date { font-size: 10px; color: var(--text-tertiary); }
-    .prev-a-summary { font-size: 11px; color: var(--text-secondary); line-height: 1.7; margin-bottom: 10px; }
+    .prev-a-summary { font-size: 11px; color: var(--text-secondary); line-height: 1.7; margin-bottom: 12px; }
     .prev-wiki { display: inline-flex; align-items: center; gap: 4px; font-size: 11px; color: var(--blue); cursor: pointer; }
 
     /* Wiki link row */
@@ -1686,12 +1921,12 @@
               <dd style="flex:1;">
                 <div class="ws-title-row" style="border:none; padding:0; position:relative;">
                   <input type="text" class="title-input-main" id="eventTitle"
-                    placeholder="일정 제목을 입력하세요"
+                    placeholder="어떤 일정을 만들까요?"
                     onclick="onTitleFocus()"
                     onfocus="onTitleFocus()"
                     oninput="onTitleInput(this.value)">
                 </div>
-                <!-- Recommended keyword chips (auto-show on modal open, animate) -->
+                <!-- Recommended keyword chips -->
                 <div class="keyword-row" id="keywordRow">
                   <span class="kw-label"></span>
                   <button class="kwchip" onclick="setKeyword('Q4 마케팅 전략 회의')">Q4 마케팅 전략 회의</button>
@@ -1706,20 +1941,23 @@
             <div class="ws-item-cover">
               <dt title="참석자"><span class="item_title_attendant"></span></dt>
               <dd>
-                <div class="ws-attendee-chips" id="wsAttChips"></div>
-                <div class="ws-input-cover multiple">
-                  <div class="ws-search-cover">
-                    <input class="lw_input" type="text" id="wsAttInput" placeholder="참석자를 추가하세요." maxlength="5000">
+                <div class="ws-input-cover multiple" style="position:relative;">
+                  <div class="ws-search-cover" style="position:relative; flex:1;">
+                    <input class="lw_input" type="text" id="wsAttInput" placeholder="참석자를 추가하세요." maxlength="5000"
+                      autocomplete="off"
+                      onfocus="wsShowAttDropdown()"
+                      oninput="wsFilterAttDropdown(this.value)"
+                      onblur="setTimeout(wsHideAttDropdown, 150)">
+                    <div class="ws-att-dropdown" id="wsAttDropdown"></div>
                   </div>
                   <button type="button" class="lw_btn">주소록</button>
                 </div>
-                <div class="ws-att-suggest">
+                <div class="ws-att-suggest" id="wsAttSuggest" style="display:none;">
                   <span class="kw-label"></span>
-                  <button type="button" class="ws-sg-chip" onclick="wsAddAttendee('정예지','#5C6BC0',this)">정예지</button>
-                  <button type="button" class="ws-sg-chip" onclick="wsAddAttendee('오항남','#E67E22',this)">오항남</button>
-                  <button type="button" class="ws-sg-chip" onclick="wsAddAttendee('김서윤','#27AE60',this)">김서윤</button>
-                  <button type="button" class="ws-sg-chip" onclick="wsAddAttendee('이준혁','#E84393',this)">이준혁</button>
+                  <span class="ws-att-project" id="wsAttProject"></span>
+                  <span class="ws-att-chips-wrap" id="wsAttChipsWrap"></span>
                 </div>
+                <div class="ws-attendee-chips" id="wsAttChips"></div>
               </dd>
             </div>
 
@@ -1890,17 +2128,14 @@
         <!-- RIGHT: AI 패널 -->
         <div class="ws-detail-box">
           <div class="ws-reco-cover">
-            <div class="ws-toolbar">
-              <span style="font-size:11px; font-weight:700; color:var(--cal-purple); display:flex; align-items:center; gap:5px;">
-                <svg width="13" height="13" viewBox="0 0 20 20" fill="none"><path d="M10 2l2.4 4.9 5.4.8-3.9 3.8.9 5.4L10 14.3l-4.8 2.6.9-5.4L2.2 7.7l5.4-.8L10 2z" fill="currentColor"/></svg>
-                AI 어시스턴트
-              </span>
-            </div>
-
             <!-- 상태 1: 기본 (제목 입력 전) -->
             <div id="wsDefaultPanel" class="ws-ai-default">
-              <div class="ws-today-summary">
-                <div class="ws-today-hdr">오늘 일정 현황 <span class="ws-today-date">4월 27일 (월)</span></div>
+              <div class="ws-today-block">
+                <div class="ws-section-hdr">
+                  <span class="ws-section-title">오늘 일정 현황</span>
+                  <span class="ws-section-sub">4월 27일 (월)</span>
+                </div>
+                <div class="ws-today-summary">
                 <div class="ws-today-track">
                   <div class="ws-track-row">
                     <span class="ws-track-label">오전</span>
@@ -1924,29 +2159,122 @@
                   </div>
                 </div>
                 <p class="ws-today-hint">✦ 오전 11시 이후 또는 저녁 시간대 추천</p>
+                </div>
               </div>
 
-              <div class="ws-type-section">
-                <div class="ws-type-label">어떤 회의인가요?</div>
-                <div class="ws-type-grid">
-                  <button class="ws-type-btn" onclick="wsPickType('주간 스탠드업', '스탠드업')">
-                    <span class="ws-type-icon">🔄</span>주간 스탠드업
+              <div class="ws-recent-section">
+                <div class="ws-section-hdr">
+                  <span class="ws-section-title">최근 자주 만든 회의</span>
+                  <span class="ws-section-sub">패턴 기반</span>
+                </div>
+
+                <button class="ws-recent-card" onclick="wsPickType('Q4 마케팅 전략 회의', '기획리뷰')">
+                  <div class="ws-recent-main">
+                    <div class="ws-recent-name">Q4 마케팅 전략 회의</div>
+                    <div class="ws-recent-meta">매주 화 · 오후 2시 · 60분</div>
+                  </div>
+                  <div class="ws-recent-right">
+                    <div class="ws-recent-avs">
+                      <span class="ws-recent-av" style="background:#5C6BC0;">정</span>
+                      <span class="ws-recent-av" style="background:#E67E22;">오</span>
+                      <span class="ws-recent-av" style="background:#27AE60;">김</span>
+                      <span class="ws-recent-av more">+1</span>
+                    </div>
+                  </div>
+                </button>
+
+                <button class="ws-recent-card" onclick="wsPickType('박민수 1:1', '1on1')">
+                  <div class="ws-recent-main">
+                    <div class="ws-recent-name">박민수와 1:1</div>
+                    <div class="ws-recent-meta">격주 목 · 오후 4시 · 30분</div>
+                  </div>
+                  <div class="ws-recent-right">
+                    <div class="ws-recent-avs">
+                      <span class="ws-recent-av" style="background:#FF8C42;">박</span>
+                    </div>
+                  </div>
+                </button>
+
+                <button class="ws-recent-card" onclick="wsPickType('팀 위클리', '팀회의')">
+                  <div class="ws-recent-main">
+                    <div class="ws-recent-name">팀 위클리</div>
+                    <div class="ws-recent-meta">매주 월 · 오전 10시 · 30분</div>
+                  </div>
+                  <div class="ws-recent-right">
+                    <div class="ws-recent-avs">
+                      <span class="ws-recent-av" style="background:#5C6BC0;">정</span>
+                      <span class="ws-recent-av" style="background:#27AE60;">김</span>
+                      <span class="ws-recent-av" style="background:#E84393;">이</span>
+                      <span class="ws-recent-av more">+2</span>
+                    </div>
+                  </div>
+                </button>
+
+                <div class="ws-other-types">
+                  <span class="ws-other-label">다른 유형</span>
+                  <button class="ws-other-chip" onclick="wsPickType('주간 스탠드업', '스탠드업')">스탠드업</button>
+                  <button class="ws-other-chip" onclick="wsPickType('캠페인 론칭 준비', '론칭')">론칭 준비</button>
+                  <button class="ws-other-chip" onclick="wsPickType('예산 검토 미팅', '의사결정')">의사결정</button>
+                  <button class="ws-other-chip" onclick="wsPickType('회고 미팅', '회고')">회고</button>
+                </div>
+              </div>
+            </div>
+
+            <!-- 상태 1.5: 자연어 입력 감지 → 통합 추천 카드 -->
+            <div id="wsSmartCard" class="ws-smart-card" style="display:none;">
+              <div class="ws-smart-loading" id="wsSmartLoading">
+                <div class="dp"><span></span><span></span><span></span></div>
+                <span>AI가 입력을 분석 중…</span>
+              </div>
+              <div class="ws-smart-content" id="wsSmartContent" style="display:none;">
+                <div class="ws-smart-hdr">
+                  <span class="ws-smart-title">✦ AI가 이렇게 이해했어요</span>
+                  <span class="ws-smart-conf">신뢰도 96%</span>
+                </div>
+
+                <div class="ws-smart-row">
+                  <div class="ws-smart-label">제목</div>
+                  <div class="ws-smart-value" id="wsSmartTitle">Q4 마케팅 전략 회의</div>
+                </div>
+                <div class="ws-smart-row">
+                  <div class="ws-smart-label">시간</div>
+                  <div class="ws-smart-value">
+                    <span id="wsSmartTime">5/4 (월) 오후 2:00 — 3:00</span>
+                    <span class="ws-smart-badge ok">✓ 전원 가능</span>
+                  </div>
+                </div>
+                <div class="ws-smart-row">
+                  <div class="ws-smart-label">참석자</div>
+                  <div class="ws-smart-value" id="wsSmartAtt">
+                    <span class="ws-smart-att-chip" style="--c:#5C6BC0;"><span class="ws-smart-av">정</span>정예지</span>
+                    <span class="ws-smart-att-chip" style="--c:#E67E22;"><span class="ws-smart-av">오</span>오항남</span>
+                    <span class="ws-smart-att-chip" style="--c:#27AE60;"><span class="ws-smart-av">김</span>김서윤</span>
+                    <span class="ws-smart-att-chip" style="--c:#E84393;"><span class="ws-smart-av">이</span>이준혁</span>
+                  </div>
+                </div>
+                <div class="ws-smart-row">
+                  <div class="ws-smart-label">아젠다</div>
+                  <div class="ws-smart-value">
+                    <ul class="ws-smart-agenda">
+                      <li>Q4 캠페인 진행 현황 리뷰 <span class="ws-smart-dur">15분</span></li>
+                      <li>채널별 예산 소진율 및 성과 점검 <span class="ws-smart-dur">20분</span></li>
+                      <li>론칭 크리에이티브 최종 확인 <span class="ws-smart-dur">15분</span></li>
+                      <li>액션 아이템 정리 <span class="ws-smart-dur">10분</span></li>
+                    </ul>
+                  </div>
+                </div>
+                <div class="ws-smart-row">
+                  <div class="ws-smart-label">참고</div>
+                  <div class="ws-smart-value">
+                    <span class="ws-smart-link">📎 Q4마케팅전략_위키.md</span>
+                  </div>
+                </div>
+
+                <div class="ws-smart-actions">
+                  <button class="ws-smart-apply-btn" onclick="wsApplyAllSuggestions()">
+                    <span>✦</span> 모두 적용하기
                   </button>
-                  <button class="ws-type-btn" onclick="wsPickType('Q4 마케팅 전략 회의', '기획리뷰')">
-                    <span class="ws-type-icon">📋</span>기획 리뷰
-                  </button>
-                  <button class="ws-type-btn" onclick="wsPickType('캠페인 론칭 준비', '론칭')">
-                    <span class="ws-type-icon">🚀</span>론칭 준비
-                  </button>
-                  <button class="ws-type-btn" onclick="wsPickType('예산 검토 미팅', '의사결정')">
-                    <span class="ws-type-icon">✅</span>의사결정
-                  </button>
-                  <button class="ws-type-btn" onclick="wsPickType('1:1 미팅', '1on1')">
-                    <span class="ws-type-icon">👥</span>1:1
-                  </button>
-                  <button class="ws-type-btn" onclick="wsPickType('위클리 팀 회의', '팀회의')">
-                    <span class="ws-type-icon">📅</span>팀 회의
-                  </button>
+                  <button class="ws-smart-edit-btn" onclick="wsCancelSmartCard()">직접 편집</button>
                 </div>
               </div>
             </div>
@@ -2000,24 +2328,15 @@
                 <div id="wsAgendaContent" style="display:none;">
                   <div class="prev-a-hdr">
                     <div class="prev-a-title">✦ 이전 회의 분석 완료</div>
-                    <div class="prev-a-date">2025. 10. 22 회의 기준</div>
+                    <div class="prev-a-date" id="wsAgendaPrevDate"></div>
                   </div>
-                  <div class="prev-a-summary">
-                    Q3 ROAS 하락 대응 → 소셜 예산 비중 상향 합의<br>
-                    캠페인 론칭 11/18 확정 · 리포팅 주기 매주 금요일로 변경<br>
-                    <span class="prev-wiki">📎 Q4마케팅전략_위키.md 참조됨</span>
-                  </div>
+                  <div class="prev-a-summary" id="wsAgendaSummary"></div>
                   <div class="agenda-box">
                     <div class="agenda-box-hdr">
-                      <div class="agenda-box-title"><span>✦</span> AI 아젠다 초안</div>
+                      <div class="agenda-box-title">AI 아젠다 초안</div>
                       <button class="agenda-edit-btn">✎ 편집</button>
                     </div>
-                    <div class="agenda-items">
-                      <div class="aitem"><div class="anum">1</div><div style="flex:1;">Q4 캠페인 진행 현황 리뷰 (10/22 회의 후속)</div><div class="adur">15분</div></div>
-                      <div class="aitem"><div class="anum">2</div><div style="flex:1;">채널별 예산 소진율 및 성과 점검</div><div class="adur">20분</div></div>
-                      <div class="aitem"><div class="anum">3</div><div style="flex:1;">론칭 크리에이티브 최종 확인 (이수진)</div><div class="adur">15분</div></div>
-                      <div class="aitem"><div class="anum">4</div><div style="flex:1;">액션 아이템 정리 및 다음 미팅 일정</div><div class="adur">10분</div></div>
-                    </div>
+                    <div class="agenda-items" id="wsAgendaItems"></div>
                   </div>
                 </div>
               </div>
@@ -2066,7 +2385,7 @@
             </div>
             <div class="agenda-box" style="margin-top:8px;">
               <div class="agenda-box-hdr">
-                <div class="agenda-box-title"><span>✦</span> AI 아젠다 초안</div>
+                <div class="agenda-box-title">AI 아젠다 초안</div>
                 <button class="agenda-edit-btn">✎ 편집</button>
               </div>
               <div class="agenda-items">
@@ -2195,79 +2514,98 @@
   <!-- ── Meeting detail overlay (Feature 3+4) ── -->
   <div class="overlay" id="meetingOverlay">
     <div class="modal mtg-detail">
-      <div class="modal-hdr">
-        <div>
-          <div class="mtg-tag">✦ AI 회의록 생성됨</div>
+
+      <!-- Top bar: title + meta + close -->
+      <div class="ws-action-cover">
+        <div class="mtg-hdr-info">
+          <div class="mtg-tag">AI 회의록 생성됨</div>
           <div class="mtg-title">Q4 마케팅 전략 회의</div>
           <div class="mtg-metas">
-            <span class="mtg-meta">📅 2025년 11월 5일 (수) 오전 11:00 — 12:00</span>
-            <span class="mtg-meta">👥 참석자 5명</span>
-            <span class="mtg-meta">⏱ 60분</span>
+            <span class="mtg-meta">
+              <svg width="14" height="14" viewBox="0 0 16 16" fill="none"><rect x="2" y="3" width="12" height="11" rx="1.5" stroke="currentColor" stroke-width="1.4"/><path d="M5 1v3M11 1v3M2 7h12" stroke="currentColor" stroke-width="1.4" stroke-linecap="round"/></svg>
+              2025년 11월 5일 (수) 오전 11:00 — 12:00
+            </span>
+            <span class="mtg-meta">
+              <svg width="14" height="14" viewBox="0 0 16 16" fill="none"><circle cx="6" cy="5" r="2.5" stroke="currentColor" stroke-width="1.4"/><circle cx="11" cy="5" r="2" stroke="currentColor" stroke-width="1.4"/><path d="M1 13c0-2.2 2-4 5-4s5 1.8 5 4" stroke="currentColor" stroke-width="1.4" stroke-linecap="round"/><path d="M13 13c0-1.4-.8-2.6-2-3.3" stroke="currentColor" stroke-width="1.4" stroke-linecap="round"/></svg>
+              참석자 5명
+            </span>
+            <span class="mtg-meta">
+              <svg width="14" height="14" viewBox="0 0 16 16" fill="none"><circle cx="8" cy="8" r="6" stroke="currentColor" stroke-width="1.4"/><path d="M8 5v3.5l2.5 1.5" stroke="currentColor" stroke-width="1.4" stroke-linecap="round"/></svg>
+              60분
+            </span>
           </div>
         </div>
-        <button class="modal-x" onclick="closeMeetingDetail()">✕</button>
+        <button class="ws-close-btn" onclick="closeMeetingDetail()" title="닫기">
+          <svg width="18" height="18" viewBox="0 0 18 18" fill="none"><path d="M4 4l10 10M14 4L4 14" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg>
+        </button>
       </div>
-      <div class="modal-body">
 
-        <!-- Feature 3: Meeting notes -->
-        <div class="notes-card">
-          <div class="notes-card-hdr">
-            <div class="notes-card-title"><span class="ai-bdg">AI</span>회의록 자동 생성 — Feature 3</div>
-            <div class="notes-btns">
-              <button class="notes-btn">✎ 편집</button>
-              <button class="notes-btn">공유</button>
+      <!-- 2-column body -->
+      <div class="ws-column-container">
+
+        <!-- LEFT: AI meeting notes -->
+        <div class="ws-schedule-cover">
+          <div class="notes-card">
+            <div class="notes-card-hdr">
+              <div class="notes-card-title"><span class="ai-bdg">AI</span>회의록 자동 생성 — Feature 3</div>
+              <div class="notes-btns">
+                <button class="notes-btn">편집</button>
+                <button class="notes-btn">공유</button>
+              </div>
             </div>
-          </div>
-          <div class="notes-body">
-            <div class="nsub">결정사항</div>
-            <div class="ntxt">
-              📌 Q4 총 마케팅 예산 1.8억 확정 (소셜 40%, 검색 35%, 디스플레이 25%)<br>
-              📌 11월 캠페인 론칭 일정 11/18(월)로 확정<br>
-              📌 퍼포먼스 리포팅 주기 매주 금요일로 변경
-            </div>
-            <div class="ndiv"></div>
-            <div class="nsub">참석자별 발화 요약</div>
-            <div class="spk-row">
-              <div class="spk-av" style="background:#4A85E8;">김</div>
-              <div class="spk-txt"><span class="spk-name">김지현</span> — Q3 대비 소셜 채널 ROAS 12% 하락, Q4에서 소셜 예산 비중 상향 제안. 캠페인 론칭 11/18로 제안 및 합의됨.</div>
-            </div>
-            <div class="spk-row">
-              <div class="spk-av" style="background:#FF8C42;">박</div>
-              <div class="spk-txt"><span class="spk-name">박민수</span> — Q3 리포트 공유, 검색 채널 안정적 성과로 예산 유지 권장. 리포팅 주기 매주 금요일 변경 제안.</div>
-            </div>
-            <div class="spk-row">
-              <div class="spk-av" style="background:#1ABC9C;">이</div>
-              <div class="spk-txt"><span class="spk-name">이수진</span> — 디스플레이 예산 축소 동의. 크리에이티브 소재 11/15까지 준비 완료 확인.</div>
+            <div class="notes-body">
+              <div class="nsub">결정사항</div>
+              <div class="ntxt">
+                · Q4 총 마케팅 예산 1.8억 확정 (소셜 40%, 검색 35%, 디스플레이 25%)<br>
+                · 11월 캠페인 론칭 일정 11/18(월)로 확정<br>
+                · 퍼포먼스 리포팅 주기 매주 금요일로 변경
+              </div>
+              <div class="ndiv"></div>
+              <div class="nsub">참석자별 발화 요약</div>
+              <div class="spk-row">
+                <div class="spk-av" style="background:#4A85E8;">김</div>
+                <div class="spk-txt"><span class="spk-name">김지현</span> — Q3 대비 소셜 채널 ROAS 12% 하락, Q4에서 소셜 예산 비중 상향 제안. 캠페인 론칭 11/18로 제안 및 합의됨.</div>
+              </div>
+              <div class="spk-row">
+                <div class="spk-av" style="background:#FF8C42;">박</div>
+                <div class="spk-txt"><span class="spk-name">박민수</span> — Q3 리포트 공유, 검색 채널 안정적 성과로 예산 유지 권장. 리포팅 주기 매주 금요일 변경 제안.</div>
+              </div>
+              <div class="spk-row">
+                <div class="spk-av" style="background:#1ABC9C;">이</div>
+                <div class="spk-txt"><span class="spk-name">이수진</span> — 디스플레이 예산 축소 동의. 크리에이티브 소재 11/15까지 준비 완료 확인.</div>
+              </div>
             </div>
           </div>
         </div>
 
-        <!-- Feature 4: Task follow-up -->
-        <div class="task-card">
-          <div class="task-card-hdr">
-            <div class="task-card-title"><span>📋</span> 액션 아이템 — Feature 4</div>
-            <button class="treg-btn" id="tregBtn" onclick="registerTasks()">✦ 게시판 태스크 등록</button>
-          </div>
-          <div class="reg-ok" id="regOk">✓ WORKS 게시판 업무 탭에 3개 태스크가 등록되었습니다.</div>
-          <div class="task-row">
-            <div class="tcb" onclick="toggleTask(this)"></div>
-            <div class="task-con">
-              <div class="task-t">소셜 채널 Q4 집행 계획서 작성</div>
-              <div class="task-m"><div class="tav" style="background:#4A85E8;">김</div>김지현 · <span class="tdl-red">11/12 (수) 마감</span></div>
+        <!-- RIGHT: Action items -->
+        <div class="mtg-right-col">
+          <div class="task-card">
+            <div class="task-card-hdr">
+              <div class="task-card-title">액션 아이템 — Feature 4</div>
+              <button class="treg-btn" id="tregBtn" onclick="registerTasks()">게시판 태스크 등록</button>
             </div>
-          </div>
-          <div class="task-row">
-            <div class="tcb" onclick="toggleTask(this)"></div>
-            <div class="task-con">
-              <div class="task-t">Q4 캠페인 크리에이티브 소재 제작 완료</div>
-              <div class="task-m"><div class="tav" style="background:#1ABC9C;">이</div>이수진 · <span class="tdl-red">11/15 (토) 마감</span></div>
+            <div class="reg-ok" id="regOk">WORKS 게시판 업무 탭에 3개 태스크가 등록되었습니다.</div>
+            <div class="task-row">
+              <div class="tcb" onclick="toggleTask(this)"></div>
+              <div class="task-con">
+                <div class="task-t">소셜 채널 Q4 집행 계획서 작성</div>
+                <div class="task-m"><div class="tav" style="background:#4A85E8;">김</div>김지현 · <span class="tdl-red">11/12 (수) 마감</span></div>
+              </div>
             </div>
-          </div>
-          <div class="task-row">
-            <div class="tcb" onclick="toggleTask(this)"></div>
-            <div class="task-con">
-              <div class="task-t">주간 리포팅 템플릿 업데이트 및 팀 공유</div>
-              <div class="task-m"><div class="tav" style="background:#FF8C42;">박</div>박민수 · <span style="color:var(--text-tertiary);">11/8 (금) 마감</span></div>
+            <div class="task-row">
+              <div class="tcb" onclick="toggleTask(this)"></div>
+              <div class="task-con">
+                <div class="task-t">Q4 캠페인 크리에이티브 소재 제작 완료</div>
+                <div class="task-m"><div class="tav" style="background:#1ABC9C;">이</div>이수진 · <span class="tdl-red">11/15 (토) 마감</span></div>
+              </div>
+            </div>
+            <div class="task-row">
+              <div class="tcb" onclick="toggleTask(this)"></div>
+              <div class="task-con">
+                <div class="task-t">주간 리포팅 템플릿 업데이트 및 팀 공유</div>
+                <div class="task-m"><div class="tav" style="background:#FF8C42;">박</div>박민수 · <span style="color:var(--text-tertiary);">11/8 (금) 마감</span></div>
+              </div>
             </div>
           </div>
         </div>
@@ -2300,15 +2638,85 @@
   }
 
   /* ── WORKS attendee panel + recommended slots ── */
-  let wsAttendees = [];
+  /* 인물 마스터 데이터 */
+  const WS_PEOPLE = {
+    '홍미학':   { nameEn: 'HONG MIHAK',    nick: '',         dept: 'AI Solution Design2 NAVER Cloud',  email: 'mihak.hong@navercorp.com',   isLeader: false, color: '#4A85E8' },
+    '정예지':   { nameEn: 'JEONG YEJI',    nick: '',         dept: 'AI Solution Design2 NAVER Cloud',  email: 'yeji.jeong@navercorp.com',   isLeader: false, color: '#5C6BC0' },
+    '김서윤':   { nameEn: 'KIM SEOYOON',   nick: '시오 seeo', dept: 'AI Solution Design2 NAVER Cloud',  email: 'seeo.kim@navercorp.com',     isLeader: false, color: '#27AE60' },
+    '이준혁':   { nameEn: 'LEE JUNHYUK',   nick: '',         dept: 'AI Solution Design2 NAVER Cloud',  email: 'junhyuk.lee@navercorp.com',  isLeader: false, color: '#E84393' },
+    '오항남':   { nameEn: 'Oh Hyangnam',   nick: '',         dept: 'AI Solution Design2 NAVER Cloud',  email: 'hyangnam.oh@navercorp.com',  isLeader: false, color: '#E67E22' },
+    '박민수':   { nameEn: 'PARK MINSU',    nick: '',         dept: 'Hyperscale AI Design2 NAVER Cloud', email: 'minsu.park@navercorp.com',   isLeader: false, color: '#FF8C42' },
+    '이수진':   { nameEn: 'LEE SUJIN',     nick: '',         dept: 'Brand Design Naver Inc.',          email: 'sujin.lee@navercorp.com',    isLeader: false, color: '#9B59B6' },
+    '조혜송':   { nameEn: 'CHO HAESONG',   nick: '',         dept: 'AI Core Service Dev NAVER Cloud',  email: 'haesong.cho@navercorp.com',  isLeader: false, color: '#16A085' },
+    '이하경':   { nameEn: 'Lee Ha Gyeong', nick: '',         dept: 'Hyperscale AI Planning3 NAVER Cloud', email: 'hagyeong.lee@navercorp.com', isLeader: false, color: '#3498DB' },
+    '심다혜':   { nameEn: 'Shim Dahye',    nick: '',         dept: 'SaaS Product Design1 NAVER Cloud', email: 'dahye.shim@navercorp.com',   isLeader: false, color: '#D81B60' },
+    '윤정순':   { nameEn: 'JUNGSOON YOON', nick: '',         dept: 'AI Solution Design1 NAVER Cloud',  email: 'soonjung.yoon@navercorp.com',isLeader: true,  color: '#7E57C2' },
+    '민유리':   { nameEn: 'Min Yuri',      nick: '',         dept: 'AI Solution Design1 NAVER Cloud',  email: 'yuri.min@navercorp.com',     isLeader: false, color: '#26A69A' },
+    '정정은':   { nameEn: 'Jung Jungeun',  nick: '',         dept: 'AI Solution Design2 NAVER Cloud',  email: 'wwd1209@navercorp.com',      isLeader: true,  color: '#5D4037' },
+  };
+
+  // 기본 주최자 (제거 불가)
+  let wsAttendees = [{ name: '홍미학', isOrganizer: true, isRequired: true }];
+
+  /* 참석자 검색 드롭다운 */
+  function wsRenderAttDropdown(query) {
+    const dd = document.getElementById('wsAttDropdown');
+    const q = (query || '').trim().toLowerCase();
+    const list = Object.entries(WS_PEOPLE)
+      .filter(([n]) => n !== '홍미학')
+      .filter(([n, p]) => {
+        if (!q) return true;
+        return n.toLowerCase().includes(q)
+          || p.nameEn.toLowerCase().includes(q)
+          || p.email.toLowerCase().includes(q)
+          || (p.nick && p.nick.toLowerCase().includes(q));
+      });
+    if (list.length === 0) {
+      dd.innerHTML = '<div class="ws-att-dd-empty">일치하는 결과가 없습니다.</div>';
+      return;
+    }
+    dd.innerHTML = list.map(([name, p]) => {
+      const safeName = name.replace(/'/g, "\\'");
+      const meta = `${p.dept} ${p.email}`;
+      const nick = p.nick ? `<span class="ws-att-dd-nick">[${p.nick}]</span>` : '';
+      const leader = p.isLeader ? `<span class="ws-att-dd-leader">Leader</span>` : '';
+      return `
+        <div class="ws-att-dd-row" onmousedown="event.preventDefault(); wsPickFromDropdown('${safeName}')">
+          <div class="ws-att-dd-main">
+            <strong>${name}</strong> <span class="ws-att-dd-en">${p.nameEn}</span> ${nick}${leader}
+            <span class="ws-att-dd-meta">${meta}</span>
+          </div>
+          <button class="ws-att-dd-x" onmousedown="event.preventDefault(); event.stopPropagation();" title="목록에서 제거">×</button>
+        </div>`;
+    }).join('');
+  }
+  function wsShowAttDropdown() {
+    wsRenderAttDropdown(document.getElementById('wsAttInput').value);
+    document.getElementById('wsAttDropdown').classList.add('on');
+  }
+  function wsHideAttDropdown() {
+    document.getElementById('wsAttDropdown').classList.remove('on');
+  }
+  function wsFilterAttDropdown(v) {
+    wsRenderAttDropdown(v);
+    document.getElementById('wsAttDropdown').classList.add('on');
+  }
+  function wsPickFromDropdown(name) {
+    const p = WS_PEOPLE[name];
+    if (!p) return;
+    wsAddAttendee(name, p.color, null);
+    document.getElementById('wsAttInput').value = '';
+    wsHideAttDropdown();
+  }
+
   function wsAddAttendee(name, color, chipEl) {
     if (wsAttendees.find(a => a.name === name)) return;
-    wsAttendees.push({ name, color });
+    wsAttendees.push({ name, color, isRequired: true });
     if (chipEl) chipEl.classList.add('added');
     renderWsAttendees();
   }
   function wsRemoveAttendee(name) {
-    wsAttendees = wsAttendees.filter(a => a.name !== name);
+    wsAttendees = wsAttendees.filter(a => !(a.name === name && !a.isOrganizer));
     document.querySelectorAll('.ws-sg-chip').forEach(el => {
       if (el.textContent.trim() === name) el.classList.remove('added');
     });
@@ -2317,13 +2725,43 @@
   function renderWsAttendees() {
     const wrap = document.getElementById('wsAttChips');
     if (!wrap) return;
-    wrap.innerHTML = wsAttendees.map(a => `
-      <span class="ws-att-chip">
-        <span class="ws-att-av" style="background:${a.color};">${a.name[0]}</span>
-        <span class="ws-att-name">${a.name}</span>
-        <button class="ws-att-x" onclick="wsRemoveAttendee('${a.name}')">×</button>
-      </span>`).join('');
-    const hasAny = wsAttendees.length > 0;
+
+    if (wsAttendees.length === 0) {
+      wrap.innerHTML = '';
+    } else {
+      const cards = wsAttendees.map(a => {
+        const p = WS_PEOPLE[a.name] || { nameEn: '', dept: '', color: a.color || '#999' };
+        const initial = a.name[0];
+        const removeBtn = a.isOrganizer
+          ? `<span class="ws-att-organizer" title="주최자">M</span>`
+          : `<button class="ws-att-card-x" onclick="wsRemoveAttendee('${a.name}')" title="제거">×</button>`;
+        return `
+          <div class="ws-att-card">
+            <button class="ws-att-required" type="button" title="필수/선택 토글">필수</button>
+            <span class="ws-att-photo" style="background:${p.color};">${initial}</span>
+            <div class="ws-att-info">
+              <div class="ws-att-name-row"><strong>${a.name}</strong> <span class="ws-att-name-en">${p.nameEn}</span></div>
+              <div class="ws-att-dept">${p.dept}</div>
+            </div>
+            ${removeBtn}
+          </div>`;
+      }).join('');
+
+      wrap.innerHTML = `
+        <div class="ws-att-grid">${cards}</div>
+        <div class="ws-att-footer">
+          <div class="ws-att-footer-l">
+            <span class="ws-att-foot-lbl">수정 권한 <span class="ws-att-q">?</span></span>
+            <button type="button" class="lw_btn_drop ws-att-foot-drop">다른 참석자 초대</button>
+          </div>
+          <div class="ws-att-footer-r">
+            <label class="ws-att-foot-chk"><input type="checkbox"> 응답 알림 받지 않기 <span class="ws-att-q">?</span></label>
+            <span class="ws-att-foot-count">전체 <strong>${wsAttendees.length}</strong>명</span>
+          </div>
+        </div>`;
+    }
+
+    const hasAny = wsAttendees.length > 1; // 주최자 외 참석자가 있는지
     const titleFilled = !!document.getElementById('eventTitle').value.trim();
     document.getElementById('wsDefaultPanel').style.display = (hasAny || titleFilled) ? 'none' : 'flex';
     document.getElementById('wsRecoEmpty').style.display = (!hasAny && titleFilled) ? 'flex' : 'none';
@@ -2331,6 +2769,8 @@
     const partEl = document.getElementById('wsPartCount');
     if (partEl) partEl.textContent = Math.max(1, wsAttendees.length - 1) + '명 가능';
   }
+  // 초기 렌더 (주최자 카드 표시)
+  document.addEventListener('DOMContentLoaded', () => renderWsAttendees());
   function wsPickSlot(el, start, end) {
     document.querySelectorAll('.ws-slot-item').forEach(n => n.classList.remove('sel'));
     el.classList.add('sel');
@@ -2344,21 +2784,85 @@
     document.getElementById('keywordRow').classList.add('show');
   }
 
+  /* 프로젝트 마스터 데이터 */
+  const WS_PROJECTS = {
+    'design':       { name: 'AI Solution 디자인팀', members: [
+                       { name:'정예지', color:'#5C6BC0' }, { name:'김서윤', color:'#27AE60' },
+                       { name:'이준혁', color:'#E84393' }, { name:'오항남', color:'#E67E22' } ] },
+    'q4mkt':        { name: 'Q4 마케팅 프로젝트', members: [
+                       { name:'정예지', color:'#5C6BC0' }, { name:'박민수', color:'#FF8C42' },
+                       { name:'김서윤', color:'#27AE60' }, { name:'이수진', color:'#9B59B6' },
+                       { name:'오항남', color:'#E67E22' } ] },
+    'launch':       { name: '캠페인 론칭 TF', members: [
+                       { name:'정예지', color:'#5C6BC0' }, { name:'이수진', color:'#9B59B6' },
+                       { name:'오항남', color:'#E67E22' } ] },
+    'rebrand':      { name: '브랜드 리뉴얼 TF', members: [
+                       { name:'김서윤', color:'#27AE60' }, { name:'이준혁', color:'#E84393' },
+                       { name:'정예지', color:'#5C6BC0' } ] },
+    'budget':       { name: '예산 검토 TF', members: [
+                       { name:'박민수', color:'#FF8C42' }, { name:'오항남', color:'#E67E22' },
+                       { name:'정예지', color:'#5C6BC0' } ] },
+    'pm1on1':       { name: '박민수와 1:1', members: [
+                       { name:'박민수', color:'#FF8C42' } ] },
+  };
+
+  /* 회의 유형 → 추천 프로젝트 후보 (3-4개) */
+  const WS_TYPE_TO_PROJECTS = {
+    '기획리뷰':  ['q4mkt', 'design', 'rebrand', 'launch'],
+    '팀회의':    ['design', 'q4mkt', 'rebrand'],
+    '스탠드업':  ['design', 'q4mkt'],
+    '론칭':      ['launch', 'q4mkt', 'design'],
+    '의사결정':  ['budget', 'q4mkt', 'launch'],
+    '회고':      ['design', 'rebrand', 'q4mkt'],
+    '1on1':      ['pm1on1'],
+  };
+
+  function wsRenderAttSuggest(typeKey) {
+    const projectIds = WS_TYPE_TO_PROJECTS[typeKey] || ['q4mkt', 'design', 'rebrand'];
+    const wrap = document.getElementById('wsAttChipsWrap');
+    const projectLabel = document.getElementById('wsAttProject');
+    projectLabel.style.display = 'none';
+
+    wrap.innerHTML = projectIds.map(pid => {
+      const p = WS_PROJECTS[pid];
+      if (!p) return '';
+      const tooltipHtml = p.members.map(m =>
+        `<div class="ws-proj-tt-row"><span class="ws-proj-tt-av" style="background:${m.color};">${m.name[0]}</span>${m.name}</div>`
+      ).join('');
+      return `<button type="button" class="ws-proj-chip" onclick='wsApplyProject(${JSON.stringify(p.members)})'>
+        <span class="ws-proj-name">${p.name}</span>
+        <span class="ws-proj-count">+${p.members.length}</span>
+        <div class="ws-proj-tt">
+          <div class="ws-proj-tt-hdr">${p.name} · ${p.members.length}명</div>
+          ${tooltipHtml}
+        </div>
+      </button>`;
+    }).join('');
+  }
+
+  function wsApplyProject(members) {
+    members.forEach(m => wsAddAttendee(m.name, m.color, null));
+  }
+
   function wsPickType(title, typeKey) {
     // 제목 입력
     const input = document.getElementById('eventTitle');
     input.value = title;
     document.getElementById('keywordRow').classList.add('show');
+    document.getElementById('wsAttSuggest').style.display = 'flex';
     try { document.querySelector('.btn-save').classList.add('active'); } catch(e) {}
+
+    // 프로젝트별 참석자 그룹 로드
+    wsRenderAttSuggest(typeKey);
 
     // 버튼 active
     document.querySelectorAll('.ws-type-btn').forEach(b => b.classList.remove('active'));
-    event.currentTarget.classList.add('active');
+    if (event && event.currentTarget) event.currentTarget.classList.add('active');
 
     // 기본 패널 숨기고 아젠다 표시
     document.getElementById('wsDefaultPanel').style.display = 'none';
     document.getElementById('wsRecoEmpty').style.display = 'none';
-    showWsAgenda();
+    showWsAgenda(typeKey);
   }
 
   function closeNewEvent() {
@@ -2372,40 +2876,255 @@
   }
 
   /* ── Title & Keywords ── */
+  let wsNlpDebounce = null;
+  let wsApplying = false;
   function onTitleInput(val) {
+    if (wsApplying) return;
     document.getElementById('keywordRow').classList.add('show');
     try { document.querySelector('.btn-save').classList.toggle('active', !!val.trim()); } catch(e) {}
-    if (val.trim()) {
-      document.getElementById('wsDefaultPanel').style.display = 'none';
-      document.getElementById('wsRecoEmpty').style.display = 'flex';
-    } else {
-      document.getElementById('wsDefaultPanel').style.display = 'flex';
-      document.getElementById('wsRecoEmpty').style.display = 'none';
+
+    const v = val.trim();
+    const dPanel = document.getElementById('wsDefaultPanel');
+
+    const sg = document.getElementById('wsAttSuggest');
+    sg.style.display = v ? 'flex' : 'none';
+    if (v && !document.getElementById('wsAttChipsWrap').innerHTML) {
+      wsRenderAttSuggest('기획리뷰');
     }
-    const triggers = ['마케팅', '전략', '캠페인', '예산', '론칭', '스탠드업', '미팅', '회의', '준비', '검토'];
-    if (triggers.some(k => val.includes(k))) showWsAgenda();
+
+    if (!v) {
+      dPanel.style.display = 'flex';
+      document.getElementById('wsRecoEmpty').style.display = 'none';
+      hideSmartCard();
+      return;
+    }
+
+    // 자연어 패턴 감지 (시간/요일/숫자 + 의미어)
+    const timePat = /(월|화|수|목|금|토|일|오전|오후|아침|저녁|내일|모레|다음\s*주|이번\s*주|\d+시|\d+분)/;
+    const semPat = /(회의|미팅|리뷰|스탠드업|론칭|준비|검토|기획|보고|회고)/;
+    const isNL = timePat.test(v) && semPat.test(v) && v.length >= 10;
+
+    if (isNL) {
+      dPanel.style.display = 'none';
+      document.getElementById('wsRecoEmpty').style.display = 'none';
+      clearTimeout(wsNlpDebounce);
+      wsNlpDebounce = setTimeout(() => showSmartCard(), 600);
+    } else {
+      hideSmartCard();
+      dPanel.style.display = 'none';
+      document.getElementById('wsRecoEmpty').style.display = 'flex';
+      const triggers = ['마케팅', '전략', '캠페인', '예산', '론칭', '스탠드업', '미팅', '회의', '준비', '검토'];
+      if (triggers.some(k => v.includes(k))) showWsAgenda();
+    }
   }
+
+  let wsSmartShown = false;
+  function showSmartCard() {
+    const card = document.getElementById('wsSmartCard');
+    card.style.display = 'block';
+    document.getElementById('wsSmartLoading').style.display = 'flex';
+    document.getElementById('wsSmartContent').style.display = 'none';
+    if (wsSmartShown) return;
+    wsSmartShown = true;
+    setTimeout(() => {
+      document.getElementById('wsSmartLoading').style.display = 'none';
+      document.getElementById('wsSmartContent').style.display = 'block';
+    }, 1200);
+  }
+  function hideSmartCard() {
+    document.getElementById('wsSmartCard').style.display = 'none';
+    wsSmartShown = false;
+  }
+  function wsCancelSmartCard() {
+    hideSmartCard();
+    document.getElementById('wsRecoEmpty').style.display = 'flex';
+  }
+
+  /* ── Apply all AI suggestions with typing animation ── */
+  async function wsApplyAllSuggestions() {
+    wsApplying = true;
+    const btn = document.querySelector('.ws-smart-apply-btn');
+    btn.disabled = true; btn.innerHTML = '<span>✦</span> 적용 중…';
+
+    // 1. 제목 (이미 입력되어 있으면 정제, 없으면 타이핑)
+    const titleInput = document.getElementById('eventTitle');
+    titleInput.classList.add('ws-flash');
+    await wsTypeText(titleInput, 'Q4 마케팅 전략 회의', 35);
+    await wsSleep(200);
+
+    // 2. 참석자 순차 추가
+    const attBlock = document.querySelector('.ws-item-cover dt[title="참석자"]').closest('.ws-item-cover');
+    attBlock.classList.add('ws-flash');
+    const atts = [['정예지','#5C6BC0'],['오항남','#E67E22'],['김서윤','#27AE60'],['이준혁','#E84393']];
+    for (const [n, c] of atts) {
+      wsAddAttendee(n, c, document.querySelector(`.ws-sg-chip[onclick*="${n}"]`));
+      await wsSleep(180);
+    }
+    await wsSleep(200);
+
+    // 3. 위키 링크
+    const wikiInput = document.getElementById('wsWikiInput');
+    wikiInput.closest('.ws-item-cover').classList.add('ws-flash');
+    await wsTypeText(wikiInput, 'works.naver.com/wiki/Q4마케팅전략', 25);
+    wsAddWiki();
+    await wsSleep(200);
+
+    // 4. 아젠다 패널 표시
+    showWsAgenda();
+    await wsSleep(400);
+
+    // 카드 숨기고 추천 슬롯 표시
+    hideSmartCard();
+    btn.disabled = false; btn.innerHTML = '<span>✦</span> 모두 적용하기';
+    wsApplying = false;
+
+    // flash 클래스 정리
+    setTimeout(() => {
+      document.querySelectorAll('.ws-flash').forEach(el => el.classList.remove('ws-flash'));
+    }, 1000);
+  }
+
+  function wsSleep(ms) { return new Promise(r => setTimeout(r, ms)); }
+  async function wsTypeText(el, text, speed = 30) {
+    el.value = '';
+    el.focus();
+    for (const ch of text) {
+      el.value += ch;
+      el.dispatchEvent(new Event('input', { bubbles: true }));
+      await wsSleep(speed);
+    }
+  }
+
+  /* 키워드 → 회의 유형 매핑 */
+  const WS_KEYWORD_TO_TYPE = {
+    'Q4 마케팅 전략 회의': '기획리뷰',
+    '캠페인 론칭 준비':    '론칭',
+    '예산 검토 미팅':      '의사결정',
+    '주간 스탠드업':       '스탠드업',
+  };
 
   function setKeyword(keyword) {
     const t = document.getElementById('eventTitle');
     t.value = keyword;
-    document.querySelector('.btn-save').classList.add('active');
-    const cont = ['Q4 마케팅 전략 회의', '캠페인 론칭 준비', '예산 검토 미팅'];
-    if (cont.includes(keyword)) showWsAgenda();
+    try { document.querySelector('.btn-save').classList.add('active'); } catch(e) {}
+
+    // 키워드 칩 active 상태 표시
+    document.querySelectorAll('#keywordRow .kwchip').forEach(b => b.classList.remove('active'));
+    if (event && event.currentTarget) event.currentTarget.classList.add('active');
+
+    const typeKey = WS_KEYWORD_TO_TYPE[keyword];
+    if (typeKey) {
+      // 프로젝트별 참석자 추천 칩 노출
+      document.getElementById('wsAttSuggest').style.display = 'flex';
+      wsRenderAttSuggest(typeKey);
+      // 우측 패널 콘텐츠 전환
+      document.getElementById('wsDefaultPanel').style.display = 'none';
+      document.getElementById('wsRecoEmpty').style.display = 'none';
+      showWsAgenda(typeKey);
+    }
   }
 
-  let wsAgendaShown = false;
-  function showWsAgenda() {
-    if (wsAgendaShown) return;
-    wsAgendaShown = true;
+  /* 회의 유형별 아젠다/이전 분석 데이터 */
+  const WS_AGENDAS = {
+    '기획리뷰': {
+      prevDate: '2025. 10. 22 회의 기준',
+      summary: 'Q3 ROAS 하락 대응 → 소셜 예산 비중 상향 합의<br>캠페인 론칭 11/18 확정 · 리포팅 주기 매주 금요일로 변경',
+      wiki: 'Q4마케팅전략_위키.md',
+      items: [
+        ['Q4 캠페인 진행 현황 리뷰 (10/22 회의 후속)', '15분'],
+        ['채널별 예산 소진율 및 성과 점검', '20분'],
+        ['론칭 크리에이티브 최종 확인 (이수진)', '15분'],
+        ['액션 아이템 정리 및 다음 미팅 일정', '10분'],
+      ]
+    },
+    '1on1': {
+      prevDate: '2025. 10. 14 1:1 기준',
+      summary: '주간 업무 공유 + 커리어 방향성 논의<br>UI 시스템 학습 계획 수립, 11월부터 2주마다 진행',
+      wiki: '박민수_1on1_노트.md',
+      items: [
+        ['지난 2주 업무 회고 및 성과', '10분'],
+        ['현재 블로커 / 도움 필요 영역', '10분'],
+        ['커리어 목표 점검 및 학습 진행 상황', '10분'],
+      ]
+    },
+    '팀회의': {
+      prevDate: '2025. 10. 20 팀 위클리 기준',
+      summary: '디자인 시스템 v2 마이그레이션 일정 합의<br>QA 핸드오프 프로세스 개선안 발의',
+      wiki: '디자인팀_위클리_노트.md',
+      items: [
+        ['프로젝트 진행 상황 공유 (각 5분)', '20분'],
+        ['디자인 시스템 v2 마이그레이션 점검', '15분'],
+        ['QA 핸드오프 프로세스 개선', '15분'],
+        ['공지 사항 및 다음 주 우선순위', '10분'],
+      ]
+    },
+    '스탠드업': {
+      prevDate: '어제 스탠드업 기준',
+      summary: '레거시 캘린더 리뉴얼 진행 중 (디자인 70%)<br>QA 이슈 3건 우선 처리 결정',
+      wiki: '데일리_스탠드업_보드.md',
+      items: [
+        ['어제 한 일 (각자 1분)', '5분'],
+        ['오늘 할 일 / 블로커', '10분'],
+        ['도움이 필요한 부분 공유', '5분'],
+      ]
+    },
+    '론칭': {
+      prevDate: '2025. 10. 25 TF 회의 기준',
+      summary: '크리에이티브 최종안 확정 · 미디어 플랜 OK<br>론칭 D-7, 트래픽 모니터링 셋업 필요',
+      wiki: '캠페인_론칭_체크리스트.md',
+      items: [
+        ['론칭 체크리스트 점검 (D-7)', '15분'],
+        ['미디어 채널별 노출 일정 확정', '15분'],
+        ['트래픽 모니터링 / 인시던트 대응 계획', '15분'],
+        ['역할 분담 및 비상 연락망 확정', '10분'],
+      ]
+    },
+    '의사결정': {
+      prevDate: '2025. 10. 18 예산 회의 기준',
+      summary: '월간 예산 한도 재산정 안건 보류<br>채널별 ROI 비교 데이터 보완 필요',
+      wiki: '예산_검토_데이터셋.md',
+      items: [
+        ['채널별 ROI 비교 (보완 데이터)', '15분'],
+        ['예산 재배분 시나리오 3안 검토', '20분'],
+        ['최종 안 의결 및 승인', '15분'],
+      ]
+    },
+    '회고': {
+      prevDate: '직전 스프린트 기준',
+      summary: '디자인-개발 핸드오프 마찰 이슈 다수 보고<br>코멘트 컨벤션 도입 후 효과 측정 필요',
+      wiki: '스프린트_회고_보드.md',
+      items: [
+        ['Keep — 잘한 점 공유', '15분'],
+        ['Problem — 어려웠던 점', '15분'],
+        ['Try — 다음 스프린트 액션 아이템', '15분'],
+        ['액션 아이템 담당 및 마감일 확정', '10분'],
+      ]
+    },
+  };
+
+  let wsCurrentType = '기획리뷰';
+  let wsAgendaTimer = null;
+  function showWsAgenda(typeKey) {
+    if (typeKey) wsCurrentType = typeKey;
+    const data = WS_AGENDAS[wsCurrentType] || WS_AGENDAS['기획리뷰'];
+
+    // 콘텐츠 채우기
+    document.getElementById('wsAgendaPrevDate').textContent = data.prevDate;
+    document.getElementById('wsAgendaSummary').innerHTML =
+      `${data.summary}<br><span class="prev-wiki">📎 ${data.wiki} 참조됨</span>`;
+    document.getElementById('wsAgendaItems').innerHTML = data.items.map((it, i) =>
+      `<div class="aitem"><div class="anum">${i+1}</div><div style="flex:1;">${it[0]}</div><div class="adur">${it[1]}</div></div>`
+    ).join('');
+
     const sec = document.getElementById('wsAgendaSection');
     sec.style.display = 'block';
     document.getElementById('wsAgendaLoading').style.display = 'flex';
     document.getElementById('wsAgendaContent').style.display = 'none';
-    setTimeout(() => {
+    if (wsAgendaTimer) clearTimeout(wsAgendaTimer);
+    wsAgendaTimer = setTimeout(() => {
       document.getElementById('wsAgendaLoading').style.display = 'none';
       document.getElementById('wsAgendaContent').style.display = 'block';
-    }, 1800);
+    }, 1200);
   }
 
   /* ── Wiki links ── */
