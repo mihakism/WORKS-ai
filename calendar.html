@@ -2061,74 +2061,6 @@
               </dd>
             </div>
 
-            <!-- Security -->
-            <div class="ws-item-cover">
-              <dt title="공개"><span class="item_title_security"></span></dt>
-              <dd>
-                <div>
-                  <span class="ws-radio-cover">
-                    <input type="radio" id="cal_public" class="lw_radio" name="cal_public" value="PUBLIC" checked>
-                    <label for="cal_public">공개</label>
-                  </span>
-                  <span class="ws-radio-cover">
-                    <input type="radio" id="cal_private" class="lw_radio" name="cal_public" value="PRIVATE">
-                    <label for="cal_private">비공개</label>
-                  </span>
-                </div>
-              </dd>
-            </div>
-
-            <!-- My settings section -->
-            <div class="ws-section-title">내 설정
-              <span style="font-size:11px; color:#868A8F; font-weight:400;">ⓘ 내 일정에만 적용됩니다</span>
-            </div>
-
-            <!-- Category -->
-            <div class="ws-item-cover">
-              <dt title="범주"><span class="item_title_category"></span></dt>
-              <dd>
-                <div class="ws-input-cover multiple">
-                  <button type="button" class="lw_btn_drop">범주 없음</button>
-                  <button type="button" class="lw_btn">범주 수정</button>
-                </div>
-              </dd>
-            </div>
-
-            <!-- Notify -->
-            <div class="ws-item-cover">
-              <dt title="알림"><span class="item_title_notify"></span></dt>
-              <dd>
-                <div class="ws-input-cover multiple">
-                  <button type="button" class="lw_btn_drop">10분 전</button>
-                  <span class="ws-radio-cover">
-                    <input type="radio" id="notify_push" name="notify_type" class="lw_radio" checked>
-                    <label for="notify_push">서비스 알림</label>
-                  </span>
-                  <span class="ws-radio-cover">
-                    <input type="radio" id="notify_mail" name="notify_type" class="lw_radio">
-                    <label for="notify_mail">메일 알림</label>
-                  </span>
-                </div>
-                <button type="button" class="lw_btn" style="margin-top:8px; background:transparent; border:0; color:#0C64E0; padding:4px 0; height:auto;">+ 알림 추가</button>
-              </dd>
-            </div>
-
-            <!-- Status -->
-            <div class="ws-item-cover">
-              <dt title="상태"><span class="item_title_status"></span></dt>
-              <dd>
-                <div>
-                  <span class="ws-radio-cover">
-                    <input type="radio" id="status_busy" name="status" class="lw_radio" checked>
-                    <label for="status_busy">바쁨</label>
-                  </span>
-                  <span class="ws-radio-cover">
-                    <input type="radio" id="status_free" name="status" class="lw_radio">
-                    <label for="status_free">한가함</label>
-                  </span>
-                </div>
-              </dd>
-            </div>
 
           </dl>
         </div>
@@ -2852,30 +2784,31 @@
     oneon1: { title: '박민수 1:1', typeKey: '1on1', members: ['박민수'] },
   };
 
-  function wsPickContinue(key) {
-    const d = WS_CONTINUE[key];
-    if (!d) return;
-    const titleEl = document.getElementById('scheduleTitle');
-    if (titleEl) titleEl.value = d.title;
-    wsCurrentType = d.typeKey;
-    wsAttendeesData = [];
-    d.members.forEach(name => { const p = WS_PEOPLE.find(x=>x.name===name); if(p) wsAttendeesData.push(p); });
+  function _wsLoadMeeting(title, typeKey, members) {
+    document.getElementById('eventTitle').value = title;
+    wsCurrentType = typeKey;
+    wsAttendees = [{ name: '홍미학', isOrganizer: true, isRequired: true }];
+    members.forEach(name => {
+      if (WS_PEOPLE[name] && !wsAttendees.find(a => a.name === name))
+        wsAttendees.push({ name, isRequired: true });
+    });
     renderWsAttendees();
-    showWsAgenda(d.typeKey);
+    document.getElementById('keywordRow').classList.add('show');
+    document.getElementById('wsAttSuggest').style.display = 'flex';
+    wsRenderAttSuggest(typeKey);
+    showWsAgenda(typeKey);
     document.getElementById('wsDefaultPanel').style.display = 'none';
+    document.getElementById('wsRecoEmpty').style.display = 'none';
+  }
+
+  function wsPickContinue(key) {
+    const d = WS_CONTINUE[key]; if (!d) return;
+    _wsLoadMeeting(d.title, d.typeKey, d.members);
   }
 
   function wsPickTemplate(key) {
-    const d = WS_TEMPLATES[key];
-    if (!d) return;
-    const titleEl = document.getElementById('scheduleTitle');
-    if (titleEl) titleEl.value = d.title;
-    wsCurrentType = d.typeKey;
-    wsAttendeesData = [];
-    d.members.forEach(name => { const p = WS_PEOPLE.find(x=>x.name===name); if(p) wsAttendeesData.push(p); });
-    renderWsAttendees();
-    showWsAgenda(d.typeKey);
-    document.getElementById('wsDefaultPanel').style.display = 'none';
+    const d = WS_TEMPLATES[key]; if (!d) return;
+    _wsLoadMeeting(d.title, d.typeKey, d.members);
   }
 
   function wsPickType(title, typeKey) {
