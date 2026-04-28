@@ -1471,6 +1471,26 @@
     .tl-sel { position: absolute; height: 100%; background: rgba(21,126,251,0.25); border: 1.5px solid var(--blue); border-radius: 2px; }
 
     .free-notes { padding: 10px 14px; font-size: 10px; color: var(--text-tertiary); line-height: 1.8; border-top: 1px solid var(--border); background: white; flex-shrink: 0; }
+
+    .ws-panel-section { margin-bottom: 20px; }
+    .ws-panel-section-title { font-size: 11px; font-weight: 700; color: var(--text-tertiary); letter-spacing: 0.04em; margin-bottom: 8px; text-transform: uppercase; }
+    .ws-cont-card {
+      display: flex; align-items: center; gap: 10px;
+      background: #F2F3F5; border: none; outline: none; border-radius: 10px;
+      padding: 10px 12px; cursor: pointer; font-family: inherit; text-align: left;
+      width: 100%; margin-bottom: 6px; transition: background .15s;
+    }
+    .ws-cont-card:last-child { margin-bottom: 0; }
+    .ws-cont-card:hover { background: #EAECF0; }
+    .ws-cont-main { flex: 1; min-width: 0; }
+    .ws-cont-name { font-size: 13px; font-weight: 600; color: var(--text-primary); margin-bottom: 2px; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+    .ws-cont-date { font-size: 11px; color: var(--text-tertiary); display: flex; align-items: center; gap: 4px; }
+    .ws-cont-date::before { content: '↩'; font-size: 10px; }
+    .ws-cont-meta { font-size: 11px; color: var(--text-tertiary); }
+    .ws-cont-avs { display: flex; align-items: center; }
+    .ws-cont-av { width: 22px; height: 22px; border-radius: 50%; color: white; font-size: 9px; font-weight: 700; display: flex; align-items: center; justify-content: center; margin-left: -5px; border: 2px solid #F2F3F5; flex-shrink: 0; }
+    .ws-cont-av:first-child { margin-left: 0; }
+    .ws-cont-av.more { background: #E0E3E8; color: #4A4F55; font-size: 8px; }
   </style>
 </head>
 <body>
@@ -2118,93 +2138,81 @@
           <div class="ws-reco-cover">
             <!-- 상태 1: 기본 (제목 입력 전) -->
             <div id="wsDefaultPanel" class="ws-ai-default">
-              <div class="ws-today-block">
-                <div class="ws-section-hdr">
-                  <span class="ws-section-title">오늘 일정 현황</span>
-                  <span class="ws-section-sub">4월 27일 (월)</span>
-                </div>
-                <div class="ws-today-summary">
-                <div class="ws-today-track">
-                  <div class="ws-track-row">
-                    <span class="ws-track-label">오전</span>
-                    <div class="ws-track-bar">
-                      <div class="ws-track-block" style="left:20%;width:25%;" title="팀 스탠드업 10:00"></div>
-                    </div>
-                    <span class="ws-track-count">1개</span>
+              <!-- 이어 잡기 -->
+              <div class="ws-panel-section">
+                <div class="ws-panel-section-title">이어 잡기</div>
+                <button class="ws-cont-card" onclick="wsPickContinue('q4')">
+                  <div class="ws-cont-main">
+                    <div class="ws-cont-name">Q4 마케팅 전략 회의</div>
+                    <div class="ws-cont-date">4월 24일 (목)</div>
                   </div>
-                  <div class="ws-track-row">
-                    <span class="ws-track-label">오후</span>
-                    <div class="ws-track-bar">
-                      <div class="ws-track-block" style="left:10%;width:30%;" title="디자인 리뷰 13:00"></div>
-                      <div class="ws-track-block busy" style="left:55%;width:25%;" title="주간 보고 15:30"></div>
-                    </div>
-                    <span class="ws-track-count">2개</span>
+                  <div class="ws-cont-avs">
+                    <span class="ws-cont-av" style="background:#5C6BC0;">정</span>
+                    <span class="ws-cont-av" style="background:#E67E22;">오</span>
+                    <span class="ws-cont-av" style="background:#27AE60;">김</span>
+                    <span class="ws-cont-av" style="background:#E84393;">이</span>
                   </div>
-                  <div class="ws-track-row">
-                    <span class="ws-track-label">저녁</span>
-                    <div class="ws-track-bar empty"></div>
-                    <span class="ws-track-count free">여유</span>
+                </button>
+                <button class="ws-cont-card" onclick="wsPickContinue('ai')">
+                  <div class="ws-cont-main">
+                    <div class="ws-cont-name">AI Solution 디자인팀 위클리</div>
+                    <div class="ws-cont-date">4월 23일 (수)</div>
                   </div>
-                </div>
-                <p class="ws-today-hint">✦ 오전 11시 이후 또는 저녁 시간대 추천</p>
-                </div>
+                  <div class="ws-cont-avs">
+                    <span class="ws-cont-av" style="background:#FF8C42;">박</span>
+                    <span class="ws-cont-av" style="background:#26C6DA;">최</span>
+                    <span class="ws-cont-av" style="background:#AB47BC;">한</span>
+                  </div>
+                </button>
+                <button class="ws-cont-card" onclick="wsPickContinue('brand')">
+                  <div class="ws-cont-main">
+                    <div class="ws-cont-name">브랜드 리뉴얼 TF</div>
+                    <div class="ws-cont-date">4월 21일 (월)</div>
+                  </div>
+                  <div class="ws-cont-avs">
+                    <span class="ws-cont-av" style="background:#5C6BC0;">정</span>
+                    <span class="ws-cont-av" style="background:#E84393;">이</span>
+                  </div>
+                </button>
               </div>
 
-              <div class="ws-recent-section">
-                <div class="ws-section-hdr">
-                  <span class="ws-section-title">최근 자주 만든 회의</span>
-                  <span class="ws-section-sub">패턴 기반</span>
-                </div>
-
-                <button class="ws-recent-card" onclick="wsPickType('Q4 마케팅 전략 회의', '기획리뷰')">
-                  <div class="ws-recent-main">
-                    <div class="ws-recent-name">Q4 마케팅 전략 회의</div>
-                    <div class="ws-recent-meta">매주 화 · 오후 2시 · 60분</div>
+              <!-- 정규 회의 -->
+              <div class="ws-panel-section">
+                <div class="ws-panel-section-title">정규 회의</div>
+                <button class="ws-cont-card" onclick="wsPickTemplate('standup')">
+                  <div class="ws-cont-main">
+                    <div class="ws-cont-name">팀 스탠드업</div>
+                    <div class="ws-cont-meta">매일 오전 10:00 · 15분</div>
                   </div>
-                  <div class="ws-recent-right">
-                    <div class="ws-recent-avs">
-                      <span class="ws-recent-av" style="background:#5C6BC0;">정</span>
-                      <span class="ws-recent-av" style="background:#E67E22;">오</span>
-                      <span class="ws-recent-av" style="background:#27AE60;">김</span>
-                      <span class="ws-recent-av more">+1</span>
-                    </div>
+                  <div class="ws-cont-avs">
+                    <span class="ws-cont-av" style="background:#5C6BC0;">정</span>
+                    <span class="ws-cont-av" style="background:#27AE60;">김</span>
+                    <span class="ws-cont-av" style="background:#E84393;">이</span>
+                    <span class="ws-cont-av" style="background:#FF8C42;">박</span>
                   </div>
                 </button>
-
-                <button class="ws-recent-card" onclick="wsPickType('박민수 1:1', '1on1')">
-                  <div class="ws-recent-main">
-                    <div class="ws-recent-name">박민수와 1:1</div>
-                    <div class="ws-recent-meta">격주 목 · 오후 4시 · 30분</div>
+                <button class="ws-cont-card" onclick="wsPickTemplate('weekly')">
+                  <div class="ws-cont-main">
+                    <div class="ws-cont-name">팀 위클리</div>
+                    <div class="ws-cont-meta">매주 월 오전 10:00 · 30분</div>
                   </div>
-                  <div class="ws-recent-right">
-                    <div class="ws-recent-avs">
-                      <span class="ws-recent-av" style="background:#FF8C42;">박</span>
-                    </div>
-                  </div>
-                </button>
-
-                <button class="ws-recent-card" onclick="wsPickType('팀 위클리', '팀회의')">
-                  <div class="ws-recent-main">
-                    <div class="ws-recent-name">팀 위클리</div>
-                    <div class="ws-recent-meta">매주 월 · 오전 10시 · 30분</div>
-                  </div>
-                  <div class="ws-recent-right">
-                    <div class="ws-recent-avs">
-                      <span class="ws-recent-av" style="background:#5C6BC0;">정</span>
-                      <span class="ws-recent-av" style="background:#27AE60;">김</span>
-                      <span class="ws-recent-av" style="background:#E84393;">이</span>
-                      <span class="ws-recent-av more">+2</span>
-                    </div>
+                  <div class="ws-cont-avs">
+                    <span class="ws-cont-av" style="background:#5C6BC0;">정</span>
+                    <span class="ws-cont-av" style="background:#27AE60;">김</span>
+                    <span class="ws-cont-av" style="background:#E84393;">이</span>
+                    <span class="ws-cont-av" style="background:#FF8C42;">박</span>
+                    <span class="ws-cont-av more">+1</span>
                   </div>
                 </button>
-
-                <div class="ws-other-types">
-                  <span class="ws-other-label">다른 유형</span>
-                  <button class="ws-other-chip" onclick="wsPickType('주간 스탠드업', '스탠드업')">스탠드업</button>
-                  <button class="ws-other-chip" onclick="wsPickType('캠페인 론칭 준비', '론칭')">론칭 준비</button>
-                  <button class="ws-other-chip" onclick="wsPickType('예산 검토 미팅', '의사결정')">의사결정</button>
-                  <button class="ws-other-chip" onclick="wsPickType('회고 미팅', '회고')">회고</button>
-                </div>
+                <button class="ws-cont-card" onclick="wsPickTemplate('oneon1')">
+                  <div class="ws-cont-main">
+                    <div class="ws-cont-name">박민수 1:1</div>
+                    <div class="ws-cont-meta">격주 목 오후 4:00 · 30분</div>
+                  </div>
+                  <div class="ws-cont-avs">
+                    <span class="ws-cont-av" style="background:#FF8C42;">박</span>
+                  </div>
+                </button>
               </div>
             </div>
 
@@ -2830,6 +2838,44 @@
 
   function wsApplyProject(members) {
     members.forEach(m => wsAddAttendee(m.name, m.color, null));
+  }
+
+  // Continue data
+  const WS_CONTINUE = {
+    q4: { title: 'Q4 마케팅 전략 회의 (이어서)', typeKey: '기획리뷰', members: ['정예지','오항남','김서윤','이준혁'] },
+    ai: { title: 'AI Solution 디자인팀 위클리', typeKey: '팀회의', members: ['박민수','최다인','한지수'] },
+    brand: { title: '브랜드 리뉴얼 TF 회의', typeKey: '기획리뷰', members: ['정예지','이준혁'] },
+  };
+  const WS_TEMPLATES = {
+    standup: { title: '팀 스탠드업', typeKey: '스탠드업', members: ['정예지','김서윤','이준혁','박민수'] },
+    weekly: { title: '팀 위클리', typeKey: '팀회의', members: ['정예지','김서윤','이준혁','박민수','최다인'] },
+    oneon1: { title: '박민수 1:1', typeKey: '1on1', members: ['박민수'] },
+  };
+
+  function wsPickContinue(key) {
+    const d = WS_CONTINUE[key];
+    if (!d) return;
+    const titleEl = document.getElementById('scheduleTitle');
+    if (titleEl) titleEl.value = d.title;
+    wsCurrentType = d.typeKey;
+    wsAttendeesData = [];
+    d.members.forEach(name => { const p = WS_PEOPLE.find(x=>x.name===name); if(p) wsAttendeesData.push(p); });
+    renderWsAttendees();
+    showWsAgenda(d.typeKey);
+    document.getElementById('wsDefaultPanel').style.display = 'none';
+  }
+
+  function wsPickTemplate(key) {
+    const d = WS_TEMPLATES[key];
+    if (!d) return;
+    const titleEl = document.getElementById('scheduleTitle');
+    if (titleEl) titleEl.value = d.title;
+    wsCurrentType = d.typeKey;
+    wsAttendeesData = [];
+    d.members.forEach(name => { const p = WS_PEOPLE.find(x=>x.name===name); if(p) wsAttendeesData.push(p); });
+    renderWsAttendees();
+    showWsAgenda(d.typeKey);
+    document.getElementById('wsDefaultPanel').style.display = 'none';
   }
 
   function wsPickType(title, typeKey) {
